@@ -1,6 +1,5 @@
 ---
 title: About
-location: /about
 ---
 
 My name is Ben.

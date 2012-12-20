@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-import Control.Arrow ((>>>), (***), (&&&), arr, first, second)
+import Control.Arrow ((>>>), (***), (&&&), (|||), arr, first, second)
 import Data.Monoid (Monoid, mconcat, mempty)
 import Prelude hiding (id)
 import Control.Category (id)
@@ -11,10 +11,14 @@ import System.Directory (copyFile, removeFile)
 -- For f x = g x x in prettyURLs
 import Control.Monad (join, forM_, forM)
 
+
+
+-- Paramaters
 allowableURLCharacters = ['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9']
 tempPostsDirectory = "tmp_posts/"
 tempPostsPattern = parseGlob $ tempPostsDirectory++"**"
-
+logFirstSize = 2
+logNextSize = 2
 
 main :: IO ()
 main = (renamePosts >>) . hakyll $ do
@@ -44,35 +48,44 @@ main = (renamePosts >>) . hakyll $ do
                     >>> fixURLs
                     >>> relativizeUrlsCompiler
     
+    -- Applied to (almost) every site page
+    let universalCompiler = pageCompiler
+                            >>> requireAllA posts addLogItems
+                            >>> setLocation
+                            >>> applyTemplateCompiler "templates/default.html"
+                            >>> relativizeUrlsCompiler
+
+
     -- Pages
     match "pages/**" $ do
         route   $ gsubRoute "pages/" (const "")
           `composeRoutes` setExtension ".html"
           `composeRoutes` prettyURLs
-        compile $ pageCompiler
-          >>> requireAllA posts addPostList
-          >>> applyTemplateCompiler "templates/default.html"
-          >>> relativizeUrlsCompiler
+        compile $ universalCompiler
     
     -- Posts
     match tempPostsPattern $ do
         route   $ setExtension ".html"
           `composeRoutes` gsubRoute tempPostsDirectory (const "posts/")  
           `composeRoutes` prettyURLs
-        compile $ pageCompiler
-          >>> requireAllA posts addPostList
-          >>> applyTemplateCompiler "templates/default.html"
-          >>> relativizeUrlsCompiler
+        compile $ universalCompiler
 
+-- Possibly set the page location, if not user-set
+setLocation :: Compiler (Page String) (Page String)
+setLocation = arr $ \x -> trySetField "location" (nice_location x) x
+  where nice_location = tryStripSlash
+                        . (\ (y,_,_) -> y)
+                        . filePathExplode
+                        . getField "url"
+        tryStripSlash = reverse . dropWhile (=='/') . reverse
 
-
--- Applied to (almost) every site page
-universalCompiler :: Compiler Resource (Page String)
-universalCompiler = pageCompiler
---                    >>> requireAllA tempPostsPattern addLogItems
-                    >>>  (arr $ setField "logitemsfirst" "mytest")                    
-                    >>> applyTemplateCompiler "templates/default.html"
-                    >>> relativizeUrlsCompiler
+-- Possibly add comments, defaulting to yes
+--addComments :: Compiler (Page String) (Either (Page String) (Page String))
+--addComments = arr $ \p -> if getBoolVariable "comments" True p
+--                          then Left p
+--                          else Right p
+--              >>> (arr $ setField "comments" "COMMENTS ENABLED"
+--                   ||| arr $ setField "comments" "COMMENTS DISABLED")
 
 
 -- Generate nice URLS for pages by putting them in folders
@@ -137,11 +150,23 @@ renamePosts = do
 
 addLogItems :: Compiler (Page String, [Page String]) (Page String)
 addLogItems = addToPageConcat "logitemsfirst" "templates/postitem.html"
-              (take 2 . reverse . chronological)
+              (take logFirstSize . reverse . chronological)
               &&& arr snd  
               >>> addToPageConcat "logitemsnext" "templates/postitem.html"
-              (drop 2 . reverse . chronological)
-  
+              (take logNextSize . drop logFirstSize
+               . reverse . chronological)
+
+-- Get a page's key variable and cast into a bool, assuming
+--   a default of assume.
+getBoolVariable :: String -> Bool -> Page a -> Bool
+getBoolVariable key assume p = case assume of
+  True  -> not $ val `elem` falsities
+  False -> val `elem` truths
+  where val = getField key p
+        truths = ["True", "true", "T", "t", "Yes", "yes", "Y", "y"]
+        falsities = ["False", "false", "F", "f", "No", "no", "N", "n"]
+
+
 
 addToPageConcat :: String -> Identifier Template -> ([Page String] -> [Page String])
                      -> Compiler (Page String, [Page String]) (Page String)
@@ -151,24 +176,4 @@ addToPageConcat key template selector = setFieldA key $
                                         (\p t -> map (applyTemplate t) p)
                                         >>> arr mconcat
                                         >>> arr pageBody
-
-
-
-
--- Code to set location string nicely
---          >>> (arr $ trySetField "location" . getField "url")
-               -- . getField "url")
---          >>> applyTemplateCompiler "templates/default.html"
---          >>> relativizeUrlsCompiler
---    where f x = trySetField "location" $ nice_location x $ x
---          nice_location x = (\ (x,_,_) -> x)
---                            $ filePathExplode
---                            $ getField "url" x
-
-
-
-addPostList :: Compiler (Page String, [Page String]) (Page String)
-addPostList = 
-  setFieldA "logitemsfirst"
-    (mapCompiler (applyTemplateCompiler "templates/postitem.html")
-     >>> arr mconcat >>> arr pageBody)
+                                        

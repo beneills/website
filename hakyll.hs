@@ -27,8 +27,6 @@ main = (renamePosts >>) . hakyll $ do
     match "static/js/*" $ do
         route   idRoute
         compile copyFileCompiler
-    
-    
 
     -- Images
     match "static/images/*" $ do
@@ -40,9 +38,12 @@ main = (renamePosts >>) . hakyll $ do
         
     -- This stops a cyclic dependency (somehow!)
     posts <- group "posts" $ match tempPostsPattern $ do
-                  route   $ setExtension ".html"
-                  compile pageCompiler
-
+                  compile $ pageCompiler
+                    -- We have to fix URL metadata, since this is used
+                    --   when generating the Log
+                    >>> fixURLs
+                    >>> relativizeUrlsCompiler
+    
     -- Pages
     match "pages/**" $ do
         route   $ gsubRoute "pages/" (const "")
@@ -52,7 +53,6 @@ main = (renamePosts >>) . hakyll $ do
           >>> requireAllA posts addPostList
           >>> applyTemplateCompiler "templates/default.html"
           >>> relativizeUrlsCompiler
-    
     
     -- Posts
     match tempPostsPattern $ do
@@ -82,6 +82,14 @@ prettyURLs = gsubRoute "[^.]+.html" $ join f
   where f match = case match of
           "index.html" -> id
           _            -> (++"/index.html") . takeWhile (/='.')
+
+-- Bit of a hack
+-- $path "/tmp_posts/MyPost.html" is copied into $url
+--   and then changed to "posts/MyPost/index.html"
+fixURLs :: Compiler (Page String) (Page String)
+fixURLs = arr $ changeField "url" f . copyField "path" "url"
+          where f = (++"/index.html") . takeWhile (/='.')
+                    . ("/posts/"++) . drop 1 . dropWhile (/='/')
 
 -- Title to Pretty final URL component
 prettyFilename :: String -> FilePath
@@ -162,5 +170,5 @@ addToPageConcat key template selector = setFieldA key $
 addPostList :: Compiler (Page String, [Page String]) (Page String)
 addPostList = 
   setFieldA "logitemsfirst"
-    (mapCompiler (applyTemplateCompiler "templates/mylistingtemplate.html")
+    (mapCompiler (applyTemplateCompiler "templates/postitem.html")
      >>> arr mconcat >>> arr pageBody)

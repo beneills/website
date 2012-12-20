@@ -1,3 +1,7 @@
+_site/
+_cache/
+hakyll
+
 dist
 cabal-dev
 *.o

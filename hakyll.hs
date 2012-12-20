@@ -28,6 +28,8 @@ main = (renamePosts >>) . hakyll $ do
         route   idRoute
         compile copyFileCompiler
     
+    
+
     -- Images
     match "static/images/*" $ do
         route   idRoute
@@ -36,30 +38,39 @@ main = (renamePosts >>) . hakyll $ do
     -- HTML templates
     match "templates/*" $ compile templateCompiler
         
+    -- This stops a cyclic dependency (somehow!)
+    posts <- group "posts" $ match tempPostsPattern $ do
+                  route   $ setExtension ".html"
+                  compile pageCompiler
+
     -- Pages
     match "pages/**" $ do
         route   $ gsubRoute "pages/" (const "")
           `composeRoutes` setExtension ".html"
           `composeRoutes` prettyURLs
-        compile $ universalCompiler
-
+        compile $ pageCompiler
+          >>> requireAllA posts addPostList
+          >>> applyTemplateCompiler "templates/default.html"
+          >>> relativizeUrlsCompiler
+    
+    
     -- Posts
     match tempPostsPattern $ do
         route   $ setExtension ".html"
           `composeRoutes` gsubRoute tempPostsDirectory (const "posts/")  
           `composeRoutes` prettyURLs
         compile $ pageCompiler
-        -- Using universalCompiler here introduces a
-        --   cyclic dependency (Post depends on Post)
-        -- I guess I need to compute the "recent posts"
-        --   aka Log items beforehand somehow.
+          >>> requireAllA posts addPostList
+          >>> applyTemplateCompiler "templates/default.html"
+          >>> relativizeUrlsCompiler
 
 
 
 -- Applied to (almost) every site page
 universalCompiler :: Compiler Resource (Page String)
 universalCompiler = pageCompiler
-                    >>> requireAllA tempPostsPattern addLogItems
+--                    >>> requireAllA tempPostsPattern addLogItems
+                    >>>  (arr $ setField "logitemsfirst" "mytest")                    
                     >>> applyTemplateCompiler "templates/default.html"
                     >>> relativizeUrlsCompiler
 
@@ -136,7 +147,7 @@ addToPageConcat key template selector = setFieldA key $
 
 
 
-
+-- Code to set location string nicely
 --          >>> (arr $ trySetField "location" . getField "url")
                -- . getField "url")
 --          >>> applyTemplateCompiler "templates/default.html"
@@ -145,3 +156,11 @@ addToPageConcat key template selector = setFieldA key $
 --          nice_location x = (\ (x,_,_) -> x)
 --                            $ filePathExplode
 --                            $ getField "url" x
+
+
+
+addPostList :: Compiler (Page String, [Page String]) (Page String)
+addPostList = 
+  setFieldA "logitemsfirst"
+    (mapCompiler (applyTemplateCompiler "templates/mylistingtemplate.html")
+     >>> arr mconcat >>> arr pageBody)

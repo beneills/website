@@ -1,5 +1,6 @@
 ----
 title: A Test post
+tags: one, two, three
 ----
 
 

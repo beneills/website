@@ -1,6 +1,7 @@
 ---
 title: About
 comments: false
+tags: info, me
 ---
 
 My name is Ben.

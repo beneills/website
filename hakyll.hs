@@ -83,13 +83,54 @@ runHakyll = hakyll $ do
     match "pages/**" $ do
         route   $ gsubRoute "pages/" (const "")
           `composeRoutes` universalRoute
-        compile $ pageCompiler >>> universalCompiler id
+        compile $ pageCompiler
+          >>> requireA "tags" (setFieldA "tagcloud" (renderTagCloud'))
+          >>> universalCompiler id
     
     -- Posts
     match tempPostsPattern $ do
         route   $ gsubRoute tempPostsDirectory (const "posts/")  
           `composeRoutes` universalRoute
         compile $ pageCompiler >>> universalCompiler id
+
+    -- Tags
+    create "tags" $
+        requireAll tempPostsPattern (\_ ps -> readTags ps :: Tags String)
+    
+    -- Add a tag list compiler for every tag
+    match "tags/*" $ route $ setExtension ".html"
+    metaCompile $ require_ "tags"
+        >>> arr tagsMap
+        >>> arr (map (\(t, p) -> (tagIdentifier t, makeTagList t p)))
+
+renderTagCloud' :: Compiler (Tags String) String
+renderTagCloud' = renderTagCloud tagIdentifier 100 120
+
+tagIdentifier :: String -> Identifier (Page String)
+tagIdentifier = fromCapture "tags/*"
+
+makeTagList :: String
+            -> [Page String]
+            -> Compiler () (Page String)
+makeTagList tag posts =
+    constA (mempty, posts)
+        >>> addPostList
+        >>> arr (setField "title" ("Posts tagged &#8216;" ++ tag ++ "&#8217;"))
+        >>> applyTemplateCompiler "templates/posts.html"
+        >>> applyTemplateCompiler "templates/default.html"
+        >>> relativizeUrlsCompiler
+
+-- | Auxiliary compiler: generate a post list from a list of given posts, and
+-- add it to the current page under @$posts@
+--
+addPostList :: Compiler (Page String, [Page String]) (Page String)
+addPostList = setFieldA "posts" $
+    arr (reverse . chronological)
+        >>> require "templates/postitem.html" (\p t -> map (applyTemplate t) p)
+        >>> arr mconcat
+        >>> arr pageBody
+
+
 
 
     ----Auxillary Compilers

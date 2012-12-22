@@ -1,16 +1,17 @@
 {-# LANGUAGE OverloadedStrings #-}
-import Control.Arrow ((>>>), (***), (&&&), (|||), arr, first, second)
-import Data.Monoid (Monoid, mconcat, mempty)
-import Prelude hiding (id)
-import Control.Category (id)
-import Hakyll
--- import Hakyll.Core.Util.File.getRecursiveContent
-import Data.Char (toUpper)
-import Data.Text (pack, unpack, replace)
-import System.Directory (copyFile, removeFile)
--- For f x = g x x in prettyURLs
-import Control.Monad (join, forM_, forM)
 
+-- Import Hakyll library
+import Hakyll
+
+-- And Prelude functions
+import Control.Arrow ((>>>), (&&&), arr)
+import Control.Category (id)
+import Control.Monad (join, forM_, forM)
+import Data.Char (toUpper)
+import Data.Monoid (mconcat, mempty)
+import Data.Text (pack, unpack, replace)
+import Prelude hiding (id)
+import System.Directory (copyFile, removeFile)
 
 
 -- Paramaters
@@ -49,26 +50,36 @@ main = (renamePosts >>) . hakyll $ do
                     >>> relativizeUrlsCompiler
     
     -- Applied to (almost) every site page
-    let universalCompiler = pageCompiler
-                            >>> requireAllA posts addLogItems
-                            >>> setLocation
-                            >>> applyTemplateCompiler "templates/default.html"
-                            >>> relativizeUrlsCompiler
+    -- Adds a user-supplied compiler to the middle of the chain
+    let universalCompiler c = requireAllA posts addLogItems
+                              >>> addComments
+                              >>> setLocation
+                              >>> c
+                              >>> applyTemplateCompiler "templates/default.html"
+                              >>> relativizeUrlsCompiler
+    -- Log
+    match "log/index.html" $ route idRoute
+    create "log/index.html" $ constA mempty
+      >>> universalCompiler (arr (setField "title" "Full Log")
+                             >>> (arr (setField "location" "/log"))
+                             >>> requireAllA posts addFullLog
+                             >>> applyTemplateCompiler "templates/fulllog.html")
 
 
+    
     -- Pages
     match "pages/**" $ do
         route   $ gsubRoute "pages/" (const "")
           `composeRoutes` setExtension ".html"
           `composeRoutes` prettyURLs
-        compile $ universalCompiler
+        compile $ pageCompiler >>> universalCompiler id
     
     -- Posts
     match tempPostsPattern $ do
         route   $ setExtension ".html"
           `composeRoutes` gsubRoute tempPostsDirectory (const "posts/")  
           `composeRoutes` prettyURLs
-        compile $ universalCompiler
+        compile $ pageCompiler >>> universalCompiler id
 
 -- Possibly set the page location, if not user-set
 setLocation :: Compiler (Page String) (Page String)
@@ -79,13 +90,11 @@ setLocation = arr $ \x -> trySetField "location" (nice_location x) x
                         . getField "url"
         tryStripSlash = reverse . dropWhile (=='/') . reverse
 
+
 -- Possibly add comments, defaulting to yes
---addComments :: Compiler (Page String) (Either (Page String) (Page String))
---addComments = arr $ \p -> if getBoolVariable "comments" True p
---                          then Left p
---                          else Right p
---              >>> (arr $ setField "comments" "COMMENTS ENABLED"
---                   ||| arr $ setField "comments" "COMMENTS DISABLED")
+addComments :: Compiler (Page String) (Page String)
+addComments = (id &&& applyTemplateCompiler "templates/comments.html" &&& arr (getBoolVariable "comments" True))
+              >>> arr (uncurry (\p (q, c) -> if c then q else p))
 
 
 -- Generate nice URLS for pages by putting them in folders
@@ -156,6 +165,11 @@ addLogItems = addToPageConcat "logitemsfirst" "templates/postitem.html"
               (take logNextSize . drop logFirstSize
                . reverse . chronological)
 
+addFullLog :: Compiler (Page String, [Page String]) (Page String)
+addFullLog = addToPageConcat "fulllogitems" "templates/postitem.html"
+              (reverse . chronological)
+
+
 -- Get a page's key variable and cast into a bool, assuming
 --   a default of assume.
 getBoolVariable :: String -> Bool -> Page a -> Bool
@@ -172,6 +186,8 @@ addToPageConcat :: String -> Identifier Template -> ([Page String] -> [Page Stri
                      -> Compiler (Page String, [Page String]) (Page String)
 addToPageConcat key template selector = setFieldA key $
                                         arr selector
+                                        -- Get rid of index.html rubbish
+                                        >>> arr (map (changeField "url" ((\(x,_,_) -> x) . filePathExplode)))
                                         >>> require template
                                         (\p t -> map (applyTemplate t) p)
                                         >>> arr mconcat

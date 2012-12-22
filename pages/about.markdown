@@ -1,5 +1,6 @@
 ---
 title: About
+comments: false
 ---
 
 My name is Ben.

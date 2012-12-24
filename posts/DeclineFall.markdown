@@ -1,7 +1,7 @@
 ----
 title: Decline & Fall
 location: /special/post/location
-tags: one, two
+tags: one, books, literature
 ----
 
 This is my second post.

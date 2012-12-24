@@ -1,0 +1,198 @@
+// -*- less-css-compile-at-save: t; -*-
+
+/* TODO: Hack: Calculated to make picture line up with bottom of log div */
+@sidebar-width: 132px;
+@central-content-min-width: 600px;
+@central-content-percentage: 75%;
+@sidebar-central-gap: 50px;
+@container-width: @sidebar-width+@central-content-min-width+@sidebar-central-gap;
+@logo-size: 40px; // Image dimensions
+@logo-margin: 3px;
+@logo-container-margin: 2px;
+
+// Colours
+@color1: #3E4E6C;
+@color2: #374051;
+@color3: #142646;
+@color4: #7B90B5;
+@color5: #8B9AB5;
+@colorbg: #CFD7E6;
+@colorblack: #111;
+
+/*
+ *
+ * General
+ *
+ */
+
+body {
+    font-family: 'Monda', serif;
+    margin: 0;
+    background-color: @colorbg;
+    whitespace: nowrap;
+}
+
+#Container {
+    // Hack to make min-width work cross-browser.  Do not modify.
+    min-width: @container-width;
+    width: auto !important;
+    width: @container-width;
+}
+
+.BottomAligned {
+    vertical-align: bottom;
+    bottom: 0;
+}
+
+/*
+ *
+ * Left navigation menu
+ * 
+ */
+
+#LeftContent {
+    float: left;
+    width: @sidebar-width;
+    height:100%;
+}
+    
+    #Avatar {
+	display: block;
+	width: 100%;
+    }
+    
+    #LeftMenu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	background-color: @color4;
+    }
+    
+    .LeftMenuHeading {
+	list-style-type: none;
+	background-color: @color4;
+    }
+    
+    .LeftMenuHeading a, .LeftMenuHeading a:visited {
+	display: block;
+	font-size: 2em;
+	text-decoration: none;
+	color: #111;
+    }
+    
+    .LeftMenuHeading:hover {
+	background-color: @color1;
+    }
+    
+    
+    .LeftSubMenu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: small;
+	/* Hide initially, until mouseover
+	   TODO: Bug: Browser will not calculate Left Bar's width correctly on startup since it ignore hidden elements.
+	   */
+	display: none; 
+    }
+    
+    .LeftMenuItem {
+	display: block;
+	font-size: 1em;
+	text-decoration: none;
+	color: #111;
+	background-color: @color4;
+	/* Necessary to stop browser recomputing container width.  See aboive bug. */
+	overflow: hidden;
+    }
+
+    .LeftMenuItem:hover {
+	background-color: @color1;
+    }
+
+
+/*
+ *
+ * Central Content
+ * 
+ */
+
+
+#CentreContent {
+    min-width: @central-content-min-width;
+    width: @central-content-percentage;
+/*    width: 70%;*/
+/*    height: 600px; */
+/*    margin: 0px auto 0px auto; */
+    margin-left: @sidebar-central-gap;
+    float: left;
+}
+    
+    /* Header Elements */
+    #HeaderBar {
+	background-color: @color4;
+	color: @colorblack;
+	font-size: xx-large;
+	overflow: auto;
+    }
+    
+        #HeaderBar a, #HeaderBar a:visited {
+	    text-decoration: none;
+	    color: @colorblack;
+	}
+
+	.HeaderBarLocation {
+	    font-weight: bold;
+	}
+
+    #LogBar {
+	background-color: @color1;
+	overflow: auto;
+	position: relative;
+    }
+        #LogBar a, #LogBar a:visited {
+	    text-decoration: none;
+	    color: @colorblack;
+	}
+        
+        #LogItemsFirst {
+	}
+	
+	#LogItemsNext {
+	    /* Hidden by fefault */
+	    display: none;
+	}
+	
+	#MoreLogButton {
+	    position: absolute;
+	    bottom: 0;
+	}
+	
+	#FullLogButton {
+	    /* hide by default, until "more" has been pressed */
+	    display: none;
+	}
+
+	#LogoContainer {
+	    float: right;
+	    width: 2*@logo-size+4*@logo-margin;
+	    overflow: auto;
+	    margin: @logo-container-margin;
+	}
+	
+	.LogoImage {
+	    float: right;
+	    height: @logo-size;
+	    margin: @logo-margin;
+	}
+
+
+    /* Content Elements */
+    #ContentContainer {
+	bottom: 0;
+    }
+    
+    /* Footer Elements */
+    #FooterBar {
+	background-color: @color2;
+    }

@@ -1,23 +1,14 @@
 /* TODO: Hack: Calculated to make picture line up with bottom of log div */
-/*
- *
- * General
- *
- */
 body {
   font-family: 'Monda', serif;
   margin: 0;
-  background-color: #cfd7e6;
+  background-color: #f2f2f2;
   whitespace: nowrap;
 }
 #Container {
   min-width: 782px;
   width: auto !important;
   width: 782px;
-}
-.BottomAligned {
-  vertical-align: bottom;
-  bottom: 0;
 }
 /*
  *
@@ -29,19 +20,15 @@ body {
   width: 132px;
   height: 100%;
 }
-#Avatar {
-  display: block;
-  width: 100%;
-}
 #LeftMenu {
   list-style: none;
   margin: 0;
   padding: 0;
-  background-color: #7b90b5;
+  background-color: #eeeeee;
 }
 .LeftMenuHeading {
   list-style-type: none;
-  background-color: #7b90b5;
+  background-color: #eeeeee;
 }
 .LeftMenuHeading a,
 .LeftMenuHeading a:visited {
@@ -50,17 +37,13 @@ body {
   text-decoration: none;
   color: #111;
 }
-.LeftMenuHeading:hover {
-  background-color: #3e4e6c;
-}
 .LeftSubMenu {
   list-style: none;
   margin: 0;
   padding: 0;
-  font-size: small;
   /* Hide initially, until mouseover
-	   TODO: Bug: Browser will not calculate Left Bar's width correctly on startup since it ignore hidden elements.
-	   */
+       TODO: Bug: Browser will not calculate Left Bar's width correctly on startup since it ignore hidden elements.
+     */
 
   display: none;
 }
@@ -69,13 +52,13 @@ body {
   font-size: 1em;
   text-decoration: none;
   color: #111;
-  background-color: #7b90b5;
+  background-color: #eeeeee;
   /* Necessary to stop browser recomputing container width.  See aboive bug. */
 
   overflow: hidden;
 }
 .LeftMenuItem:hover {
-  background-color: #3e4e6c;
+  background-color: #F00;
 }
 /*
  *
@@ -96,59 +79,70 @@ body {
 }
 /* Header Elements */
 #HeaderBar {
-  background-color: #7b90b5;
-  color: #111111;
+  background-color: #327ccb;
   font-size: xx-large;
   overflow: auto;
 }
-#HeaderBar a,
-#HeaderBar a:visited {
-  text-decoration: none;
-  color: #111111;
-}
-.HeaderBarLocation {
+.HeaderBarSelected {
   font-weight: bold;
 }
+#Avatar {
+  /*    float: left;*/
+
+  display: block;
+  width: 100%;
+}
 #LogBar {
-  background-color: #3e4e6c;
+  background-color: #cccccc;
   overflow: auto;
   position: relative;
-}
-#LogBar a,
-#LogBar a:visited {
-  text-decoration: none;
-  color: #111111;
 }
 #LogItemsNext {
   /* Hidden by fefault */
 
   display: none;
 }
-#MoreLogButton {
-  position: absolute;
-  bottom: 0;
-}
-#FullLogButton {
+#FullLog {
   /* hide by default, until "more" has been pressed */
 
   display: none;
+  /*    position: absolute;
+    bottom: 0; */
+
 }
-#LogoContainer {
+#LogoBox {
   float: right;
-  width: 92px;
+  width: 80px;
   overflow: auto;
-  margin: 2px;
 }
-.LogoImage {
+.Logo {
   float: right;
   height: 40px;
-  margin: 3px;
 }
+/*
+#RSSLogo {
+    float: right;
+    height: 40px;
+}
+#TwitterLogo {
+    float: right;
+    height: 40px;
+
+}
+#FacebookLogo {
+    float: right;
+    height: 40px;
+}
+#GooglePlusLogo {
+    float: right;
+    height: 40px;
+}
+*/
 /* Content Elements */
-#ContentContainer {
+#Content {
   bottom: 0;
 }
 /* Footer Elements */
 #FooterBar {
-  background-color: #374051;
+  background-color: #327ccb;
 }

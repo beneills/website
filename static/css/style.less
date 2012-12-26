@@ -18,6 +18,7 @@
 @color5: #8B9AB5;
 @colorbg: #CFD7E6;
 @colorblack: #111;
+@colorwhite: #DDD;
 
 /*
  *
@@ -26,22 +27,27 @@
  */
 
 body {
+    background-color: @colorbg;
     font-family: 'Monda', serif;
     margin: 0;
-    background-color: @colorbg;
     whitespace: nowrap;
 }
 
 #Container {
     // Hack to make min-width work cross-browser.  Do not modify.
     min-width: @container-width;
-    width: auto !important;
     width: @container-width;
+    width: auto !important;
 }
 
 .BottomAligned {
-    vertical-align: bottom;
     bottom: 0;
+    vertical-align: bottom;
+}
+
+.PlainLinkFormatting a, .PlainLinkFormatting a:visited {
+    color: @colorblack;
+    text-decoration: none;
 }
 
 /*
@@ -52,62 +58,63 @@ body {
 
 #LeftContent {
     float: left;
-    width: @sidebar-width;
     height:100%;
+    width: @sidebar-width;
 }
     
     #Avatar {
-	display: block;
-	width: 100%;
+        display: block;
+        width: 100%;
     }
     
     #LeftMenu {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	background-color: @color4;
+        background-color: @color4;
+        list-style: none;
+        margin: 0;
+        padding: 0;
     }
     
     .LeftMenuHeading {
-	list-style-type: none;
-	background-color: @color4;
+        background-color: @color4;
+        list-style-type: none;
     }
     
     .LeftMenuHeading a, .LeftMenuHeading a:visited {
-	display: block;
-	font-size: 2em;
-	text-decoration: none;
-	color: #111;
+        color: #111;
+        display: block;
+        font-size: 2em;
+	margin-left: 5px;
     }
     
     .LeftMenuHeading:hover {
-	background-color: @color1;
+        background-color: @color1;
     }
     
     
     .LeftSubMenu {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	font-size: small;
-	/* Hide initially, until mouseover
-	   TODO: Bug: Browser will not calculate Left Bar's width correctly on startup since it ignore hidden elements.
-	   */
-	display: none; 
+        /* Hide initially, until mouseover
+           TODO: Bug: Browser will not calculate Left Bar's width correctly
+	   on startup since it ignore hidden elements. */
+        display: none; 
+        font-size: small;
+        list-style: none;
+        margin: 0;
+        padding: 0;
     }
     
     .LeftMenuItem {
-	display: block;
-	font-size: 1em;
-	text-decoration: none;
-	color: #111;
-	background-color: @color4;
-	/* Necessary to stop browser recomputing container width.  See aboive bug. */
-	overflow: hidden;
+        /* Necessary to stop browser recomputing container width.
+	   See aboive bug. */
+        background-color: @color4;
+        color: #111;
+        display: block;
+        font-size: 1em;
+        overflow: hidden;
+        text-decoration: none;
     }
 
     .LeftMenuItem:hover {
-	background-color: @color1;
+        background-color: @color1;
     }
 
 
@@ -119,80 +126,91 @@ body {
 
 
 #CentreContent {
-    min-width: @central-content-min-width;
-    width: @central-content-percentage;
-/*    width: 70%;*/
 /*    height: 600px; */
 /*    margin: 0px auto 0px auto; */
-    margin-left: @sidebar-central-gap;
+/*    width: 70%;*/
     float: left;
+    margin-left: @sidebar-central-gap;
+    min-width: @central-content-min-width;
+    width: @central-content-percentage;
 }
-    
+
     /* Header Elements */
     #HeaderBar {
-	background-color: @color4;
-	color: @colorblack;
-	font-size: xx-large;
-	overflow: auto;
+        background-color: @color4;
+        color: @colorblack;
+        font-size: xx-large;
+        overflow: auto;
+        padding-left: 7px;
     }
     
         #HeaderBar a, #HeaderBar a:visited {
-	    text-decoration: none;
-	    color: @colorblack;
-	}
+            color: @colorblack;
+            text-decoration: none;
+        }
 
-	.HeaderBarLocation {
-	    font-weight: bold;
-	}
+        .HeaderBarLocation {
+            font-weight: bold;
+        }
 
     #LogBar {
-	background-color: @color1;
-	overflow: auto;
-	position: relative;
+        background-color: @color1;
+        font-size: smaller;
+        overflow: auto;
+        padding-left: 7px;
+        padding-top: 3px;
+        position: relative;
     }
         #LogBar a, #LogBar a:visited {
-	    text-decoration: none;
-	    color: @colorblack;
-	}
+            color: @colorblack;
+            text-decoration: none;
+        }
         
         #LogItemsFirst {
-	}
-	
-	#LogItemsNext {
-	    /* Hidden by fefault */
-	    display: none;
-	}
-	
-	#MoreLogButton {
-	    position: absolute;
-	    bottom: 0;
-	}
-	
-	#FullLogButton {
-	    /* hide by default, until "more" has been pressed */
-	    display: none;
-	}
+        }
+        
+        #LogItemsNext {
+            /* Hidden by fefault */
+            display: none;
+        }
+        
+        #MoreLogButton {
+            bottom: 2px;
+            font-weight: bold;
+            position: absolute;
+        }
+        
+        #FullLogButton {
+            
+            /* hide by default, until "more" has been pressed */
+            display: none;
+            font-weight: bold;
+        }
 
-	#LogoContainer {
-	    float: right;
-	    width: 2*@logo-size+4*@logo-margin;
-	    overflow: auto;
-	    margin: @logo-container-margin;
-	}
-	
-	.LogoImage {
-	    float: right;
-	    height: @logo-size;
-	    margin: @logo-margin;
-	}
+        #LogoContainer {
+            // 2px for safety
+            float: right;
+            margin: @logo-container-margin;
+            overflow: auto;
+            width: 3*@logo-size+6*@logo-margin+2;
+        }
+        
+        .LogoImage {
+            float: right;
+            height: @logo-size;
+            margin: @logo-margin;
+        }
 
 
     /* Content Elements */
     #ContentContainer {
-	bottom: 0;
+        bottom: 0;
+	margin: 0;
     }
+
     
     /* Footer Elements */
     #FooterBar {
-	background-color: @color2;
+        background-color: @color2;
+	padding-left: 7px;
     }

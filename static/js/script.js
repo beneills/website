@@ -52,3 +52,21 @@ initLogBox = function() {
 	$("#LogItemsNext").slideDown(300);
     });
 };
+
+logItemText = function(name, event, time) {
+    switch (event) {
+    case "posted":
+	return "<span class=\"LogItemName\">{name}</span> was posted at {time}"
+	    .replace("{name}", name)
+	    .replace("{time}", time);
+	break;
+    case "edited":
+	return "<span class=\"LogItemName\">{name}</span> was edited at {time}"
+	    .replace("{name}", name)
+	    .replace("{time}", time);
+	break;
+    default:
+	// Default to "posted" event
+	return logItemText(name, "posted", time);
+    }
+};

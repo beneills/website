@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Beneills.com - $title$</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+	<script src="/static/js/jquery-1.8.3.min.js" type="text/javascript" />
+	<link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css' />
+	<script src="/static/js/script.js" type="text/javascript" />
+
+    </head>
+    <body>
+      <div id="Container">
+	<!-- Left navigation menu -->
+	<div id="LeftContent">
+	  <a href="/">
+	    <img src="/static/images/avatar-132px.jpg" id="Avatar" alt="Picture of me" />
+	  </a>
+	  <ul id="LeftMenu">
+	    <li class="LeftMenuHeading PlainLinkFormatting">
+	      <a href="/about">About</a>
+	      <ul class="LeftSubMenu">
+		<li class="LeftMenuItem"><a href="#null">One</a></li>
+		<li class="LeftMenuItem"><a href="#null">Two</a></li>
+		<li class="LeftMenuItem"><a href="#null">Three</a></li>
+	      </ul>
+	    </li>
+	    <li class="LeftMenuHeading PlainLinkFormatting">
+	      <a href="#null">Tags</a>
+	      <div class="LeftSubMenu">
+		$tagcloud$
+	      </div>
+	    </li>
+	    <li class="LeftMenuHeading PlainLinkFormatting">
+	      <a href="#null">Coding</a>
+	      <ul class="LeftSubMenu">
+		<li class="LeftMenuItem"><a href="/coding/deferred/">Tutorial</a></li>
+		<li class="LeftMenuItem"><a href="#null">Two</a></li>
+		<li class="LeftMenuItem"><a href="#null">Three</a></li>
+	      </ul>
+	    </li>
+	    <li class="LeftMenuHeading PlainLinkFormatting">
+	      <a href="#null">Maths</a>
+	      <ul class="LeftSubMenu">
+		<li class="LeftMenuItem"><a href="#null">One</a></li>
+		<li class="LeftMenuItem"><a href="#null">Two</a></li>
+		<li class="LeftMenuItem"><a href="#null">Three</a></li>
+		<li class="LeftMenuItem"><a href="#null">Four</a></li>
+		<li class="LeftMenuItem"><a href="#null">Five</a></li>
+	      </ul>
+	    </li>
+	    <li class="LeftMenuHeading PlainLinkFormatting">
+	      <a href="#null">Writing</a>
+	      <ul class="LeftSubMenu">
+		<li class="LeftMenuItem"><a href="#null">One</a></li>
+		<li class="LeftMenuItem"><a href="#null">Two</a></li>
+		<li class="LeftMenuItem"><a href="#null">Three</a></li>
+	      </ul>
+	    </li>
+	    <li class="LeftMenuHeading PlainLinkFormatting">
+	      <a href="/contact/">Contact</a>
+	    </li>
+	  </ul>
+	</div>
+	
+	<!-- Central content -->
+	<div id="CentreContent">
+	  <div id="HeaderBar">
+	    <a href="/">Ben Eills</a> ::
+	    <a href="#null" class="HeaderBarLocation">$location$</a>
+	  </div>
+	  <div id="LogBar">
+	    <div id="LogoContainer">
+	      <a href="https://github.com/beneills">
+		<img src="/static/images/github-logo-40px.png"
+		     id="GithubLogo"
+		     class="LogoImage"
+		     alt="Github Logo" />
+	      </a>
+	      <a href="https://plus.google.com/105590345212526658162">
+		<img src="/static/images/google-plus-logo-40px.png"
+		     id="GooglePlusLogo"
+		     class="LogoImage"
+		     alt="Google Plus Logo" />
+	      </a>
+	      <a href="https://twitter.com/beneills">
+		<img src="/static/images/twitter-logo-40px.png"
+		     id="TwitterLogo"
+		     class="LogoImage"
+		     alt="Twitter Logo" />
+	      </a>
+	      <a href="/atom.xml">
+		<img src="/static/images/rss-logo-40px.png"
+		     id="RSSLogo"
+		     class="LogoImage"
+		     alt="RSS Logo" />
+	      </a>
+	      <a href="https://www.facebook.com/ben.eills">
+		<img src="/static/images/facebook-logo-40px.png"
+		     id="FacebookLogo"
+		     class="LogoImage"
+		     alt="Facebook Logo" />
+	      </a>
+	      <a href="https://www.beeminder.com/beneills">
+		<img src="/static/images/beeminder-logo-40px.png"
+		     id="BeeminderLogo"
+		     class="LogoImage"
+		     alt="Beeminder Logo" />
+	      </a>
+
+	    </div>
+	    <span id="LogItemsFirst">
+	      $logitemsfirst$
+	    </span>
+	    <div id="LogItemsNext">
+	      $logitemsnext$
+	    </div>
+
+	    <a href="javascript:;" id="MoreLogButton" class="BottomAligned">
+	      ...and more
+	    </a>
+	    <a href="/log" id="FullLogButton" class="BottomAligned">
+	      Full log
+	    </a>
+	  </div>
+	  <div id="ContentContainer">
+
+            $body$
+
+	  </div>
+	  <div id="FooterBar" class="PlainLinkFormatting">
+	    Powered by <a href="http://www.haskell.org/">Haskell</a> -> <a href="http://jaspervdj.be/hakyll/">Hakyll</a> -> [Static HTML, JS]
+	  </div>
+	</div>
+      </div>
+
+      <script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-37058894-1']);
+	_gaq.push(['_trackPageview']);
+	
+	(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	
+      </script>        
+
+    </body>
+    </html>
+    
+    

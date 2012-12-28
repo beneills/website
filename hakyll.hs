@@ -20,6 +20,17 @@ logNextSize = 2
 tempPostsDirectory = "_posts/"
 tempPostsPattern = parseGlob $ tempPostsDirectory++"**"
 
+-- Feed config
+feedConfiguration :: FeedConfiguration
+feedConfiguration = FeedConfiguration
+    { feedTitle       = "Ben Eills blog posts RSS"
+    , feedDescription = "All blog posts to www.beneills.com"
+    , feedAuthorName  = "Ben Eills"
+    , feedAuthorEmail = "ben@beneills.com"
+    , feedRoot        = "http://www.beneills.com"
+    }
+
+
 -- Entry function
 main :: IO ()
 main = do
@@ -120,6 +131,10 @@ runHakyll = hakyll $ do
         >>> arr tagsMap
         >>> arr (map (\(t, p) -> (tagIdentifier t, makeTagList t p)))
 
+    -- Render RSS feed
+    match  "atom.xml" $ route idRoute
+    create "atom.xml" $
+        requireAll_ posts >>> renderRss feedConfiguration
 
 renderTagCloud' :: Compiler (Tags String) String
 renderTagCloud' = renderTagCloud tagIdentifier 100 120

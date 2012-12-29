@@ -7,14 +7,15 @@ import Hakyll
 import Control.Arrow ((>>>), (&&&), arr)
 import Control.Category (id)
 import Control.Monad (join, forM_, forM)
-import Data.Char (toUpper)
+import Data.Char (toLower, toUpper)
 import Data.Monoid (mconcat, mempty)
 import Data.Text (pack, unpack, replace)
 import Prelude hiding (id)
 import System.Directory (copyFile, removeFile)
+import Data.List (intersperse)
 
 -- Paramaters
-allowableURLCharacters = ['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9']
+allowableURLCharacters = ['a'..'z'] ++ ['A'..'Z'] ++ ['0'..'9'] ++ ['-']
 logFirstSize = 3
 logNextSize = 2
 tempPostsDirectory = "_posts/"
@@ -232,7 +233,12 @@ prettyURLs = gsubRoute "[^.]+.html" $ join f
 -- Title to pretty final URL component
 -- e.g. "My First Post!" -> "MyFirstPost"
 prettyFilename :: String -> FilePath
-prettyFilename = filter (`elem` allowableURLCharacters) . concat . map capitalize . words
+prettyFilename = concat
+                 . intersperse "-"
+                 . filter (not . null)
+                 . map (map toLower)
+                 . map (filter (`elem` allowableURLCharacters))
+                 . words
   where capitalize (x:xs) = toUpper x : xs
 
 -- Separate a filepath into its 3 components

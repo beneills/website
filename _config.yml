@@ -1,3 +1,5 @@
-name: Your New Jekyll Site
+name: Ben Eills
 markdown: redcarpet
 pygments: true
+
+permalink: ":title/"

@@ -1,13 +1,26 @@
 ---
 layout: default
-title: Your New Jekyll Site
+title: Ben Eills
 ---
 
 <div id="home">
-  <h1>Blog Posts</h1>
-  <ul class="posts">
+  <h3>Projects</h3>
+  <ul id="project-list"> <!-- TODO links -->
+    <li><span class="list-align project-link"><a href="https://github.com/beneills/beemem">Beemem</a></span> <em>update Beeminder goals from Memrise data</em></li>
+    <li><span class="list-align project-link"><a href="http://beeminder.beneills.com/">Beeminder Goals</a></span> <em>large-thumbnail page of my personal goals</em></li>
+    <li><span class="list-align project-link"><a href="http://showcase.beneills.com/">Beeminder Showcase</a></span> <em>curated list of interesting Beeminder goals</em></li>
+    <li><span class="list-align project-link"><a href="https://github.com/beneills/candide">Candide Presentation</a></span> <em>presentation prepared for French class about Voltaire's Candide</em></li>
+    <li><span class="list-align project-link"><a href="https://github.com/beneills/configuration">Dotfiles</a></span> <em>my configuration files</em></li>
+    <li><span class="list-align project-link"><a href="http://www.beneills.com/expenses/">Expenses</a></span> <em>simple web app to visualize recurring expenses</em></li>
+    <li><span class="list-align project-link"><a href="https://github.com/beneills/log">Log</a></span> <em>record stuff that happens -  possibly to be expanded in scope dramatically</em></li>
+    <li><span class="list-align project-link"><a href="https://github.com/beneills/latin">Latin Tools</a></span> <em>print and quiz Latin declensions via Haskell</em></li>
+    <li><span class="list-align project-link"><a href="https://github.com/beneills/vacation-math">Maths Sheets</a></span> <em>sequence of 8 sheets to stretch students before University</em></li>
+  </ul>
+
+  <h3>Posts</h3>
+  <ul id="post-list">
     {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><span class="list-align post-date">{{ post.date | date: "%B %Y" }}</span> <a href="{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
 </div>

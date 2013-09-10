@@ -15,7 +15,12 @@ h2 {
 
 .list-align {
     display: inline-block;
-    width: 200px;
+    width: 12em;
+}
+
+.list-align-grand {
+    display: inline-block;
+    width: 34em;
 }
 
 .header {
@@ -37,4 +42,15 @@ h2 {
 
 .margined-content {
     margin: 8px;
+}
+
+.title {
+    position: relative;
+}
+
+.title .meta {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-style: italic;
 }

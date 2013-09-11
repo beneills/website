@@ -7,7 +7,7 @@ body {
 
 .list-align {
     display: inline-block;
-    width: 12em;
+    width: 14em;
 }
 
 .list-align-grand {
@@ -26,10 +26,24 @@ body {
     margin-top: 0.6em;
 }
 
-.header .title a {
+.header .title #site-name a {
     position: relative;
     color: #222;
     text-decoration: none;
+}
+
+.header .title sup {
+    font-size: 0.5em;
+}
+
+.header .title sup a,
+.header .title sup a:visited {
+     color: #4183c4;
+     text-decoration: none;
+}
+
+.header .title sup a:hover {
+     text-decoration: underline;
 }
 
 #avatar {
@@ -68,4 +82,14 @@ body {
 /* comments */
 #disqus_thread {
     margin-top: 3em;
+}
+
+/* footnotes */
+
+#footnotediv {
+    background-color: #DDD;
+    padding: 0.5em;
+    width: 400px;
+    opacity: 0.9;
+
 }

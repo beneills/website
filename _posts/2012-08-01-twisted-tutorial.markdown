@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Intro to Python Asynchronous Programming and Twisted's Deferreds
+title: Async Python and Twisted's Deferreds
+completion: add archive
 ---
 
-##A Mad Hatter##
+## A Mad Hatter
 
 Imagine that a madman (we'll call him MadHatter) walks up to you and
 thrusts into your hand a FireCracker.  The FireCracker's internal Fuse is
@@ -24,6 +25,7 @@ also has interesting names, but ones which strangely have very little to do
 with the function of their bearers (see Conch, Manhole and Jelly). 
 Enter the actors:
 
+{% highlight python %}
     class FireCracker(object):
         def __init__(self, owner):
             self.owner = owner
@@ -36,6 +38,7 @@ Enter the actors:
         pass
     class BenEills(object):
         pass
+{% endhighlight %}
 
 We've got this far using only the 'standard' everyday sort of Python.  No
 async magic.
@@ -44,10 +47,12 @@ Well, we want to be able to simulate the burning fuse.  Let's add a
 light_fuse() method to FireCracker.  In naïve, synchronous Python we could
 do something like this:
 
+{% highlight python %}
     def light_fuse(self):
         burning_time = random.choice([0.5, 1.0, 1.5, 2.0])
         time.sleep(burning_time)
         self.explode()
+{% endhighlight %}
 
 Do not do this!  Why?  There are two obvious issues:
 
@@ -66,7 +71,7 @@ merely being 'switched between'.  (Incidentally, this is similar to the way
 that modern operating systems allow you to run multiple applications at
 once by rapidly switching between them behind-the-scenes).
 
-##Fate##
+## Fate
 
   On to Fate.  We have to provide a way for the developer working on the
 FireCracker code to 'set' events.  The simplest method of doing this is
@@ -74,11 +79,13 @@ perhaps timer-based events.  Lets make a Fuse class that represents a timed
 event.  Just follow along, you'll see precisely how it fits together with
 everything else in a bit.
 
+{% highlight python %}
     class Fuse(object):
         def set_time(self, time):
             self.time = time
         def is_burned(self):
             return self.time < time.time()
+{% endhighlight %}
 
 So, this is simple.  We get a fuse, set the burning time and then we can
 check in the future whether or not it is fully burned.  It is a trifle
@@ -99,6 +106,7 @@ The following is the whole of Fate, including the slightly expanded Fuse
 class.  It will be explained afterwards.  Try to glean the rough
 functionality from the source.
 
+{% highlight python %}
     class Fate(object):
         def __init__(self):
             self._shutdown = False
@@ -130,6 +138,7 @@ functionality from the source.
             return hasattr(self, 'handler')
         def call_handler(self):
             self.handler()
+{% endhighlight %}
 
 Whew!  Now the explanation:
 
@@ -157,6 +166,7 @@ one.
 Here is the complete FireCracker program, minus general-purpose Fate code
 and imports.
 
+{% highlight python %}
     class FireCracker(object):
         def __init__(self, owner, fate):
             self.owner = owner
@@ -196,8 +206,9 @@ and imports.
     #   and 2 seconds later, Fate will be shutdown
     fate.run()
     # Universe has ended.  We have no cleanup to do.
+{% endhighlight %}
 
-##Taking Fate to its limits##
+## Taking Fate to its limits
 
   Now, our Fate system functions well at the limited tasks set out for it.
 It will not do any of the following things:
@@ -210,6 +221,7 @@ It will not do any of the following things:
 Let's see a quick second example that takes Fate to the limits of its
 functionality.
 
+{% highlight python %}
     ## This function explodes Parliament and shuts down universe.
     def explode_parliament():
         print "Boom! The Houses of Parliament explode!"
@@ -244,6 +256,7 @@ functionality.
     last = tmp
     last.ignite()
     fate.run()
+{% endhighlight %}
 
 Here we have represented a chain of fuses by putting in the "user" code a
 chaining mechanism: the handler for one Fuse() i.e. ignite() itself creates
@@ -257,7 +270,7 @@ to introduce Twisted.  It is similar to Fate, but much more extensible.
 Twisted also contains many utility modules for doing things like HTTP
 downloading and executing external commands.
 
-##Twisted##
+## Twisted
 
   To get started with Twisted, remember these two approximations:
 
@@ -267,6 +280,7 @@ downloading and executing external commands.
 Here is a simple Twisted program, adapted from the [Twisted Docs]:
     from twisted.internet import reactor, defer
 
+{% highlight python %}
     def slow_multiply(x, y):
         """
         This function multiplies two numbers very slowly (for a computer).
@@ -290,6 +304,7 @@ Here is a simple Twisted program, adapted from the [Twisted Docs]:
     # This is pretty similar to Fate's "shutdown" method.
     reactor.callLater(4, reactor.stop)
     reactor.run()
+{% endhighlight %}
 
 So, similarly to our Fuse, a Deferred is Twisted's indication that the
 returner will fire it at some point in the future.
@@ -302,6 +317,7 @@ value the Deferred fires with.
 With these small difference in mind, it ought to be easy for you to rewrite
 the Mad Hatter example using Twisted.  Here is is:
 
+{% highlight python %}
     # Standard Twisted imports.  You'll need these for most Twisted
     applications.
     from twisted.internet import reactor, defer
@@ -339,6 +355,7 @@ the Mad Hatter example using Twisted.  Here is is:
     reactor.callLater(3, reactor.stop)
     # Start Twisted
     reactor.run()
+{% endhighlight %}
 
 We've made this one more interesting: it may explode in the MadHatter's own
 hands.
@@ -350,7 +367,7 @@ simply "promises of data" (i.e. Deferreds).
   [Twisted Docs]: http://twistedmatrix.com/documents/current/core/howto/defer.html#auto1
 
 
-##Beyond this tutorial##
+## Beyond this tutorial
 
   The above should be enough to get you started working within the Twisted
 asynchronous framework, and you should have a reasonably clear idea of how
@@ -364,13 +381,16 @@ to happen.
 It is for this reason that the other parts of the Twisted framework become
 desirable.  In synchronous programming, one might use
 
+{% highlight python %}
     urllib2.urlopen("http://www.beneills.com/").read(1000)
+{% endhighlight %}
 
 to read a web page.  This would be bad in Twisted, because while the
 standard library is occupied with downloading it (which might take several
 seconds), anything else that ought to run couldn't.
 The correct Twisted way to do this is:
 
+{% highlight python %}
     from twisted.internet import reactor
     import twisted.web.client as twc
     Example of using Twisted's getPage utility function in place of urllib2#
@@ -386,6 +406,7 @@ The correct Twisted way to do this is:
     # Shutdown, regardless of success after 3 seconds
     reactor.callLater(3, reactor.stop)
     reactor.run()
+{% endhighlight %}
 
 Internally, Twisted's getPage function downloads small chunks of the page
 at a time, allowing other events to be handled during downloading.
@@ -404,7 +425,7 @@ scripts it is clearly an overkill, but for applications performing multiple
 network requests or handling user input while doing background work Twisted
 is probably the answer.
 
-##Resources##
+## Resources
 
 * [All Examples in a Compressed Archive]
 * [Official Twisted Deferred Guide]

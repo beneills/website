@@ -1,11 +1,27 @@
 ---
-layout: default
+layout: comments
 ---
-<div class="title">
-  <h2>{{ page.title }}</h2>
-  <p class="meta">{{ page.description }}</p>
+<div class="content-title">
+  <h1>{{ page.title }}</h1>
+    {% if page.description %}
+    <em class="description">{{ page.description }}</em><br />
+    {% endif %}
+
+  <div class="meta">
+    {% if page.status %}
+    epistemic status<a href="http://www.gwern.net/About#belief-tags">&dagger;</a>: <strong>{{ page.status }}</strong>
+    {% endif %}
+
+    {% if page.completion %}
+    <br />
+    completion status: <strong>{{ page.completion }}</strong><!-- TODO -->
+    {% endif %}
+  </div>
+  <hr />
 </div>
-<hr />
-<div class="post">
+
+
+
+<div class="markdown-body">
 {{ content }}
 </div>

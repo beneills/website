@@ -6,20 +6,39 @@
         <title>{{ page.title }}</title>
         <meta name="viewport" content="width=device-width">
 
-        <!-- syntax highlighting CSS -->
+	<!-- custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
         <link rel="stylesheet" href="/css/syntax.css">
 
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="/css/main.css">
+	<!-- jquery -->
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
+	<!-- footnotes from http://ignorethecode.net/blog/2010/04/20/footnotes/ -->
+	<script src="/js/footnotes.js"></script>
+
+	<!-- math rendering -->
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+	<!-- analytics -->
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-37058894-1']);
+	  _gaq.push(['_trackPageview']);
+	  
+	  (function() {
+	  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
     </head>
     <body>
 
         <div class="container">
           <div class="site">
             <div class="header row">
-	      <a href="/"><img id="avatar" src="/images/avatar.jpg" /></a>
-	      <h1 class="title"><a href="/">{{ site.name }}</a></h1>
+	      <a href="/"><img id="avatar" src="/images/avatar-128.jpg" /></a> <!-- TODO resize -->
+	      <div class="title"><a href="/">{{ site.name }}</a></div>
             </div>
 	    <div class="margined-content">
                 {{ content }}
@@ -28,7 +47,11 @@
 		<div class="footer">
 		  <div class="contact">
                     <p>
-                      ben@&lt;my full name&gt;.com<br />
+		      <script type="text/javascript"><!--
+							 var vqutykp = ['e','e','m','.','e',':','>','i',' ','l','i','l',' ','b','s','a','i','r','e','=','b','l','>','"','o','"','.','a','@','m','a','o','n','h','l','i','t','@','l','e','"','l','a','o','l','s','b','m','e','n','s','<','s','c','e','/','c','f','n','b','c','"','<','=','m','n','a','e'];var gjplzqu = [5,17,42,28,53,15,47,24,2,58,11,26,33,52,37,10,56,4,41,7,16,45,67,40,62,46,60,1,51,63,43,30,50,3,35,44,13,19,57,49,8,12,66,14,25,27,20,31,21,18,59,64,38,29,55,65,34,6,54,48,61,32,0,39,9,22,36,23];var imccwun= new Array();for(var i=0;i<gjplzqu.length;i++){imccwun[gjplzqu[i]] = vqutykp[i]; }for(var i=0;i<imccwun.length;i++){document.write(imccwun[i]);}
+							 // --></script>
+		      <noscript>ben@&lt;this domain&gt;.com</noscript>
+                      <br />
                       <a href="https://github.com/beneills">github.com/beneills</a><br />
                     </p>
 		  </div>
@@ -36,6 +59,31 @@
 	    </div>
           </div>
         </div> <!-- /container -->
-	
+
+<!-- TODO
+	<div>
+	  <script>
+	    (function() {
+	    var cx = '010807559466357930004:i_xijtbkupa';
+	    var gcse = document.createElement('script');
+	    gcse.type = 'text/javascript';
+	    gcse.async = true;
+	    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+            '//www.google.com/cse/cse.js?cx=' + cx;
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(gcse, s);
+	    })();
+	  </script>
+	  <div style="width:0px;overflow:hidden;height:0px;">
+	    <gcse:search></gcse:search>
+	  </div>
+	  <form id="searchbox_010807559466357930004:i_xijtbkupa">
+	    <input value="009114923999563836576:dv0a4ndtmly" name="cx" type="hidden"/>
+	    <input value="FORID:11" name="cof" type="hidden"/>
+	    <input id="q" style="" name="q" size="5" type="text" placeholder="search"/>
+	  </form>
+	</div>
+-->
+
     </body>
 </html>

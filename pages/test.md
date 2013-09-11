@@ -6,6 +6,7 @@ comments: false
 
 This is a test <sup><a href="#fn:1" rel="footnote">1</a></sup>
 
+Hello world.
 
 ## Math
 

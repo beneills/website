@@ -21,4 +21,5 @@ and:
 
 ## How to add gist
 
-    <script src="https://gist.github.com/beneills/4980411.js"></script>
+     {% gist 4980411 %}
+

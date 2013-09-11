@@ -4,6 +4,8 @@ layout: default
 
 {{ content }}
 
+{% capture comments_string %}{{ page.comments }}{% endcapture %}
+{% if comments_string != 'false' %}
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   var disqus_shortname = 'beneills';
@@ -15,5 +17,5 @@ layout: default
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
-<noscript>enable javascript to comment</noscript>
-
+<noscript>enable javascript to comment, or just <a href="#contact">email me</a></noscript>
+{% endif %}

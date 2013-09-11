@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Async Python and Twisted's Deferreds
+title: Async Python and Twisted
+description: an introduction to the asynchronous paradigm for Python beginners, in which we write our own async framework
 completion: add archive
 ---
 

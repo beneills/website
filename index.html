@@ -14,7 +14,7 @@ title: Ben Eills
   </ul>
 
   <h2>Projects</h2>
-  <ul id="project-list"> <!-- TODO links -->
+  <ul> <!-- TODO links -->
     <li><span class="list-align"><a href="https://github.com/beneills/beemem">Beemem</a></span> <em>update Beeminder goals from Memrise data</em></li>
     <li><span class="list-align"><a href="http://beeminder.beneills.com/">Beeminder Goals</a></span> <em>large-thumbnail page of my personal goals</em></li>
     <li><span class="list-align"><a href="http://showcase.beneills.com/">Beeminder Showcase</a></span> <em>curated list of interesting Beeminder goals</em></li>
@@ -28,12 +28,26 @@ title: Ben Eills
   </ul>
 
   <h2>Posts</h2>
-  <ul id="post-list">
+  <ul>
     {% for post in site.posts %}
       <li>
 	<a href="{{ post.url }}" class="list-align-grand">{{ post.title }}</a>
 	<em>{{ post.date | date: "%B %Y" }}</em>
       </li>
     {% endfor %}
+      {% if site.posts == empty %}
+      <em>no posts yet</em>
+    {% endif %}
+  </ul>
+
+    <h2>Other</h2>
+  <ul>
+      <li>
+	<a href="/about/author.html" class="list-align-grand">About the Author</a>
+      </li>
+
+      <li>
+	<a href="/about/site.html" class="list-align-grand">About the Site</a>
+      </li>
   </ul>
 </div>

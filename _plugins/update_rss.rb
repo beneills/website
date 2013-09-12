@@ -30,7 +30,7 @@ rss = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
 
   <channel>
     <title>#{repository_path}</title>
-    <description>Git commits to #{repository_name}</description>
+    <description>Git commits to #{git_history}</description>
     <link>#{url}</link>
     <lastBuildDate>#{Time.now}</lastBuildDate>
     <pubDate>#{Time.now}</pubDate>

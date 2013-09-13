@@ -42,16 +42,6 @@ title: Ben Eills
     {% endif %}
   </ul>
 
-  <h2>Other</h2>
-  <ul>
-      <li>
-	<a href="/about/author.html" class="list-align-grand">About the Author</a>
-      </li>
-
-      <li>
-	<a href="/about/site.html" class="list-align-grand">About the Site</a>
-      </li>
-  </ul>
 
  {% comment %} Are there any drafts? {% endcomment %}
   {% assign drafts = false %}
@@ -60,7 +50,6 @@ title: Ben Eills
       {% assign drafts = true %}
     {% endif %}
   {% endfor %}
-
 
   {% if drafts %}
   <h2>Drafts</h2>
@@ -73,4 +62,15 @@ title: Ben Eills
   </ul>
   {% endif %}
 
+
+  <h2>Other</h2>
+  <ul>
+      <li>
+	<a href="/about/author.html" class="list-align-grand">About the Author</a>
+      </li>
+
+      <li>
+	<a href="/about/site.html" class="list-align-grand">About the Site</a>
+      </li>
+  </ul>
 </div>

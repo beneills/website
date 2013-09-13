@@ -42,7 +42,7 @@ title: Ben Eills
     {% endif %}
   </ul>
 
-    <h2>Other</h2>
+  <h2>Other</h2>
   <ul>
       <li>
 	<a href="/about/author.html" class="list-align-grand">About the Author</a>
@@ -52,4 +52,25 @@ title: Ben Eills
 	<a href="/about/site.html" class="list-align-grand">About the Site</a>
       </li>
   </ul>
+
+
+  {% assign drafts = false %}
+  {% for page in site.pages %}
+    {% if page.url contains '/drafts/' %}
+      {% assign drafts = true %}
+    {% endif %}
+  {% endfor %}
+
+
+  {% if drafts %}
+  <h2>Drafts</h2>
+  <ul>
+    {% for page in site.pages %}
+      {% if page.url contains '/drafts/' %}
+        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  {% endif %}
+
 </div>

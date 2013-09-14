@@ -17,29 +17,29 @@ Since all the data passes through Dropbox, I set out to have my [Linode](https:/
 We install headless Dropbox:
 
 {% highlight bash %}
-    # install from https://www.dropbox.com/install2
-    dropbox start
+# install from https://www.dropbox.com/install2
+dropbox start
 {% endhighlight %}
 
 and GitWatch:
 
 {% highlight bash %}
-    sudo aptitude install inotify-tools
-    wget -O ~/bin/gitwatch.sh https://raw.github.com/nevik/gitwatch/master/gitwatch.sh
-    chmod +x ~/bin/gitwatch.sh
+sudo aptitude install inotify-tools
+wget -O ~/bin/gitwatch.sh https://raw.github.com/nevik/gitwatch/master/gitwatch.sh
+chmod +x ~/bin/gitwatch.sh
 {% endhighlight %}
 
 then test:
 
 {% highlight bash %}
-    dropbox start
-    ~/bin/gitwatch.sh ~/Dropbox/Draft > /dev/null &
-    cd ~/Dropbox/Draft; watch git log -n 1 # now, make an edit!
+dropbox start
+~/bin/gitwatch.sh ~/Dropbox/Draft > /dev/null &
+cd ~/Dropbox/Draft; watch git log -n 1 # now, make an edit!
 {% endhighlight %}
 
 Now, we make everything start at startup by putting the following at the end of into `crontab -e`:
 
 {% highlight bash %}
-    @reboot ~/.dropbox-dist/dropboxd
-    @reboot ~/bin/gitwatch.sh ~/Dropbox/Draft
+@reboot ~/.dropbox-dist/dropboxd
+@reboot ~/bin/gitwatch.sh ~/Dropbox/Draft
 {% endhighlight %}

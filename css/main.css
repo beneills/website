@@ -99,4 +99,14 @@ body {
 
 }
 
-/* test comment */
+/* style markdown text */
+
+.markdown-body {
+    line-height: 1.35em;
+}
+
+/* style code blocks */
+
+.highlight { /* this is the block element surrounding code blocks */
+    margin-left: 1.5em;
+}

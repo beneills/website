@@ -27,18 +27,18 @@ with the function of their bearers (see Conch, Manhole and Jelly).
 Enter the actors:
 
 {% highlight python %}
-    class FireCracker(object):
-        def __init__(self, owner):
-            self.owner = owner
-        def hand_to(self, new_owner):
-            self.owner = new_owner
-        def explode(self):
-            print "BOOM! Firecracker exploded in the unlucky hands " \
-                "of {0}".format(self.owner)
-    class MadHatter(object):
-        pass
-    class BenEills(object):
-        pass
+class FireCracker(object):
+    def __init__(self, owner):
+        self.owner = owner
+    def hand_to(self, new_owner):
+        self.owner = new_owner
+    def explode(self):
+        print "BOOM! Firecracker exploded in the unlucky hands " \
+            "of {0}".format(self.owner)
+class MadHatter(object):
+    pass
+class BenEills(object):
+    pass
 {% endhighlight %}
 
 We've got this far using only the 'standard' everyday sort of Python.  No
@@ -49,10 +49,10 @@ light_fuse() method to FireCracker.  In naïve, synchronous Python we could
 do something like this:
 
 {% highlight python %}
-    def light_fuse(self):
-        burning_time = random.choice([0.5, 1.0, 1.5, 2.0])
-        time.sleep(burning_time)
-        self.explode()
+def light_fuse(self):
+    burning_time = random.choice([0.5, 1.0, 1.5, 2.0])
+    time.sleep(burning_time)
+    self.explode()
 {% endhighlight %}
 
 Do not do this!  Why?  There are two obvious issues:
@@ -81,11 +81,11 @@ event.  Just follow along, you'll see precisely how it fits together with
 everything else in a bit.
 
 {% highlight python %}
-    class Fuse(object):
-        def set_time(self, time):
-            self.time = time
-        def is_burned(self):
-            return self.time < time.time()
+class Fuse(object):
+    def set_time(self, time):
+        self.time = time
+    def is_burned(self):
+        return self.time < time.time()
 {% endhighlight %}
 
 So, this is simple.  We get a fuse, set the burning time and then we can
@@ -108,37 +108,37 @@ class.  It will be explained afterwards.  Try to glean the rough
 functionality from the source.
 
 {% highlight python %}
-    class Fate(object):
-        def __init__(self):
-            self._shutdown = False
-            self.fuses = []
-        def get_fuse(self, seconds):
-            f = Fuse()
-            f.set_time(time.time() + seconds)
-            self.fuses.append(f)
-            return f
-        def check_fuses(self):
-            for fuse in self.fuses:
-                if fuse.has_handler() and fuse.is_burned():
-                    self.fuses.remove(fuse)
-                    fuse.call_handler()
-        def run(self):
-            while not self._shutdown:
-                self.check_fuses()
-                time.sleep(0.2)
-        def shutdown(self):
-            self._shutdown = True
-    class Fuse(object):
-        def set_time(self, time):
-            self.time = time
-        def is_burned(self):
-            return self.time < time.time()
-        def set_handler(self, handler):
-            self.handler = handler
-        def has_handler(self):
-            return hasattr(self, 'handler')
-        def call_handler(self):
-            self.handler()
+class Fate(object):
+    def __init__(self):
+        self._shutdown = False
+        self.fuses = []
+    def get_fuse(self, seconds):
+        f = Fuse()
+        f.set_time(time.time() + seconds)
+        self.fuses.append(f)
+        return f
+    def check_fuses(self):
+        for fuse in self.fuses:
+            if fuse.has_handler() and fuse.is_burned():
+                self.fuses.remove(fuse)
+                fuse.call_handler()
+    def run(self):
+        while not self._shutdown:
+            self.check_fuses()
+            time.sleep(0.2)
+    def shutdown(self):
+        self._shutdown = True
+class Fuse(object):
+    def set_time(self, time):
+        self.time = time
+    def is_burned(self):
+        return self.time < time.time()
+    def set_handler(self, handler):
+        self.handler = handler
+    def has_handler(self):
+        return hasattr(self, 'handler')
+    def call_handler(self):
+        self.handler()
 {% endhighlight %}
 
 Whew!  Now the explanation:
@@ -168,45 +168,45 @@ Here is the complete FireCracker program, minus general-purpose Fate code
 and imports.
 
 {% highlight python %}
-    class FireCracker(object):
-        def __init__(self, owner, fate):
-            self.owner = owner
-            self.fate = fate
-        def hand_to(self, new_owner):
-            self.owner = new_owner
-        def explode(self):
-            print "BOOM! Firecracker exploded in the unlucky hands " \
-                "of {0}".format(self.owner)
-            # After any explosion, shutdown program after 2 second delay
-            # Otherwise we'd have to kill the program
-            f = self.fate.get_fuse(2)
-            f.set_handler(self.fate.shutdown)
-        def light_fuse(self):
-            burning_time = random.choice([0.5, 1.0, 1.5, 2.0])
-            f = self.fate.get_fuse(burning_time)
-            f.set_handler(self.explode)
-    class MadHatter(object):
-        def __repr__(self):
-            return "Mad Hatter"
-    class BenEills(object):
-        def __repr__(self):
-            return "Ben Eills"
-    # Universe come into existence
-    fate = Fate()
-    # Hatter and Ben are born
-    hatter = MadHatter()
-    ben = BenEills()
-    # FireCracker appears, intitially owned by the Hatter
-    fc = FireCracker(hatter, fate)
-    # The Hatter lights the fuse
-    fc.light_fuse()
-    # And hands it to Ben
-    fc.hand_to(ben)
-    # Universe begins paying attention to duration of time
-    # At some point during run, the FireCracker will explode
-    #   and 2 seconds later, Fate will be shutdown
-    fate.run()
-    # Universe has ended.  We have no cleanup to do.
+class FireCracker(object):
+    def __init__(self, owner, fate):
+        self.owner = owner
+        self.fate = fate
+    def hand_to(self, new_owner):
+        self.owner = new_owner
+    def explode(self):
+        print "BOOM! Firecracker exploded in the unlucky hands " \
+            "of {0}".format(self.owner)
+        # After any explosion, shutdown program after 2 second delay
+        # Otherwise we'd have to kill the program
+        f = self.fate.get_fuse(2)
+        f.set_handler(self.fate.shutdown)
+    def light_fuse(self):
+        burning_time = random.choice([0.5, 1.0, 1.5, 2.0])
+        f = self.fate.get_fuse(burning_time)
+        f.set_handler(self.explode)
+class MadHatter(object):
+    def __repr__(self):
+        return "Mad Hatter"
+class BenEills(object):
+    def __repr__(self):
+        return "Ben Eills"
+# Universe come into existence
+fate = Fate()
+# Hatter and Ben are born
+hatter = MadHatter()
+ben = BenEills()
+# FireCracker appears, intitially owned by the Hatter
+fc = FireCracker(hatter, fate)
+# The Hatter lights the fuse
+fc.light_fuse()
+# And hands it to Ben
+fc.hand_to(ben)
+# Universe begins paying attention to duration of time
+# At some point during run, the FireCracker will explode
+#   and 2 seconds later, Fate will be shutdown
+fate.run()
+# Universe has ended.  We have no cleanup to do.
 {% endhighlight %}
 
 ## Taking Fate to its limits
@@ -223,40 +223,40 @@ Let's see a quick second example that takes Fate to the limits of its
 functionality.
 
 {% highlight python %}
-    ## This function explodes Parliament and shuts down universe.
-    def explode_parliament():
-        print "Boom! The Houses of Parliament explode!"
-        fate.shutdown()
-    ## This class represents a fuse in part of a chain.
-    import sys
-    class FuseInChain(object):
-        def __init__(self, tie_to, burn_time):
-            """
-            Initialize a new fuse in our chain, tying it to the current end
-            fuse, tie_to
-            If tie_to is None, we are tied directly to the barrel.
-            We become the new end fuse.
-            """
-            self.next = tie_to
-            self.burn_time = burn_time
-        def ignite(self):
-            """
-            Ignite this fuse.
-            """
-            print "...igniting next fuse in chain..."
-            f = fate.get_fuse(self.burn_time)
-            if self.next is None:
-                # We are the last Fuse in the chain.  Blow up barrel.
-                f.set_handler(explode_parliament)
-            else:
-                f.set_handler(self.next.ignite)
-    fate = Fate()
-    tmp = FuseInChain(None, 0.3)
-    for i in xrange(7):
-        tmp = FuseInChain(tmp, i/10.0)
-    last = tmp
-    last.ignite()
-    fate.run()
+## This function explodes Parliament and shuts down universe.
+def explode_parliament():
+    print "Boom! The Houses of Parliament explode!"
+    fate.shutdown()
+## This class represents a fuse in part of a chain.
+import sys
+class FuseInChain(object):
+    def __init__(self, tie_to, burn_time):
+        """
+        Initialize a new fuse in our chain, tying it to the current end
+        fuse, tie_to
+        If tie_to is None, we are tied directly to the barrel.
+        We become the new end fuse.
+        """
+        self.next = tie_to
+        self.burn_time = burn_time
+    def ignite(self):
+        """
+        Ignite this fuse.
+        """
+        print "...igniting next fuse in chain..."
+        f = fate.get_fuse(self.burn_time)
+        if self.next is None:
+            # We are the last Fuse in the chain.  Blow up barrel.
+            f.set_handler(explode_parliament)
+        else:
+            f.set_handler(self.next.ignite)
+fate = Fate()
+tmp = FuseInChain(None, 0.3)
+for i in xrange(7):
+    tmp = FuseInChain(tmp, i/10.0)
+last = tmp
+last.ignite()
+fate.run()
 {% endhighlight %}
 
 Here we have represented a chain of fuses by putting in the "user" code a
@@ -279,32 +279,32 @@ downloading and executing external commands.
 * "Deferred" is approximately "Fuse"
 
 Here is a simple Twisted program, adapted from the [Twisted Docs]:
-    from twisted.internet import reactor, defer
+from twisted.internet import reactor, defer
 
 {% highlight python %}
-    def slow_multiply(x, y):
-        """
-        This function multiplies two numbers very slowly (for a computer).
-        It takes 3 seconds.
-        It returns a Deferred instantly which fires with the result once
-        we've determined it.
-        """
-        d = defer.Deferred()
-        reactor.callLater(3, d.callback, x * y)
-        return d
-    def print_multiplication_result(fired_value):
-        """
-        Is called by Twisted when the Deferred given by slow_multiply finally
-        fires.  We pretty print the result it fires with.
-        """
-        print "... result is {0}!".format(fired_value)
-    print "Determining result of 5 * 7..."
-    d = slow_multiply(5, 7)
-    d.addCallback(print_multiplication_result)
-    # We stop Twisted after 4 seconds, long enough for our code to finish.
-    # This is pretty similar to Fate's "shutdown" method.
-    reactor.callLater(4, reactor.stop)
-    reactor.run()
+def slow_multiply(x, y):
+    """
+    This function multiplies two numbers very slowly (for a computer).
+    It takes 3 seconds.
+    It returns a Deferred instantly which fires with the result once
+    we've determined it.
+    """
+    d = defer.Deferred()
+    reactor.callLater(3, d.callback, x * y)
+    return d
+def print_multiplication_result(fired_value):
+    """
+    Is called by Twisted when the Deferred given by slow_multiply finally
+    fires.  We pretty print the result it fires with.
+    """
+    print "... result is {0}!".format(fired_value)
+print "Determining result of 5 * 7..."
+d = slow_multiply(5, 7)
+d.addCallback(print_multiplication_result)
+# We stop Twisted after 4 seconds, long enough for our code to finish.
+# This is pretty similar to Fate's "shutdown" method.
+reactor.callLater(4, reactor.stop)
+reactor.run()
 {% endhighlight %}
 
 So, similarly to our Fuse, a Deferred is Twisted's indication that the
@@ -319,43 +319,43 @@ With these small difference in mind, it ought to be easy for you to rewrite
 the Mad Hatter example using Twisted.  Here is is:
 
 {% highlight python %}
-    # Standard Twisted imports.  You'll need these for most Twisted
-    applications.
-    from twisted.internet import reactor, defer
-    import random
-    class FireCracker(object):
-        def __init__(self, owner):
-            self.owner = owner
-        def hand_to(self, new_owner):
-            self.owner = new_owner
-        def explode(self, rv):
-            print "BOOM! Firecracker exploded in the unlucky hands " \
-                "of {0}".format(self.owner)
-        def light_fuse(self):
-            burning_time = random.choice([0.5, 1.0, 1.5, 2.0])
-            d = defer.Deferred()
-            d.addCallback(self.explode)
-            reactor.callLater(burning_time, d.callback, True)
-    class MadHatter(object):
-        def __repr__(self):
-            return "Mad Hatter"
-    class BenEills(object):
-        def __repr__(self):
-            return "Ben Eills"
-    # Hatter and Ben are born
-    hatter = MadHatter()
-    ben = BenEills()
-    # FireCracker appears, initially owned by the Hatter
-    fc = FireCracker(hatter)
-    # The Hatter lights the fuse immediately
-    reactor.callLater(0, fc.light_fuse)
-    # Waits one second and passes it to Ben
-    reactor.callLater(1, fc.hand_to, ben)
-    # And shutdown Twisted after 3 seconds, long enough for the FireCracker
-    to certainly explode
-    reactor.callLater(3, reactor.stop)
-    # Start Twisted
-    reactor.run()
+# Standard Twisted imports.  You'll need these for most Twisted
+applications.
+from twisted.internet import reactor, defer
+import random
+class FireCracker(object):
+    def __init__(self, owner):
+        self.owner = owner
+    def hand_to(self, new_owner):
+        self.owner = new_owner
+    def explode(self, rv):
+        print "BOOM! Firecracker exploded in the unlucky hands " \
+            "of {0}".format(self.owner)
+    def light_fuse(self):
+        burning_time = random.choice([0.5, 1.0, 1.5, 2.0])
+        d = defer.Deferred()
+        d.addCallback(self.explode)
+        reactor.callLater(burning_time, d.callback, True)
+class MadHatter(object):
+    def __repr__(self):
+        return "Mad Hatter"
+class BenEills(object):
+    def __repr__(self):
+        return "Ben Eills"
+# Hatter and Ben are born
+hatter = MadHatter()
+ben = BenEills()
+# FireCracker appears, initially owned by the Hatter
+fc = FireCracker(hatter)
+# The Hatter lights the fuse immediately
+reactor.callLater(0, fc.light_fuse)
+# Waits one second and passes it to Ben
+reactor.callLater(1, fc.hand_to, ben)
+# And shutdown Twisted after 3 seconds, long enough for the FireCracker
+to certainly explode
+reactor.callLater(3, reactor.stop)
+# Start Twisted
+reactor.run()
 {% endhighlight %}
 
 We've made this one more interesting: it may explode in the MadHatter's own
@@ -383,7 +383,7 @@ It is for this reason that the other parts of the Twisted framework become
 desirable.  In synchronous programming, one might use
 
 {% highlight python %}
-    urllib2.urlopen("http://www.beneills.com/").read(1000)
+urllib2.urlopen("http://www.beneills.com/").read(1000)
 {% endhighlight %}
 
 to read a web page.  This would be bad in Twisted, because while the
@@ -392,21 +392,21 @@ seconds), anything else that ought to run couldn't.
 The correct Twisted way to do this is:
 
 {% highlight python %}
-    from twisted.internet import reactor
-    import twisted.web.client as twc
-    Example of using Twisted's getPage utility function in place of urllib2#
-    This Twisted library function returns a Deferred
-    d = twc.getPage("http://www.beneills.com/")
-    # The deferred will fire when/if the page is successfully downloaded with
-    the contents of the web page as a string
-    # As in the above examples, we tell Twisted what to do when it does fire
-    def printPage(data):
-        print "Page contents:"
-        print data
-    d.addCallback(printPage)
-    # Shutdown, regardless of success after 3 seconds
-    reactor.callLater(3, reactor.stop)
-    reactor.run()
+from twisted.internet import reactor
+import twisted.web.client as twc
+Example of using Twisted's getPage utility function in place of urllib2#
+This Twisted library function returns a Deferred
+d = twc.getPage("http://www.beneills.com/")
+# The deferred will fire when/if the page is successfully downloaded with
+the contents of the web page as a string
+# As in the above examples, we tell Twisted what to do when it does fire
+def printPage(data):
+    print "Page contents:"
+    print data
+d.addCallback(printPage)
+# Shutdown, regardless of success after 3 seconds
+reactor.callLater(3, reactor.stop)
+reactor.run()
 {% endhighlight %}
 
 Internally, Twisted's getPage function downloads small chunks of the page

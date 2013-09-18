@@ -1,0 +1,15 @@
+---
+layout: comments
+---
+<div class="content-title">
+  <h1>{{ page.title }} (draft)</h1>
+    {% if page.description %}
+    <em class="description">{{ page.description }}</em><br />
+    {% endif %}
+    <hr />
+</div>
+
+
+<div class="markdown-body">
+{{ content }}
+</div>

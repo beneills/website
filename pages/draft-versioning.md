@@ -12,7 +12,7 @@ I use the Android app [Draft](https://play.google.com/store/apps/details?id=com.
 
 Since all the data passes through Dropbox, I set out to have my [Linode](https://www.linode.com/) server mirror the Dropbox files, and auto-commit them to Git using [GitWatch](https://github.com/nevik/gitwatch).
 
-## The Process ##
+## The Process
 
 We install headless Dropbox:
 

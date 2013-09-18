@@ -3,3 +3,6 @@ markdown: redcarpet
 pygments: true
 
 permalink: ":title/"
+
+redcarpet:
+    extensions: [with_toc_data]

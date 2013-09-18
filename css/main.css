@@ -110,3 +110,15 @@ body {
 .highlight { /* this is the block element surrounding code blocks */
     margin-left: 1.5em;
 }
+
+/* beeminder */
+.beeminder-goals {
+    display: inline-block;
+}
+
+.beeminder-goal {
+    width: 200px;
+    height: 132px;
+    float: left;
+    padding: 5px;
+}

@@ -136,3 +136,8 @@ span.toc {
     /* filter:alpha(opacity=70); /\* For IE8 and earlier *\/ */
 }
 
+/* map */
+#world-map {
+    width: 1000px;
+    height: 500px;
+}

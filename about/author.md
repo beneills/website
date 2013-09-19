@@ -1,12 +1,9 @@
 ---
-layout: page
+layout: author
 title: About the Author
 comments: false
 description: TODO
 ---
-
-about me TODO
-
 
 ## [Beeminder](https://www.beeminder.com/beneills) Goals
 
@@ -21,7 +18,9 @@ about me TODO
 * <span class="list-align">[IFTTT Public Recipes](https://ifttt.com/people/beneills)</span>
 *I use more useful shared recipes, these are the ones I've created*
 
+## Places
 
+<div id="world-map"></div>
 
 ## [PGP Public Key](/public.key)
 

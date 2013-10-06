@@ -14,8 +14,11 @@ module Jekyll
     #
     def render(context)
       content = context.environments.first["page"]["content"]
+      headings = content.scan(/^## (.*?)$/mi)
+      return "" if headings.empty?
+
       output = "<section><span class=\"toc\"><ol class=\"toc\">"
-      content.scan(/^## (.*?)$/mi).each_with_index do |line, index|
+      headings.each_with_index do |line, index|
         title = line[0]
         
         title.gsub!(@@link_regexp) do |link|

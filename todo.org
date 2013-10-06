@@ -1,0 +1,6 @@
+* TODO Estimated reading time
+http://stackoverflow.com/questions/765419/javascript-word-count-for-any-given-dom-element
+or Jekyll plugin
+* TODO image gallery
+* TODO RSS
+* TODO about/author/music

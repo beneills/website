@@ -1,7 +1,6 @@
 // this script requires jQuery
 $(document).ready(function() {
     Footnotes.setup();
-    //Footnotes.add($('#aboutnote'), 'test text'); // TODO
 });
 
 var Footnotes = {

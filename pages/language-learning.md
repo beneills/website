@@ -6,13 +6,11 @@ status: believed
 completion: 40%
 ---
 
-This is intended to be a **concise guide to learning (primarily modern foreign) languages for the independently motivated learner**.  Parts may be adapted for the teaching of children, although there are additional considerations not present in adult self-study.  It is based on my experience of studying French, German and Latin, and a great deal of research into the general problem: *what method should be used to get the most proficiency in the shorted duration?*
+This is intended to be a **concise guide to learning (primarily modern foreign) languages for the independently motivated learner**.  Parts may be adapted for the teaching of children, although there are additional considerations not present in adult self-study.  It is based on my experience of studying French, German and Latin, and a great deal of research into the general problem: *what method should be used to get the most proficiency in the shorted duration?*.  There is a lot of material out there written by people who have mastered many languages, and much of it is very useful; this guide is my humble attempt to write a short HOWTO suitable for most people, using stuff I've learned from the masters of language learning.
 
 This guide should take **todo minutes to read**.  The buried reader is advised to skim through all emphasised text and bullet points.
 
-I will try to indicate references or anecdotal evidence for the suggestions below.
-
-It is important when trying to go about this in a rational manner to be mindful of the difficulties you will encounter today:
+It is important when trying to go about this in a rational manner to be mindful of the difficulties you will encounter as a language learner today:
 
 + There are individuals or companies trying to sell you language learning products.  Those products most suited to be sold en masse are not necessarily those producing the best outcome.  Consumer perceived value is what is maximised, so courses including lots of DVDs that are sold in large boxes might have an underserved popular advantage.
 + Teaching in schools is a very political topic.  Most positions on the instruction of the young have good academic outcomes as a stated goal, but tend not to be presented with solid evidence, at least in the popular press. *"Of course students shouldn't memorise grammar. Babies don't."* *"When I was young we memorised grammar, and ended up doing better than students today."*
@@ -25,11 +23,11 @@ You might be determined on a particular language already. If not, your primary c
 + **opportunity** to use the language
 + its **difficulty**, given the languages you already know todo
 + availability of learning materials
-+ your **feelings** about it: *for me, French is just more appealing than Hungarian*
++ your **feelings** about it - *for me, French is just more appealing than Hungarian*
 
 As an example, Spanish, being a Romance language, has many similarities with English in its vocabulary.  It is used widely in Spain, Mexico, the US and South America.  It is considered an easy language for English speakers, owing to its grammar and Latin alphabet; also, Spanish culture is exposed through Hemingway, etc.  This might make it a good choice for someone in the US.
 
-Or you might be an American who longs to live in Japan, and speak the language.  This is fine if you are aware of the inherent difficulty of your endeavour.
+Or you might be an American who longs to live in Japan, and speak their language.  This is fine, so long as you are aware of the inherent difficulty of your endeavour.
 
 ### Multiple Languages
 
@@ -70,11 +68,11 @@ I'll just present the approach, and defend it after:
 
 ### Preparation
 
-This preparation should take around todo.
+This preparation should take around todo.  Our goal is to reduce friction in future material aquisition and access.
 
 + Filesystem Setup todo
 + create a folder on your computer for all learning materials, named, e.g. *French/*
-++create a *"french"* file within it as an Org Mode file, Word document, etc.  This will be the central place to plan and record learning.
++create a *"french"* file within it as an Org Mode file, Word document, etc.  This will be the central place to plan and record learning.
 + create a *"resources"* file it as a spreadsheet or Org Mode file.  This will be a repository of resources for your target language.
 + create *"audio"*, *"books"*, *"video"* subdirectories
 + make sure this will all be backed up somehow
@@ -83,23 +81,45 @@ This preparation should take around todo.
 + download and install Anki on your computer and any phones, tablets.  Set up an AnkiWeb account, skim the manual todo, and add a test card to test everything is syncing correctly.
 + create an account on memrise.com todo and look through any existing courses in your target language, without starting any.
 + it possible, find out how to add keyword searching to your browser. This currently works in Chrome and Firefox.
-+ find a decent translation dictionary site todo and add it as *le* and *el* todo
-+ add Google translate as *le2* and *le2* todo
++ find a decent (word) translation dictionary site todo and add it as **le** and **el** keywords.  I use [wordreference.com].
++ add Google translate as **le2** and **le2** for translating longer passages
 
-+ find out if there are Michel Thomas or Pimsleur audio courses for your language
++ find out if there are Michel Thomas or Pimsleur audio courses available for your language
 + put these into your resources file with prices, links and a summary of the reviews.  Especially pay attention to the longer reviews on Amazon - these are usually written by more serious learners.
-+ if it is available, acquire somehow the *foundation* or *total* Michel Thomas audio course.  Your reading of the reviews should have given you an idea of his genius.
++ if it is available, get the *foundation* or *total* Michel Thomas audio course.  Your reading of the reviews should have given you an idea of his genius.
 
 ### Execution
 
+#### Main Study
+
 We will start by listening to the Michel Thomas audio.  The first CD gives advice on how to listen properly.  Follow it.
 
-Each CD is something like todo minutes.  They are somewhat self contained, so try to listen to entire CDs in one go.  Following the advice given at the start, don't worry about complete mastery before moving on.  There are recaps, and todo
+Each CD is something like todo minutes.  They are somewhat self contained, so try to listen to a CD in one session.  Following the advice given at the start, don't worry about complete mastery before moving on.  There are recaps, and todo
 
 Just go about listening to them in a purposeful manner, not repeating too much mm at a comfortable pace.  2 or 3 a week is a reasonable guide.
 
 Todo pimsleur
 
-Now, we are going to begin building vocabulary simultaneously with the audio course.  Vocabulary is without doubt the easiest area of language learning to quantify.  You probably need todo words for everyday conversation.  The order in which to learn them is clear: we'll do it by approximate frequency of occurrence in conversation or writing.
+#### Vocabulary
 
-Hopefully there is a *Beginners* Memrise course in your language.  Most of these have the most popular ~1000 words.
+Now, we are going to begin building vocabulary simultaneously with the audio course.  Vocabulary is without doubt the easiest area of language learning to quantify.  You probably need todo words for everyday conversation.  The order in which to learn them is clear: we'll do it by approximate frequency of occurrence in conversation/writing.
+
+Hopefully there is a *Beginners* Memrise course in your language.  Most of these have the most popular ~1000 words, and are listed as being ~16 hours in length.  Note that this is an estimate of the **total** time taken to learn it, comprising lots of small daily sessions.  The advantage of this is that we get:
+
++ a pre-made pack of frequent words
++ pronounciations for many languages
++ community-created "Mems" - mnemonics
+
+Start this, or the closest thing to it.  *If there is no such course available, we will duplicate this with slightly more effort using Anki and a frequency dictionary/vocab list/beginners book*.
+
+In addition to our general-purpose beginner study, we want to be able to easily decide to learn any word we want, at any time.  For this, we'll use Anki:
+
++ we put **everything** in the default deck (including stuff unrelated to languages), but try to tag at least by langauge
++ you can add Front/Back Target/Native single words/phrases with reversed card
++ but it's better to use [Cloze deletion](http://en.wikipedia.org/wiki/Cloze_test) via the *Cloze* note type and Ctrl-Shift-C shortcut
++ we perform our daily reviews reguarly (preferably daily), being honest, conservative, and suspending any notes we are uneasy about (*!* shortcut)
+
+For learning concrete nouns, sucess has been reported using the method of writing the target word on Post-it notes, and attaching them to corresponding objects that are handled frequently.
+
+#### Immersion
+

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Embedded Triggers
-description: TODO
+description: triggers/TODO items within documents themselves
 draft: true
 ---
 

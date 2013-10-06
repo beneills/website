@@ -75,7 +75,7 @@ module Jekyll
     def render(context)
       context.stack do
         body = super
-        "<ol class=\"footnotelist\">#{body}</ol>"
+        "<hr /><ol class=\"footnotelist\">#{body}</ol>"
       end
     end
   end

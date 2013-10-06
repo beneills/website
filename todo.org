@@ -1,6 +1,15 @@
-* TODO Estimated reading time
+---
+layout: page
+title: Website TODO
+comments: false
+list: false
+---
+
++ TODO Estimated reading time
 http://stackoverflow.com/questions/765419/javascript-word-count-for-any-given-dom-element
 or Jekyll plugin
-* TODO image gallery
-* TODO RSS
-* TODO about/author/music
++ TODO image gallery
++ TODO RSS
++ TODO about/author/music
++ TODO auto link words
+via elisp + google search?

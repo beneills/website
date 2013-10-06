@@ -8,6 +8,7 @@ title: Ben Eills
   <ul>
     {% for page in site.pages %}
       {% if page.url contains '/pages/' %}
+      {% if page.list != false %}
       <li>
 	<span class="list-align">
 	  <a href="{{ page.url }}">{{ page.title }}</a>
@@ -17,6 +18,7 @@ title: Ben Eills
 	  {% if page.draft %}<strong>(draft)</strong>{% endif %}
 	</em>
       </li>
+      {% endif %}
       {% endif %}
     {% endfor %}
   </ul>

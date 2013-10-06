@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Embedded Triggers
 description: TODO
 draft: true

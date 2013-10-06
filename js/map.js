@@ -34,7 +34,7 @@ var mapData = { // http://www.unc.edu/~rowlett/units/codes/country.htm
 
 
 $(function(){
-    $("#world-map").vectorMap({
+    $(".world-map").vectorMap({
 	map: 'world_mill_en',
 	backgroundColor: 'white',
 	zoomOnScroll: false,
@@ -77,6 +77,6 @@ $(function(){
 	    }]
 	}});
     // delete map zoom controls
-    $("#world-map .jvectormap-zoomin").remove()
-    $("#world-map .jvectormap-zoomout").remove()
+    $(".world-map .jvectormap-zoomin").remove()
+    $(".world-map .jvectormap-zoomout").remove()
 });

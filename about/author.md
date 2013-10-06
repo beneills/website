@@ -1,5 +1,5 @@
 ---
-layout: author
+layout: page
 title: About the Author
 comments: false
 description: TODO
@@ -20,7 +20,7 @@ description: TODO
 
 ## Places
 
-<div id="world-map"></div>
+<div class="world-map world-map-full"></div>
 
 ## [PGP Public Key](/public.key)
 

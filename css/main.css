@@ -20,15 +20,59 @@ body {
     line-height: 1.5em;
 }
 
+/* previews */
+#previews {
+    float: left;
+    margin-top: 0.6em;
+}
+
+.preview {
+    display: inline-block; // shrink
+
+    height: 150px;
+    float: left;
+    margin-right: 0.5em;
+    padding: 5px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #CCC;
+    border-radius: 7px;
+
+    text-align: center;
+}
+
+.preview img { /* fix height issue */
+    display: block;
+    height: 100px;
+}
+
+/* map */
+.home-preview {
+    width: 200px;
+    height: 100px;
+}
+
+/* beeminder */
+.beeminder-goal-preview, .beeminder-goal-preview img {
+    height: 100px;
+    width: 152px;
+    padding: 0;
+}
+
+
+
 /* header */
 .header {
     overflow: auto;
 }
 
 .header .title {
+    float: left;
     font-size: 3em;
     font-weight: bold;
     margin-top: 0.6em;
+    margin-right: 2em;
 }
 
 .header .title #site-name a {
@@ -137,7 +181,8 @@ span.toc {
 }
 
 /* map */
-#world-map {
+.world-map-full {
     width: 1000px;
     height: 500px;
 }
+

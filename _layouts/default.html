@@ -35,6 +35,12 @@
 	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	  })();
 	</script>
+
+	<!-- map -->
+	<link rel="stylesheet" href="/css/jquery-jvectormap-1.2.2.css" type="text/css" media="screen"/>
+	<script src="/js/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="/js/jquery-jvectormap-world-mill-en.js"></script>
+	<script src="/js/map.js"></script>
     </head>
     <body>
 
@@ -45,6 +51,28 @@
 	      <div class="title">
 		<span id="site-name"><a href="/">{{ site.name }}</a></span><sup><a id="aboutauthor" href="/about/author.html" rel="footnote">&dagger;</a></sup>
 	      </div>
+
+
+	      <div id="previews">
+		<span class="preview">
+		  <a href="/about/author.html#toc_2"><div class="world-map home-preview" title="Visited Places"></div></a>
+		</span>
+
+		<span class="preview">
+		  <div class="beeminder-goal-preview">
+		    <a href="/about/author.html#toc_0"><img src="https://www.beeminder.com/beneills/goals/memrise-intermediate-harvest-backlog/graph?style=thumb" title="My Beeminder Goals" alt="memrise-intermediate-harvest-backlog Beeminder goal" /></a></div>
+		</span>
+
+		<span class="preview">
+		  <a href="/about/author.html#toc_1">
+		    <img src="/images/book.jpg" title="My LibraryThing Books" alt="A Confederacy of Dunces book cover" />
+		  </a>
+		</span>
+
+		<div style="clear:both;"></div> <!-- TODO http://stackoverflow.com/questions/6681768/how-to-not-use-div-class-clear-in-markup -->
+	      </div>
+
+
             </div>
 	    <div class="margined-content">
                 {{ content }}

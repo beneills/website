@@ -2,7 +2,7 @@
 layout: page
 title: About the Author
 comments: false
-description: TODO
+description: online profiles, places I've been
 ---
 
 ## [Beeminder](https://www.beeminder.com/beneills) Goals

@@ -95,6 +95,21 @@ body {
      text-decoration: underline;
 }
 
+.header .title img {
+    margin-bottom: -4px;
+    width: 40px;
+
+    opacity: 1;
+    transition: opacity .1s ease-in-out;
+    -moz-transition: opacity .1s ease-in-out;
+    -webkit-transition: opacity .1s ease-in-out;
+}
+
+.header .title img:hover {
+    opacity: 0.8;
+}
+
+
 #avatar {
     height: 8em;
     float: left;

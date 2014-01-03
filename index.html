@@ -8,7 +8,7 @@ title: Ben Eills
   <ul>
     {% for page in site.pages %}
       {% if page.url contains '/pages/' %}
-      {% if page.list != false %}
+      {% if page.published != false %}
       <li>
 	<span class="list-align">
 	  <a href="{{ page.url }}">{{ page.title }}</a>

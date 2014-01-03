@@ -1,5 +1,6 @@
 var mapData = { // http://www.unc.edu/~rowlett/units/codes/country.htm
     "labels": {
+	"BE": "Visited Bruges with friends in Dec 2013 for a few days",
 	"GB": "Born here, and have lived here most of my life",
 	"US": "Lived here for ~5 years as a child"
     },
@@ -7,7 +8,7 @@ var mapData = { // http://www.unc.edu/~rowlett/units/codes/country.htm
 	// 1 ~a day
 	// 3 ~3 weeks
 	// 5 ~a year
-	"BE": 1,
+	"BE": 2,
 	"CA": 1,
 	"CN": 3,
 	"DE": 2,

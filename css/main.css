@@ -15,6 +15,10 @@ body {
     width: 28em;
 }
 
+.heart {
+    color: red;
+}
+
 /* home */
 #home {
     line-height: 1.5em;

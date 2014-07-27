@@ -12,6 +12,7 @@ I'm using this page as the central place to record my German language learning p
 
 [comment]: <#> ( date +"***%B %Y***" )
 
++ ***24 Jul 2014*** ordered Smarter German - am learning A1 content currently.  also reading Ferien in Frankfurt.
 + ***21 Jul 2014*** memrise course is buggy on phone.  downloaded similar anki deck to phone.  also got michel thomas german course on MP3.
 + ***Jul 2014*** committed to learning; started beginner-level vocab/grammar; completed [this](http://www.memrise.com/course/79104/learn-basic-german/) memrise basic course; ordered [two](http://www.amazon.co.uk/gp/product/1494337614/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) [books](http://www.amazon.co.uk/gp/product/3589015012/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1)
 

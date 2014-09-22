@@ -1,0 +1,3 @@
+[submodule "external/cheat"]
+	path = external/cheat
+	url = git@github.com:beneills/cheat.git

@@ -12,4 +12,6 @@ or Jekyll plugin
 + TODO RSS
 + TODO about/author/music
 + TODO auto link words
++ TODO 404
+
 via elisp + google search?

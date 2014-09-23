@@ -1,7 +1,7 @@
 module Jekyll
   $cheat_sheets = begin
-                    puts "Found YAML cheat definitions."
                     YAML.load_file("external/cheat/cheat.yaml")
+                    puts "Found YAML cheat definitions."
                   rescue
                     puts "Warning: did not find YAML cheat definitions."
                     {}

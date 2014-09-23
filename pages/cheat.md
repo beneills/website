@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Cheat
+permalink: cheat/
 comments: false
 description: the best computer cheat sheets, <a href="https://github.com/beneills/cheat">help out</a>
 published: true

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Async Python and Twisted
+permalink: async-python-and-twisted/
 description: an introduction to the asynchronous paradigm for Python beginners, in which we write our own async framework
 heart: true
 completion: add archive

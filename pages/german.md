@@ -1,6 +1,7 @@
 ---
 layout: page
 title: German
+permalink: german/
 description: learning German from scratch
 heart: false
 completion: 0%

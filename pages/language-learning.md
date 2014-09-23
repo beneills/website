@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Language Learning
+permalink: language-learning/
 description: a concise guide to learning (primarily modern foreign) languages for the independently motivated learner
 status: believed
 heart: true

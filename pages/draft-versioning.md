@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Draft Versioning
+permalink: draft-versioning/
 description: configure git versioning for the markdown composition app <a href="https://play.google.com/store/apps/details?id=com.mvilla.draft&hl=en">Draft</a>
 completion: complete
 ---

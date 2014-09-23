@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Productive Computer Setup
+permalink: computer-setup/
 description: how I quickly set up my computer to be productive
 completion: first draft
 ---

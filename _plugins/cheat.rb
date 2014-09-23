@@ -1,7 +1,6 @@
 module Jekyll
   $cheat_sheets = begin
                     YAML.load_file("external/cheat/cheat.yaml")
-                    puts "Found YAML cheat definitions."
                   rescue
                     puts "Warning: did not find YAML cheat definitions."
                     {}
@@ -12,6 +11,7 @@ module Jekyll
       output = "<ul class=\"cheat-sheets\">"
       $cheat_sheets.each do |text, link|
         output << %{<li><a href="#{link}">#{text}</a></li>}
+        output << "\n"
       end
       output << '</ul>'
       output

@@ -23,7 +23,7 @@ I'm using this page as the central place to record my German language learning p
 + ***Jul 18 2014*** start [1000 most used words](http://www.memrise.com/course/46/1000-words-of-elementary-german-2/) at 1 level per day, finishing on ***<s>Oct 9</s>*** ***Dec 1***
 + ***Aug 2014*** order [smarter german](http://smartergerman.com/) video grammar course; begin my German readers
 
-
+test
 
 ## Scratchpad
 

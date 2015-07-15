@@ -7,7 +7,7 @@ title: Ben Eills
   <h2>Pages</h2>
   <ul>
     {% for page in site.pages %}
-      {% if page.url contains '/pages/' %}
+      {% if page.path contains 'pages/' %}
       {% if page.published != false %}
       <li>
 	<span class="list-align">

@@ -55,16 +55,22 @@ title: Ben Eills
 
   <h2>Posts</h2>
   <ul>
-    {% for post in site.posts %}
-      <li>
-	<a href="{{ post.url }}" class="list-align-grand">{{ post.title }}</a>
-	<em>{{ post.date | date: "%B %Y" }}</em>
-      </li>
-    {% endfor %}
-      {% if site.posts == empty %}
-      <em>no posts yet</em>
-    {% endif %}
+    <li>
+      <a href="http://blog.beneills.com/">Blog</a>
+    </li>
   </ul>
+
+  <!-- <ul> -->
+  <!--   {% for post in site.posts %} -->
+  <!--     <li> -->
+  <!-- 	<a href="{{ post.url }}" class="list-align-grand">{{ post.title }}</a> -->
+  <!-- 	<em>{{ post.date | date: "%B %Y" }}</em> -->
+  <!--     </li> -->
+  <!--   {% endfor %} -->
+  <!--     {% if site.posts == empty %} -->
+  <!--     <em>no posts yet</em> -->
+  <!--   {% endif %} -->
+  <!-- </ul> -->
 
 
  {% comment %} Are there any drafts? {% endcomment %}

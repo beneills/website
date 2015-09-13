@@ -1,7 +1,17 @@
 var mapData = { // http://www.unc.edu/~rowlett/units/codes/country.htm
     "labels": {
 	"BE": "Visited Bruges with friends in Dec 2013 for a few days",
+	"CA": "Walked across the border once",
+	"CH": "Holiday 2015",
+	"CN": "Intensive language course for 2 weeks 2013",
+	"DE": "Holiday Berlin 2008",
+	"ES": "Went to Lanzarote - don't remember it...",
+	"FR": "2 week cycling tour 2012",
 	"GB": "Born here, and have lived here most of my life",
+	"HU": "Holiday 2015",
+	"IE": "Bloomsday 2015",
+	"IT": "Holiday Sicily; Holiday Venice 2012; Holiday Rome 2014",
+	"PL": "Holiday 2015; Auschwitz 2010",
 	"US": "Lived here for ~5 years as a child"
     },
     "visited": { // 1-5
@@ -10,13 +20,16 @@ var mapData = { // http://www.unc.edu/~rowlett/units/codes/country.htm
 	// 5 ~a year
 	"BE": 2,
 	"CA": 1,
+	"CH": 2,
 	"CN": 3,
 	"DE": 2,
 	"ES": 2,
 	"FR": 3,
 	"GB": 5,
+	"HU": 2,
+	"IE": 1,
 	"IT": 2,
-	"PL": 1,
+	"PL": 2,
 	"US": 5
     },
     "wishlist": { // 1-5
@@ -27,6 +40,7 @@ var mapData = { // http://www.unc.edu/~rowlett/units/codes/country.htm
 	"IN": 5,
 	"JP": 4,
 	"NO": 1,
+	"MG": 3,
 	"RU": 3,
 	"TH": 3,
 	"ZA": 2

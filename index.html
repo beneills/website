@@ -53,34 +53,6 @@ title: Ben Eills
     <li><span class="list-align"><a href="https://github.com/beneills/world">World</a> <span class="heart">&hearts;</span></span> <em>a virtual world with flora and semi-intelligent fauna, written in C</em></li>
   </ul>
 
-  <h2>Posts</h2>
-  <ul>
-    <li>
-      <a href="http://blog.beneills.com/">Blog</a>
-    </li>
-  </ul>
-
-  <!-- <ul> -->
-  <!--   {% for post in site.posts %} -->
-  <!--     <li> -->
-  <!-- 	<a href="{{ post.url }}" class="list-align-grand">{{ post.title }}</a> -->
-  <!-- 	<em>{{ post.date | date: "%B %Y" }}</em> -->
-  <!--     </li> -->
-  <!--   {% endfor %} -->
-  <!--     {% if site.posts == empty %} -->
-  <!--     <em>no posts yet</em> -->
-  <!--   {% endif %} -->
-  <!-- </ul> -->
-
-
- {% comment %} Are there any drafts? {% endcomment %}
-  {% assign drafts = false %}
-  {% for page in site.pages %}
-    {% if page.url contains '/drafts/' %}
-      {% assign drafts = true %}
-    {% endif %}
-  {% endfor %}
-
   <h2>Other</h2>
   <ul>
       <li>

@@ -19,6 +19,10 @@ body {
     color: red;
 }
 
+.clear {
+    clear: both;
+}
+
 /* home */
 #home {
     line-height: 1.5em;
@@ -150,6 +154,34 @@ body {
 /* comments */
 #disqus_thread {
     margin-top: 3em;
+}
+
+/* projects */
+#projects-left {
+    float: left;
+    min-width: 600px;
+    width: 50%;
+}
+
+#projects-right {
+    float: right;
+    min-width: 400px;
+    max-width: 1000px;
+    width: 48%;
+}
+
+.project-screenshot {
+    width: 200px;
+    height: 200px;
+    float: left;
+    margin: 5px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #999;
+    border-radius: 7px;
+
+    text-align: center;
 }
 
 /* footnotes */

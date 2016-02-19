@@ -24,8 +24,8 @@ body {
 }
 
 /* home */
-#home {
-    line-height: 1.5em;
+#home ul {
+    line-height: 1.6em;
 }
 
 /* previews */
@@ -161,6 +161,11 @@ body {
     float: left;
     min-width: 600px;
     width: 50%;
+}
+
+#projects-left ul {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 #projects-right {

@@ -26,6 +26,7 @@ var mapData = { // http://www.unc.edu/~rowlett/units/codes/country.htm
 	"ES": 2,
 	"FR": 3,
 	"GB": 5,
+	"GR": 4,
 	"HU": 2,
 	"IE": 1,
 	"IT": 2,
@@ -66,7 +67,7 @@ $(function(){
 	    // possibly change label
 	    if (info) {
 		label.html(label.html() +
-			   "<br />" + 
+			   "<br />" +
 			   info.join("<br />"));
 	    }
 	},

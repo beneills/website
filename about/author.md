@@ -11,6 +11,7 @@ description: online profiles, places I've been
 
 ## Online Profiles
 
+* <span class="list-align">[LinkedIn](https://linkedin.com/in/beneills)</span>
 * <span class="list-align">[Reddit Submissions](http://www.reddit.com/user/ziarkaen/?sort=top)</span>
 *(sorted by popularity)*
 * <span class="list-align">[LibraryThing Book Library](http://www.librarything.com/catalog/beneills)</span>

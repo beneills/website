@@ -5,6 +5,16 @@ body {
     margin: 0;
 }
 
+.essay-body {
+    width: 1000px;
+    margin-left: 20px;
+    margin-bottom: 100px;
+
+    line-height: 190%;
+    text-indent: 30px;
+    font-size: 1.1em;
+}
+
 .list-align {
     display: inline-block;
     width: 14em;

@@ -7,6 +7,8 @@ heart: true
 completion: 100%
 ---
 
+<link rel="image_src" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/20151030_Syrians_and_Iraq_refugees_arrive_at_Skala_Sykamias_Lesvos_Greece_2.jpg/640px-20151030_Syrians_and_Iraq_refugees_arrive_at_Skala_Sykamias_Lesvos_Greece_2.jpg" />
+
 _A visitor’s experience of Victoria Square, an important intermediate destination for migrants on their way to Western Europe and microcosm of the situation for the Greeks and their foreign temporary residents &mdash; March, 2016_
 
 

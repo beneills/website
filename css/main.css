@@ -6,8 +6,8 @@ body {
 }
 
 .essay-body {
-    width: 1000px;
-    margin-left: 20px;
+    max-width: 1000px;
+    margin-left: 10px;
     margin-bottom: 100px;
 
     line-height: 190%;

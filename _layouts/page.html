@@ -2,15 +2,18 @@
 layout: comments
 ---
 <div class="content-title">
-  <h1>
-    {{ page.title }}
-    {% if page.draft %}(draft){% endif %}
-  </h1>
-    {% if page.description %}
-    <em class="description">{{ page.description }}</em><br />
-    {% endif %}
+  <div class="content-title-left">
+    <div class="content-header">
+      {{ page.title }}
+      {% if page.draft %}(draft){% endif %}
+    </div>
 
-  <div class="meta">
+    {% if page.description %}
+      <em class="content-description">{{ page.description }}</em><br />
+    {% endif %}
+  </div>
+
+  <div class="content-meta">
     {% if page.status %}
     epistemic status<a href="http://www.gwern.net/About#belief-tags">&dagger;</a>: <strong>{{ page.status }}</strong>
     {% endif %}
@@ -24,6 +27,9 @@ layout: comments
     reading time: <strong><span id="reading-time"></span></strong>
 
   </div>
+
+  <div class="clear"></div>
+
   <hr />
 </div>
 

@@ -158,17 +158,34 @@ body {
     overflow: hidden; /* Will change h2 position if theres too much meta */
 }
 
-.content-title .description {
- font-size: 1.05em; /* Stop descenders being cut.  No idea why... */
+.content-title .content-title-left {
+    float: left;
+}
+
+.content-title .content-header {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+}
+
+.content-title .content-meta {
+    float: right;
+    padding-top: 1.5em; /* Align with title
+}
+
+/*.content-title .description {
+ font-size: 1.05em; /* Stop descenders being cut.  No idea why...
 }
 
 .content-title .meta {
     position: absolute;
-    padding-top: 1.5em; /* Align with title */
+    padding-top: 1.5em; /* Align with title
     top: 0;
     right: 0;
     font-style: italic;
 }
+*/
 
 .content-title hr {
     margin-top: 1em;

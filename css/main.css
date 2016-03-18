@@ -81,6 +81,10 @@ body {
 
 
 /* header */
+.header-mobile {
+    display: none;
+}
+
 .header {
     overflow: auto;
 }

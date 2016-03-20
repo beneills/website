@@ -3,6 +3,12 @@ $(document).ready(function() {
     var time = Math.ceil(($(".markdown-body").text().length/5)/200);
     var units = time == 1 ? "min" : "mins";
     $("#reading-time").text(time + " " + units);
+
+    new ShareButton({
+      ui: {
+        buttonText: 'share this page'
+      }
+    });
 });
 
 // // Beeminder Image Fade

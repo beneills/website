@@ -265,3 +265,40 @@ span.toc {
     width: 1000px;
     height: 500px;
 }
+
+/* share button */
+share-button {
+  position: relative;
+  display: inline;
+  font-size: inherit;
+  color: inherit;
+  background: inherit;
+  padding: inherit;
+  text-decoration: underline;
+  border-radius: 5px;
+  font-family: inherit;
+  font-weight: bold;
+  -webkit-font-smoothing: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-transition: all .3s ease;
+          transition: all .3s ease;
+  text-transform: inherit;
+}
+share-button:hover {
+  color: inherit;
+  background: #CCC;
+}
+share-button:before {
+  position: inherit;
+  line-height: none;
+  left: none;
+  width: none;
+  height: none;
+  content: none;
+  background: none
+}
+.share-icon {
+    width: 10px;
+    height: 10px;
+}

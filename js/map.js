@@ -50,49 +50,51 @@ var mapData = { // http://www.unc.edu/~rowlett/units/codes/country.htm
 
 
 $(function(){
-    $(".world-map").vectorMap({
-	map: 'world_mill_en',
-	backgroundColor: 'white',
-	zoomOnScroll: false,
-	onRegionLabelShow: function(event, label, code){
-	    var info = [];
-	    if (code in mapData["visited"])
-		info.push("(visited [" + mapData["visited"][code] + "])");
-	    if (code in mapData["wishlist"])
-		info.push("(wish list [" + mapData["wishlist"][code] + "])");
-	    if (code in mapData["labels"])
-		info.push(mapData["labels"][code])
+	$(".world-map").each( function() {
+		$(this).vectorMap({
+			map: 'world_mill_en',
+			backgroundColor: 'white',
+			zoomOnScroll: false,
+			onRegionLabelShow: function(event, label, code){
+				var info = [];
+				if (code in mapData["visited"])
+					info.push("(visited [" + mapData["visited"][code] + "])");
+				if (code in mapData["wishlist"])
+					info.push("(wish list [" + mapData["wishlist"][code] + "])");
+				if (code in mapData["labels"])
+					info.push(mapData["labels"][code])
 	    // make name bold
 	    label.html("<strong>" + label.html() + "</strong>");
 	    // possibly change label
 	    if (info) {
-		label.html(label.html() +
-			   "<br />" +
-			   info.join("<br />"));
+	    	label.html(label.html() +
+	    	           "<br />" +
+	    	           info.join("<br />"));
 	    }
-	},
-	regionStyle: {
-	    initial: {
-		fill: '#222'
-	    }},
-	series: {
+	  },
+	  regionStyle: {
+	  	initial: {
+	  		fill: '#222'
+	  	}
+	  },
+	  series: {
 	    // order matters: prefer visited
 	    regions: [{
-		values: mapData["wishlist"],
-		scale: ['#90DDAF', '#167A3E'],
-		normalizeFunction: 'polynomial',
-		min: 1,
-		max: 5
+	    	values: mapData["wishlist"],
+	    	scale: ['#90DDAF', '#167A3E'],
+	    	normalizeFunction: 'polynomial',
+	    	min: 1,
+	    	max: 5
 	    },
-            {
-		values: mapData["visited"],
-		scale: ['#C8EEFF', '#0071A4'],
-		normalizeFunction: 'polynomial',
-		min: 1,
-		max: 5
+	    {
+	    	values: mapData["visited"],
+	    	scale: ['#C8EEFF', '#0071A4'],
+	    	normalizeFunction: 'polynomial',
+	    	min: 1,
+	    	max: 5
 	    }]
-	}});
+	  }})});
     // delete map zoom controls
     $(".world-map .jvectormap-zoomin").remove()
     $(".world-map .jvectormap-zoomout").remove()
-});
+  });

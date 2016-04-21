@@ -13,6 +13,7 @@ I'm using this page as the central place to record my German language learning p
 
 [comment]: <#> ( date +"***%B %Y***" )
 
++ ***April 2016*** have been doing Duolingo course; thinking about going to Berlin langauge school
 + ***October 2015*** signed up to 1.5hr/week "year 3" evening course; started top 5000 word memrise course and A2 memrise course
 + ***September 2014*** signed up to 2hr/week evening course at southampton university.  going through asimil and teach yourself german books methodically.
 + ***24 Jul 2014*** ordered Smarter German - am learning A1 content currently.  also reading Ferien in Frankfurt.

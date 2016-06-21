@@ -7,7 +7,7 @@ heart: true
 completion: 100%
 ---
 
-_In which we are tailgated through the dark streets of Prague while using a [billion](http://www.wsj.com/articles/uber-valued-at-more-than-50-billion-1438367457) [dollar](http://www.forbes.com/sites/lbsbusinessstrategyreview/2015/10/09/the-value-of-uber/#7460fb357dda) [app](https://www.uber.com/our-story/)_
+_In which we are tailed through the dark streets of Prague while using a [billion](http://www.wsj.com/articles/uber-valued-at-more-than-50-billion-1438367457) [dollar](http://www.forbes.com/sites/lbsbusinessstrategyreview/2015/10/09/the-value-of-uber/#7460fb357dda) [app](https://www.uber.com/our-story/)_
 
 <br>
 

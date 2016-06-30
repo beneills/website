@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<h1>State of the Realm: {{ page.title }}</h1>
+
+published <strong>{{ page.date }}</strong>
+
+{% if page.completion %}
+|
+completion: <strong>{{ page.completion }}</strong>
+{% endif %}
+
+{% if page.permalink != "state_of_the_realm_explanation/" %}
+|
+<span id="state-of-the-realm-explanation">
+  <a href="/state_of_the_realm_explanation/">what am I reading?</a>
+</span>
+{% endif %}
+
+
+|
+reading time: <strong><span id="reading-time"></span></strong>
+
+
+<div class="state-of-the-realm-body reading-text">
+
+{{ content }}
+
+</div>

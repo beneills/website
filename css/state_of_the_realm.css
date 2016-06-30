@@ -1,0 +1,36 @@
+ .state-of-the-realm-superscript, .state-of-the-realm-link {
+  text-decoration: none;
+  color: #AAAAFF;
+}
+
+.state-of-the-realm-type {
+  margin-right: 2px;
+}
+
+.state-of-the-realm-piece-ref {
+  font-weight: bold;
+  font-style: italic;
+}
+
+#state-of-the-realm-explanation {
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+#state-of-the-realm-explanation a {
+  text-decoration: none;
+}
+
+.state-of-the-realm-body {
+    max-width: 1000px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+
+    line-height: 150%;
+    font-size: 1.1em;
+}
+
+.state-of-the-realm-evidence {
+  display: block;
+  margin-top: 100px;
+}

@@ -93,8 +93,6 @@ m=""; for (i=0; i<s.length; i++) {  if(s.charCodeAt(i) == 28){    m+= '&';} else
 
   <h2>State of the Realm</h2>
   <ul>
-    <li><em>Empty for the moment!</em></li>
-
     {% for page in site.pages %}
       {% if page.path contains 'state_of_the_realm/' %}
       {% if page.published != false %}

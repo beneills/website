@@ -232,4 +232,8 @@ module Jekyll
   Jekyll::Hooks.register :site, :after_reset do |post|
     StateOfTheRealmIds::reset
   end
+
+  Jekyll::Hooks.register :pages, :pre_render do |post|
+    StateOfTheRealmIds::reset
+  end
 end

@@ -16,18 +16,29 @@ m=""; for (i=0; i<s.length; i++) {  if(s.charCodeAt(i) == 28){    m+= '&';} else
 
   <h2>Articles</h2>
   <ul>
+
+    <li>
+      <span class="list-align">
+        <a href="http://aneffectiveday.com/">An Effective Day</a>
+        <span class="heart">&hearts;</span>
+      </span>
+      <em>
+        days for the mind, and for ideas
+      </em>
+    </li>
+
     {% for page in site.pages %}
       {% if page.path contains 'pages/' %}
       {% if page.published != false %}
       <li>
-	<span class="list-align">
-	  <a href="{{ page.url }}">{{ page.title }}</a>
-	  {% if page.heart %}<span class="heart">&hearts;</span>{% endif %}
-	</span>
-	<em>
-	  {{ page.description }}
-	  {% if page.draft %}<strong>(draft)</strong>{% endif %}
-	</em>
+      	<span class="list-align">
+      	  <a href="{{ page.url }}">{{ page.title }}</a>
+      	  {% if page.heart %}<span class="heart">&hearts;</span>{% endif %}
+      	</span>
+      	<em>
+      	  {{ page.description }}
+      	  {% if page.draft %}<strong>(draft)</strong>{% endif %}
+      	</em>
       </li>
       {% endif %}
       {% endif %}

@@ -1,5 +1,7 @@
 # Beneills.com
 
+[![Build Status](https://travis-ci.org/beneills/website.svg?branch=master)](https://travis-ci.org/beneills/website)
+
 ## How to add footnotes
 
 Add:
@@ -22,4 +24,3 @@ and:
 ## How to add gist
 
      {% gist 4980411 %}
-

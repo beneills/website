@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+bundle exec jekyll build
+
+# TODO fix all errors found by html-proofer and uncomment this line
+#bundle exec htmlproofer ./_site

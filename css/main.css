@@ -322,3 +322,12 @@ share-button:before {
   position: relative;
   top: -0.4em;
 }
+
+#contact {
+  float: left;
+}
+
+#travis-button {
+  float: right;
+  margin: 5px;
+}

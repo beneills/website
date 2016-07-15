@@ -5,6 +5,7 @@ permalink: german/
 description: learning German from scratch
 heart: false
 completion: 0%
+labels: [lang]
 ---
 
 I'm using this page as the central place to record my German language learning progress.  It consists of a **journal** and a **scratchpad** of resources and ideas.

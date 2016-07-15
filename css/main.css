@@ -331,3 +331,56 @@ share-button:before {
   float: right;
   margin: 5px;
 }
+
+.label {
+  display: inline-block;
+  padding: 3px 4px;
+  border-radius: 2px;
+  vertical-align: text-top;
+  line-height: 1;
+  font-size: 12px;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.12);
+  cursor: default;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+
+.label.haskell {
+  color: #ffffff;
+  background-color: #00c000;
+}
+
+.label.one {
+  color: #ffffff;
+  background-color: #0088cc;
+}
+
+.label.two {
+  color: #332702;
+  background-color: #ffc40d;
+}
+
+.label.three {
+  color: #ffffff;
+  background-color: #563d7c;
+}
+
+.label.four {
+  color: #ffffff;
+  background-color: #00abe1;
+}
+
+.label.five {
+  color: #ffffff;
+  background-color: #d9534f;
+}
+
+.label.six {
+  color: #2b2833;
+  background-color: #d4c5f9;
+}
+
+.label.seven {
+  color: #ffffff;
+  background-color: #b94a48;
+}

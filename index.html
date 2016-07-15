@@ -37,6 +37,11 @@ title: Ben Eills
       	<span class="list-align">
       	  <a href="{{ page.url }}">{{ page.title }}</a>
       	  {% if page.heart %}<span class="heart">&hearts;</span>{% endif %}
+          {% if page.labels %}
+            {% for label in page.labels %}
+              <span class="label {{ label }}">{{ label }}</span>
+            {% endfor %}
+          {% endif %}
       	</span>
       	<em class="widescreen">
       	  {{ page.description }}

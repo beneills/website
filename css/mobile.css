@@ -52,4 +52,14 @@
     padding-top: 20px;
   }
 
+  .widescreen {
+    display: none;
+  }
+
+  #projects-right {
+    float: none;;
+    min-width: none;
+    max-width: none;
+    width: inherit;
+  }
 }

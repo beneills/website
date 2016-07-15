@@ -343,6 +343,10 @@ share-button:before {
   cursor: default;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: 600;
+
+  /* default unknown styling */
+  color: #ffffff;
+  background-color: #888888;
 }
 
 .label.haskell {

@@ -3,6 +3,7 @@ layout: state_of_the_realm
 date: 2016-07-04
 title: Referendum Aftermath
 permalink: referendum_aftermath/
+description: annotated political analysis
 completion: 100%
 ---
 

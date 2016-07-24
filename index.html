@@ -33,6 +33,7 @@ title: Ben Eills
     {% for page in site.pages %}
       {% if page.path contains 'pages/' %}
       {% if page.published != false %}
+      {% if page.listed != false %}
       <li>
       	<span class="list-align">
       	  <a href="{{ page.url }}">{{ page.title }}</a>
@@ -48,6 +49,7 @@ title: Ben Eills
       	  {% if page.draft %}<strong>(draft)</strong>{% endif %}
       	</em>
       </li>
+      {% endif %}
       {% endif %}
       {% endif %}
     {% endfor %}
@@ -112,26 +114,6 @@ title: Ben Eills
 
     <div class="clear"></div>
   </div>
-
-  <h2>State of the Realm</h2>
-  <ul>
-    {% for page in site.pages %}
-      {% if page.path contains 'state_of_the_realm/' %}
-      {% if page.published != false %}
-      {% if page.listed != false %}
-      <li>
-      	<span class="list-align">
-          {{ page.date | date: '%B %d, %Y' }}
-      	</span>
-      	<em>
-      	  <a href="{{ page.url }}">{{ page.title }}</a>
-      	</em>
-      </li>
-      {% endif %}
-      {% endif %}
-      {% endif %}
-    {% endfor %}
-  </ul>
 
   <h2>Other</h2>
   <ul>

@@ -3,7 +3,6 @@ layout: page
 title: Async Python and Twisted
 permalink: async-python-and-twisted/
 description: an introduction to the asynchronous paradigm for Python beginners, in which we write our own async framework
-heart: true
 completion: add archive
 ---
 
@@ -25,7 +24,7 @@ understanding; I will make clear as we consider each part whether it is
 specific to our scenario, or applicable to a more general class of
 circumstances.  Hopefully the choice of naming will be helpful - Twisted
 also has interesting names, but ones which strangely have very little to do
-with the function of their bearers (see Conch, Manhole and Jelly). 
+with the function of their bearers (see Conch, Manhole and Jelly).
 Enter the actors:
 
 {% highlight python %}
@@ -264,7 +263,7 @@ fate.run()
 Here we have represented a chain of fuses by putting in the "user" code a
 chaining mechanism: the handler for one Fuse() i.e. ignite() itself creates
 another fuse.
-Try following through the "logical flow" of execution through the program. 
+Try following through the "logical flow" of execution through the program.
 It can be more difficult to follow this than standard, synchronous code,
 but we gain an advantage when working on any non-trivial program that must
 accomplish multiple tasks in some sort of concurrency.

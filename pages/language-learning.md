@@ -4,7 +4,6 @@ title: Language Learning
 permalink: language-learning/
 description: a concise guide to learning (primarily modern foreign) languages for the independently motivated learner
 status: believed
-heart: true
 completion: 40%
 ---
 
@@ -124,4 +123,3 @@ In addition to our general-purpose beginner study, we want to be able to easily 
 For learning concrete nouns, sucess has been reported using the method of writing the target word on Post-it notes, and attaching them to corresponding objects that are handled frequently.
 
 #### Immersion
-

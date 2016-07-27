@@ -38,5 +38,10 @@ pushed to the [Github Repository](https://github.com/beneills/rust-in-a-week).
 
 <iframe width="280" height="157" src="https://www.youtube.com/embed/oBH9h99HF6o" frameborder="0" allowfullscreen></iframe>
 <iframe width="280" height="157" src="https://www.youtube.com/embed/EEtDn7q0C58" frameborder="0" allowfullscreen></iframe>
+<iframe width="280" height="157" src="https://www.youtube.com/embed/bYaWgQXGuZY" frameborder="0" allowfullscreen></iframe>
+<iframe width="280" height="157" src="https://www.youtube.com/embed/P3CbuflyoQs" frameborder="0" allowfullscreen></iframe>
+
+<iframe width="280" height="157" src="https://www.youtube.com/embed/xtFLt0VDzeI" frameborder="0" allowfullscreen></iframe>
+<iframe width="280" height="157" src="https://www.youtube.com/embed/LD_XFA38YHA" frameborder="0" allowfullscreen></iframe>
 
 <br>

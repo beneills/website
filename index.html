@@ -17,55 +17,6 @@ title: Ben Eills
     <noscript><a href="mailto:ben@HIS WEBSITE.com?subject=Hire%20Ben">hear about your project!</a></noscript>
   </span>
 
-  <h2>Articles</h2>
-  <ul>
-
-    <li>
-      <span class="list-align">
-        <a href="http://aneffectiveday.com/">An Effective Day</a>
-        <span class="heart">&hearts;</span>
-      </span>
-      <em class="widescreen">
-        days for the mind, and for ideas
-      </em>
-    </li>
-
-    {% for page in site.pages %}
-      {% if page.path contains 'pages/' %}
-      {% if page.published != false %}
-      {% if page.listed != false %}
-      <li>
-      	<span class="list-align">
-      	  <a href="{{ page.url }}">{{ page.title }}</a>
-      	  {% if page.heart %}<span class="heart">&hearts;</span>{% endif %}
-          {% if page.labels %}
-            {% for label in page.labels %}
-              <span class="label {{ label }}">{{ label }}</span>
-            {% endfor %}
-          {% endif %}
-      	</span>
-      	<em class="widescreen">
-      	  {{ page.description }}
-      	  {% if page.draft %}<strong>(draft)</strong>{% endif %}
-      	</em>
-      </li>
-      {% endif %}
-      {% endif %}
-      {% endif %}
-    {% endfor %}
-
-    <!-- START Additional non-Jekyll pages -->
-    <li>
-      <span class="list-align">
-	<a href="http://beneills.withdraft.com/">Writings</a>
-      </span>
-      <em class="widescreen">
-	my fiction, hosted by the fantastic <a href="https://draftin.com/">Draft</a>
-      </em>
-    </li>
-    <!-- END Additional non-Jekyll pages -->
-  </ul>
-
   <h2>Projects</h2>
   <div id="projects">
     <div id="projects-left">
@@ -114,6 +65,55 @@ title: Ben Eills
 
     <div class="clear"></div>
   </div>
+
+  <h2>Articles</h2>
+  <ul>
+
+    <li>
+      <span class="list-align">
+        <a href="http://aneffectiveday.com/">An Effective Day</a>
+        <span class="heart">&hearts;</span>
+      </span>
+      <em class="widescreen">
+        days for the mind, and for ideas
+      </em>
+    </li>
+
+    {% for page in site.pages %}
+      {% if page.path contains 'pages/' %}
+      {% if page.published != false %}
+      {% if page.listed != false %}
+      <li>
+      	<span class="list-align">
+      	  <a href="{{ page.url }}">{{ page.title }}</a>
+      	  {% if page.heart %}<span class="heart">&hearts;</span>{% endif %}
+          {% if page.labels %}
+            {% for label in page.labels %}
+              <span class="label {{ label }}">{{ label }}</span>
+            {% endfor %}
+          {% endif %}
+      	</span>
+      	<em class="widescreen">
+      	  {{ page.description }}
+      	  {% if page.draft %}<strong>(draft)</strong>{% endif %}
+      	</em>
+      </li>
+      {% endif %}
+      {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    <!-- START Additional non-Jekyll pages -->
+    <li>
+      <span class="list-align">
+	<a href="http://beneills.withdraft.com/">Writings</a>
+      </span>
+      <em class="widescreen">
+	my fiction, hosted by the fantastic <a href="https://draftin.com/">Draft</a>
+      </em>
+    </li>
+    <!-- END Additional non-Jekyll pages -->
+  </ul>
 
   <h2>Other</h2>
   <ul>

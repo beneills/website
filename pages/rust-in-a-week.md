@@ -3,6 +3,7 @@ layout: page
 title: Rust in a Week
 permalink: rust/
 description: where I learn the Rust programming langauge in one week
+published: false
 completion: 10%
 ---
 

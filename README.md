@@ -24,3 +24,34 @@ and:
 ## How to add gist
 
      {% gist 4980411 %}
+
+## Building and deploying
+
+```shell
+# Generate metadata
+HYPER_IP=209.177.92.197
+LATEST_HASH=$(git log -1 --pretty=format:%h)
+IMAGE_NAME=beneills/website:$LATEST_HASH
+
+# Build new docker image locally
+docker build -t $IMAGE_NAME .
+docker push $IMAGE_NAME
+
+# Deploy new container
+OLD_IMAGES=$(hyper images --quiet beneills/website)
+hyper pull $IMAGE_NAME
+hyper run -d -p 80 --name website $IMAGE_NAME
+EXISTING_CONTAINER=$(hyper ps --filter name=website --quiet)
+hyper stop $EXISTING_CONTAINER
+hyper rm $EXISTING_CONTAINER
+hyper run --size=s1 -d -p 80 --name website beneills/website:2994001
+hyper fip attach $HYPER_IP website
+
+# Test HTTP GET for root endpoint
+curl -sSf $HYPER_IP > /dev/null
+
+# Cleanup old images
+echo "Old images: $OLD_IMAGES"
+echo "Delete with:"
+echo "hyper rmi $OLD_IMAGES"
+```

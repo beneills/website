@@ -6,11 +6,11 @@ MAINTAINER Ben Eills <ben@beneills.com>
 # Install lighttpd
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install lighttpd && apt-get clean
 
-# Remove default site
-RUN rm -rf /var/www/html/*
+# Remove default site and config
+RUN rm -rf /var/www/html/* /etc/lighttpd/lighttpd.conf
 
-# Install config TODO
-#COPY *.conf /etc/lighttpd/conf-available/
+# Install config
+COPY conf/lighttpd.conf /etc/lighttpd/lighttpd.conf
 
 # Expose web sever on (container) port 80
 EXPOSE 80

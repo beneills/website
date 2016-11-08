@@ -50,11 +50,10 @@ docker push $IMAGE_NAME
 # Deploy new container
 OLD_IMAGES=$(hyper images --quiet beneills/website)
 hyper pull $IMAGE_NAME
-hyper run -d -p 80 --name website $IMAGE_NAME
 EXISTING_CONTAINER=$(hyper ps --filter name=website --quiet)
 hyper stop $EXISTING_CONTAINER
 hyper rm $EXISTING_CONTAINER
-hyper run --tty --size=s1 --detach --publish 80 --volume ssl:ssl/ --name website beneills/website:2994001
+hyper run --tty --size=s1 --detach --publish 80 --publish 443 --volume ssl:/ssl --name website $IMAGE_NAME
 hyper fip attach $HYPER_IP website
 
 # Test HTTP GET for root endpoint

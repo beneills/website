@@ -25,6 +25,16 @@ and:
 
      {% gist 4980411 %}
 
+## Setting up hyper.sh with SSL certificates
+
+```shell
+# Create a volume to hold SSL information (10GiB is the minimum)
+hyper volume create --size=10 --name ssl
+
+# Copy SSL certificates to volume
+tar czf - ssl/* | hyper exec -i website bash -c "cd /ssl && cat - | tar xz"
+```
+
 ## Building and deploying
 
 ```shell
@@ -44,7 +54,7 @@ hyper run -d -p 80 --name website $IMAGE_NAME
 EXISTING_CONTAINER=$(hyper ps --filter name=website --quiet)
 hyper stop $EXISTING_CONTAINER
 hyper rm $EXISTING_CONTAINER
-hyper run --size=s1 -d -p 80 --name website beneills/website:2994001
+hyper run --tty --size=s1 --detach --publish 80 --volume ssl:ssl/ --name website beneills/website:2994001
 hyper fip attach $HYPER_IP website
 
 # Test HTTP GET for root endpoint

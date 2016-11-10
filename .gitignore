@@ -2,3 +2,4 @@ _site/
 /feed.xml
 drafts/
 /drafts
+/docker/.compiled

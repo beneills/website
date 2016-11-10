@@ -37,7 +37,7 @@ tar czf - ssl/* | hyper exec -i website bash -c "cd /ssl && cat - | tar xz"
 
 ## Building and deploying
 
-```shell
+```sh
 # Generate metadata
 HYPER_IP=209.177.92.197
 LATEST_HASH=$(git log -1 --pretty=format:%h)
@@ -64,3 +64,26 @@ echo "Old images: $OLD_IMAGES"
 echo "Delete with:"
 echo "hyper rmi $OLD_IMAGES"
 ```
+
+## Using new Docker images for building and deploying
+
+```sh
+# Create a new jekyll container
+./docker/jekyll/build.sh
+
+# Generate a serve image
+./docker/generate.sh
+
+# Serve lcoally
+./docker/serve/run.sh
+
+```
+
+### TODO
+
++ Exclude Docker files themselves from serve image
++ Put sources in subdirectory of repo
++ Add SSL certificates
++ Rename images
++ Push to private registry
++ Deploy to serve website

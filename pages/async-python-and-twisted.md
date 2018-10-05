@@ -434,7 +434,7 @@ is probably the answer.
 * [Deferred Object API Reference]
 * [GitHub Repository with Development Version of this Tutorial]
 
-  [All Examples in a Compressed Archive]: /static/twisted_examples.tar.gz
+  [All Examples in a Compressed Archive]: static/twisted_examples.tar.gz
 [Official Twisted Deferred Guide]: http://twistedmatrix.com/documents/current/core/howto/defer.html
 [Deferred Object API Reference]: http://twistedmatrix.com/documents/12.2.0/api/twisted.internet.defer.Deferred.html
 [GitHub Repository with Development Version of this Tutorial]: https://github.com/beneills/deferreds

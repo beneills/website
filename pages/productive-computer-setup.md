@@ -103,7 +103,7 @@ The idea is that *everything* goes into *Inbox* initially, making bookmarking a 
 
 *Pin* contains my pinned pages.  When you close the main Chrome browser window before a non-toolbar one, you lose all your pinned tabs.  I think this design choice sucks, and it certainly does not reflect the way I use pinned tabs (permanently), but I get around this by maintaining this folder.  If/when you lose your pinned tabs, just open all tabs in this folder and right-click pin each.
 
-<img src="/images/bookmarks.png" />
+<img src="images/bookmarks.png" />
 
 
 Pinned tabs are: Gmail, Google Calendar, [Beeminder](https://www.beeminder.com/), Google Keep

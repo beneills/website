@@ -2,3 +2,4 @@ _site/
 drafts/
 /drafts
 /docker/.compiled
+.idea

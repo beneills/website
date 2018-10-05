@@ -1,12 +1,13 @@
 set -e
 
 IMAGE_TAG=beneills-jekyll
-OUTPUT_DIRECTORY=$(greadlink -f $(dirname $0)/../_docker_site)
+OUTPUT_DIRECTORY=$(greadlink -f $(dirname $0)/../docs)
 
 # Go to website root so that we can copy jekyll sources
 pushd $(dirname $0)/.. > /dev/null
 
-# Create an output directory
+# Clear and create the output directory
+rm -rf "$OUTPUT_DIRECTORY"
 mkdir "$OUTPUT_DIRECTORY"
 
 # Build the Docker image

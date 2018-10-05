@@ -1,5 +1,4 @@
-_docker_site
-_site/
+docs
 drafts/
 /drafts
 /docker/.compiled

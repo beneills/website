@@ -3,14 +3,14 @@
 [![Build Status](https://travis-ci.org/beneills/website.svg?branch=master)](https://travis-ci.org/beneills/website)
 
 
-## Building/Deploying
+## Building
 
 ### Host machine build/test
 ```bash
 # Install dependencies
 bundle install
 
-# Build site in _site/ directory
+# Build site in docs directory
 jekyll build
 
 # (optional) Serve site locally for testing
@@ -19,10 +19,14 @@ jekyll serve
 
 ### Docker build
 
-The following will generate the site in `_docker_site`:
+The following will generate the site in `docs`:
 ```bash
 docker/generate.sh
 ```
+
+## Deploying
+
+The files in the `master` branch of `docs` will be served by Github pages.
 
 ## Editing
 

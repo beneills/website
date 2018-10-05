@@ -303,26 +303,6 @@ share-button:before {
     height: 10px;
 }
 
-.state-of-the-realm-body {
-    line-height: 180%;
-}
-
-.state-of-the-realm-body blockquote {
-  margin-top: 2em;
-  margin-bottom: 2em;
-  margin-left: 5px;
-  border-left: 5px solid #999;
-  padding-left: 15px;
-  font-style: italic;
-  color: #555;
-}
-
-.state-of-the-realm-body sup {
-  vertical-align: baseline;
-  position: relative;
-  top: -0.4em;
-}
-
 #contact {
   float: left;
 }

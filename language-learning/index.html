@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Language Learning</title>
+      <meta name="viewport" content="width=device-width">
+
+      <!-- share buttons -->
+      <link rel="stylesheet" href="css/share-button.min.css">
+
+    	<!-- custom CSS -->
+      <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="css/mobile.css">
+      <link rel="stylesheet" href="css/syntax.css">
+
+    	<!-- jquery -->
+    	<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    	<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    	<!-- main js -->
+        <script src="js/main.js"></script>
+
+    	<!-- footnotes from http://ignorethecode.net/blog/2010/04/20/footnotes/ -->
+        <script src="js/footnotes.js"></script>
+
+    	<!-- math rendering -->
+    	<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+      <!-- share buttons -->
+      <script src="js/share-button.min.js"></script>
+
+    	<!-- analytics -->
+    	<script type="text/javascript">
+    	  var _gaq = _gaq || [];
+    	  _gaq.push(['_setAccount', 'UA-37058894-1']);
+    	  _gaq.push(['_trackPageview']);
+
+    	  (function() {
+    	  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    	  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    	  })();
+    	</script>
+
+    	<!-- map -->
+    	<link rel="stylesheet" href="css/jquery-jvectormap-1.2.2.css" type="text/css" media="screen"/>
+    	<script src="js/jquery-jvectormap-1.2.2.min.js"></script>
+    	<script src="js/jquery-jvectormap-world-mill-en.js"></script>
+    	<script src="js/map.js"></script>
+    </head>
+    <body>
+
+      <div class="container">
+        <div class="site">
+
+        <!-- Large screen header -->
+          <div class="header row">
+           <a href="/"><img id="avatar" src="images/running_cropped.jpg" /></a>
+           <div class="title">
+            <span id="site-name"><a href="/">Ben Eills</a></span><sup><a id="aboutauthor" href="about/author/" rel="footnote">&dagger;</a></sup>
+
+            <a href="https://github.com/beneills">
+              <img src="images/github.png" />
+            </a>
+          </div>
+
+          <div id="previews">
+            <span class="preview">
+              <a href="about/author/#toc_2"><div class="world-map home-preview" title="Visited Places"></div></a>
+            </span>
+
+            <span class="preview">
+              <div class="beeminder-goal-preview">
+                <a href="about/author/#toc_0"><img src="https://www.beeminder.com/beneills/goals/memrise-intermediate-harvest-backlog/graph?style=thumb" title="My Beeminder Goals" alt="memrise-intermediate-harvest-backlog Beeminder goal" /></a></div>
+              </span>
+
+              <span class="preview">
+                <a href="about/author/#toc_1">
+                  <img src="images/book.jpg" title="My LibraryThing Books" alt="A Confederacy of Dunces book cover" />
+                </a>
+              </span>
+
+              <div style="clear:both;"></div>
+            </div>
+          </div>
+
+        <!-- Mobile header -->
+          <div class="header-mobile">
+            <a href="/"><img id="avatar-mobile" src="images/running_cropped.jpg" /></a>
+            <div class="title-mobile">
+              <span id="site-name"><a href="/">Ben Eills</a></span><sup><a id="aboutauthor" href="about/author/" rel="footnote">&dagger;</a></sup>
+
+              <a href="https://github.com/beneills">
+                <img id="github" src="images/github.png" />
+              </a>
+             </div>
+
+             <a href="about/author/#toc_2"><div class="world-map" title="Visited Places"></div></a>
+
+             <div class="clear"></div>
+           </div>
+
+          <div class="margined-content">
+                <div class="content-title">
+  <div class="content-title-left">
+    <div class="content-header">
+      Language Learning
+      
+    </div>
+
+    
+      <em class="content-description">a concise guide to learning (primarily modern foreign) languages for the independently motivated learner</em><br />
+    
+  </div>
+
+  <div class="content-meta">
+    
+    epistemic status<a href="http://www.gwern.net/About#belief-tags">&dagger;</a>: <strong>believed</strong>
+    
+
+    
+    <br />
+    completion status: <strong>40%</strong>
+    
+
+    <br />
+    reading time: <strong><span id="reading-time"></span></strong>
+
+  </div>
+
+  <div class="clear"></div>
+
+  <hr />
+</div>
+
+<!-- Table of Contents here gives a nice appearance, allowing MD content to wrap correctly -->
+<section><span class="toc"><ol class="toc"><li><a href="#toc_0">Language Choice</a></li><li><a href="#toc_1">Game Plan</a></li><li><a href="#toc_2">Our Approach</a></li></ol></span></section>
+
+<div class="markdown-body reading-text">
+
+<p>This is intended to be a <strong>concise guide to learning (primarily modern foreign) languages for the independently motivated learner</strong>.  Parts may be adapted for the teaching of children, although there are additional considerations not present in adult self-study.  It is based on my experience of studying French, German and Latin, and a great deal of research into the general problem: <em>what method should be used to get the most proficiency in the shorted duration?</em>.  There is a lot of material out there written by people who have mastered many languages, and much of it is very useful; this guide is my humble attempt to write a short HOWTO suitable for most people, using stuff I&#39;ve learned from the masters of language learning.</p>
+
+<p>This guide should take <strong>todo minutes to read</strong>.  The buried reader is advised to skim through all emphasised text and bullet points.</p>
+
+<p>It is important when trying to go about this in a rational manner to be mindful of the difficulties you will encounter as a language learner today:</p>
+
+<ul>
+<li>There are individuals or companies trying to sell you language learning products.  Those products most suited to be sold en masse are not necessarily those producing the best outcome.  Consumer perceived value is what is maximised, so courses including lots of DVDs that are sold in large boxes might have an underserved popular advantage.</li>
+<li>Teaching in schools is a very political topic.  Most positions on the instruction of the young have good academic outcomes as a stated goal, but tend not to be presented with solid evidence, at least in the popular press. <em>&quot;Of course students shouldn&#39;t memorise grammar. Babies don&#39;t.&quot;</em> <em>&quot;When I was young we memorised grammar, and ended up doing better than students today.&quot;</em></li>
+<li>Many sources speak of language knowledge as binary.  Terms like <em>&quot;lower intermediate&quot;</em>, where used to describe aptitude, are often inconsistent.</li>
+</ul>
+
+<h2 id="language-choice">Language Choice</h2>
+
+<p>You might be determined on a particular language already. If not, your primary considerations must be:</p>
+
+<ul>
+<li><strong>opportunity</strong> to use the language</li>
+<li>its <strong>difficulty</strong>, given the languages you already know todo</li>
+<li>availability of learning materials</li>
+<li>your <strong>feelings</strong> about it - <em>for me, French is just more appealing than Hungarian</em></li>
+</ul>
+
+<p>As an example, Spanish, being a Romance language, has many similarities with English in its vocabulary.  It is used widely in Spain, Mexico, the US and South America.  It is considered an easy language for English speakers, owing to its grammar and Latin alphabet; also, Spanish culture is exposed through Hemingway, etc.  This might make it a good choice for someone in the US.</p>
+
+<p>Or you might be an American who longs to live in Japan, and speak their language.  This is fine, so long as you are aware of the inherent difficulty of your endeavour.</p>
+
+<h3 id="multiple-languages">Multiple Languages</h3>
+
+<p>Todo</p>
+
+<h2 id="game-plan">Game Plan</h2>
+
+<p>OK, let&#39;s assume you know 0 words in your target language (henceforth, TL).   This is a reasonable approximation, even if you know a few.  Let&#39;s also assume that your goal is to achieve somewhere between B2 and C2 fluency, as measured by Cerf todo (<strong>probably the best fluency scale</strong> to use), and that you want to listen to, speak and read it.  This means we need to learn how to do the following:</p>
+
+<ul>
+<li>come up with the correct word in your TL for most of the words you use everyday in your mother tongue: <strong>vocabulary</strong></li>
+<li>pronounce most words: <strong>pronunciation</strong></li>
+<li>read the script todo</li>
+<li>comprehend most speech: <strong>listening comprehension</strong></li>
+</ul>
+
+<p>It&#39;s important to be clear that these <strong>skills are somewhat independent</strong>, and will not necessarily progress in tandem.  There are many Europeans who have reasonable fluency in English, yet are unable to communicate effectively with the English.</p>
+
+<h3 id="time-considerations">Time Considerations</h3>
+
+<p>Language learning demands a certain temporal and intellectual commitment.  That is, there is currently no way around having to commit a certain amount of time every week, and also that the spirit in which that time is spent is crucial: <strong>the motivated learner will have universally better outcomes</strong> than the he who sees his daily half-hour as a slog.</p>
+
+<p>The above is a good reason to pause and consider: <strong>how will I feel about this language a month from now?</strong> A year?</p>
+
+<p>I don&#39;t know the statistic of the proportion of purchasers of, say Rosetta Stone French, who achieve fluency in French, but I&#39;d bet it is less than 30%.  On the contrary, your opinion of the learning might be hard to predict at the outset, and, supposing you only end up learning 100 words before quitting, hey: you have 100 words and the knowledge that that language doesn&#39;t suit you.</p>
+
+<p>To the point, research shows that learning time is <strong>more effective when more evenly spread</strong> across the week. <em>1hr a day beats 7 each Sunday.</em></p>
+
+<p>For the motivated learner, anywhere <strong>between 30 minutes and 5 hours is a reasonable average daily devotion</strong>. Todo. I don&#39;t personally track or mandate time explicitly, but my daily activities as up to some time in the range. Todo attrition</p>
+
+<h3 id="financial-considerations">Financial Considerations</h3>
+
+<p>Many language learning products are costly.  Intensive courses in the target country or private tuition are yet more expensive.  This guide suggests a range of options to suit different budgets.  <strong>We do, however, assume a minimum expenditure</strong> for audio courses, books, etc.  As a guide, this might fall between 100-500 USD for a North American, depending on how they obtain materials.</p>
+
+<p>Disruptive technologies are providing important resources at far lower or no cost, but it is the opinion of the author that the core curricula is best supplied by traditional sources, hence the assumption of a non-zero minimum cost.</p>
+
+<h2 id="our-approach">Our Approach</h2>
+
+<p>I&#39;ll just present the approach, and defend it after:</p>
+
+<h3 id="preparation">Preparation</h3>
+
+<p>This preparation should take around todo.  Our goal is to reduce friction in future material aquisition and access.</p>
+
+<ul>
+<li>Filesystem Setup todo</li>
+<li>create a folder on your computer for all learning materials, named, e.g. <em>French/</em>
++create a <em>&quot;french&quot;</em> file within it as an Org Mode file, Word document, etc.  This will be the central place to plan and record learning.</li>
+<li>create a <em>&quot;resources&quot;</em> file it as a spreadsheet or Org Mode file.  This will be a repository of resources for your target language.</li>
+<li>create <em>&quot;audio&quot;</em>, <em>&quot;books&quot;</em>, <em>&quot;video&quot;</em> subdirectories</li>
+<li>make sure this will all be backed up somehow</li>
+<li><p>create a bookmarks folder in your browser, where you&#39;ll put every relevant webpage you find</p></li>
+<li><p>download and install Anki on your computer and any phones, tablets.  Set up an AnkiWeb account, skim the manual todo, and add a test card to test everything is syncing correctly.</p></li>
+<li><p>create an account on memrise.com todo and look through any existing courses in your target language, without starting any.</p></li>
+<li><p>it possible, find out how to add keyword searching to your browser. This currently works in Chrome and Firefox.</p></li>
+<li><p>find a decent (word) translation dictionary site todo and add it as <strong>le</strong> and <strong>el</strong> keywords.  I use [wordreference.com].</p></li>
+<li><p>add Google translate as <strong>le2</strong> and <strong>le2</strong> for translating longer passages</p></li>
+<li><p>find out if there are Michel Thomas or Pimsleur audio courses available for your language</p></li>
+<li><p>put these into your resources file with prices, links and a summary of the reviews.  Especially pay attention to the longer reviews on Amazon - these are usually written by more serious learners.</p></li>
+<li><p>if it is available, get the <em>foundation</em> or <em>total</em> Michel Thomas audio course.  Your reading of the reviews should have given you an idea of his genius.</p></li>
+</ul>
+
+<h3 id="execution">Execution</h3>
+
+<h4 id="main-study">Main Study</h4>
+
+<p>We will start by listening to the Michel Thomas audio.  The first CD gives advice on how to listen properly.  Follow it.</p>
+
+<p>Each CD is something like todo minutes.  They are somewhat self contained, so try to listen to a CD in one session.  Following the advice given at the start, don&#39;t worry about complete mastery before moving on.  There are recaps, and todo</p>
+
+<p>Just go about listening to them in a purposeful manner, not repeating too much mm at a comfortable pace.  2 or 3 a week is a reasonable guide.</p>
+
+<p>Todo pimsleur</p>
+
+<h4 id="vocabulary">Vocabulary</h4>
+
+<p>Now, we are going to begin building vocabulary simultaneously with the audio course.  Vocabulary is without doubt the easiest area of language learning to quantify.  You probably need todo words for everyday conversation.  The order in which to learn them is clear: we&#39;ll do it by approximate frequency of occurrence in conversation/writing.</p>
+
+<p>Hopefully there is a <em>Beginners</em> Memrise course in your language.  Most of these have the most popular ~1000 words, and are listed as being ~16 hours in length.  Note that this is an estimate of the <strong>total</strong> time taken to learn it, comprising lots of small daily sessions.  The advantage of this is that we get:</p>
+
+<ul>
+<li>a pre-made pack of frequent words</li>
+<li>pronounciations for many languages</li>
+<li>community-created &quot;Mems&quot; - mnemonics</li>
+</ul>
+
+<p>Start this, or the closest thing to it.  <em>If there is no such course available, we will duplicate this with slightly more effort using Anki and a frequency dictionary/vocab list/beginners book</em>.</p>
+
+<p>In addition to our general-purpose beginner study, we want to be able to easily decide to learn any word we want, at any time.  For this, we&#39;ll use Anki:</p>
+
+<ul>
+<li>we put <strong>everything</strong> in the default deck (including stuff unrelated to languages), but try to tag at least by langauge</li>
+<li>you can add Front/Back Target/Native single words/phrases with reversed card</li>
+<li>but it&#39;s better to use <a href="http://en.wikipedia.org/wiki/Cloze_test">Cloze deletion</a> via the <em>Cloze</em> note type and Ctrl-Shift-C shortcut</li>
+<li>we perform our daily reviews reguarly (preferably daily), being honest, conservative, and suspending any notes we are uneasy about (<em>!</em> shortcut)</li>
+</ul>
+
+<p>For learning concrete nouns, sucess has been reported using the method of writing the target word on Post-it notes, and attaching them to corresponding objects that are handled frequently.</p>
+
+<h4 id="immersion">Immersion</h4>
+
+
+<em>
+<strong>
+
+author: <a href="https://plus.google.com/u/0/+BenEills?rel=author">Ben Eills</a> <!-- for Google authorship -->
+
+|
+
+<img class="share-icon" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20style%3D%22fill%3A%23000%3B%22%20height%3D%22%22%20width%3D%22%22%3E%20%3Cpath%20d%3D%22M15%2015H2V6h2.595s.69-.896%202.17-2H1c-.553%200-1%20.45-1%201v11c0%20.553.447%201%201%201h15c.553%200%201-.447%201-1v-3.746L15%2013.9V15zm-1.64-6.95v3.55L20%206.4l-6.64-5v3.132C5.3%204.532%205.3%2012.5%205.3%2012.5c2.282-3.748%203.686-4.45%208.06-4.45z%22%2F%3E%3C%2Fsvg%3E"></img>
+<share-button></share-button>
+
+|
+
+<a href="/">list of all pages</a>
+
+</strong>
+</em>
+
+</div>
+
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'beneills';
+  var disqus_title = 'Language Learning';
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>enable javascript to comment, or just <a href="#contact">email me</a></noscript>
+
+
+
+		<hr />
+		<div class="footer">
+		  <div id="contact">
+                    <p>
+		      <script type="text/javascript"><!--
+							 var vqutykp = ['e','e','m','.','e',':','>','i',' ','l','i','l',' ','b','s','a','i','r','e','=','b','l','>','"','o','"','.','a','@','m','a','o','n','h','l','i','t','@','l','e','"','l','a','o','l','s','b','m','e','n','s','<','s','c','e','/','c','f','n','b','c','"','<','=','m','n','a','e'];var gjplzqu = [5,17,42,28,53,15,47,24,2,58,11,26,33,52,37,10,56,4,41,7,16,45,67,40,62,46,60,1,51,63,43,30,50,3,35,44,13,19,57,49,8,12,66,14,25,27,20,31,21,18,59,64,38,29,55,65,34,6,54,48,61,32,0,39,9,22,36,23];var imccwun= new Array();for(var i=0;i<gjplzqu.length;i++){imccwun[gjplzqu[i]] = vqutykp[i]; }for(var i=0;i<imccwun.length;i++){document.write(imccwun[i]);}
+							 // --></script>
+		      <noscript>ben@&lt;this domain&gt;.com</noscript>
+                      <br />
+                      <a href="https://github.com/beneills">github.com/beneills</a><br />
+                    </p>
+
+
+		  </div>
+
+      <a id="travis-button" href="https://travis-ci.org/beneills/website"><img src="https://travis-ci.org/beneills/website.svg?branch=master"></a>
+		</div>
+	    </div>
+          </div>
+        </div> <!-- /container -->
+    </body>
+</html>

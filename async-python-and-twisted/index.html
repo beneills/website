@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Async Python and Twisted</title>
+      <meta name="viewport" content="width=device-width">
+
+      <!-- share buttons -->
+      <link rel="stylesheet" href="css/share-button.min.css">
+
+    	<!-- custom CSS -->
+      <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="css/mobile.css">
+      <link rel="stylesheet" href="css/syntax.css">
+
+    	<!-- jquery -->
+    	<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    	<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    	<!-- main js -->
+        <script src="js/main.js"></script>
+
+    	<!-- footnotes from http://ignorethecode.net/blog/2010/04/20/footnotes/ -->
+        <script src="js/footnotes.js"></script>
+
+    	<!-- math rendering -->
+    	<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+      <!-- share buttons -->
+      <script src="js/share-button.min.js"></script>
+
+    	<!-- analytics -->
+    	<script type="text/javascript">
+    	  var _gaq = _gaq || [];
+    	  _gaq.push(['_setAccount', 'UA-37058894-1']);
+    	  _gaq.push(['_trackPageview']);
+
+    	  (function() {
+    	  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    	  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    	  })();
+    	</script>
+
+    	<!-- map -->
+    	<link rel="stylesheet" href="css/jquery-jvectormap-1.2.2.css" type="text/css" media="screen"/>
+    	<script src="js/jquery-jvectormap-1.2.2.min.js"></script>
+    	<script src="js/jquery-jvectormap-world-mill-en.js"></script>
+    	<script src="js/map.js"></script>
+    </head>
+    <body>
+
+      <div class="container">
+        <div class="site">
+
+        <!-- Large screen header -->
+          <div class="header row">
+           <a href="/"><img id="avatar" src="images/running_cropped.jpg" /></a>
+           <div class="title">
+            <span id="site-name"><a href="/">Ben Eills</a></span><sup><a id="aboutauthor" href="about/author/" rel="footnote">&dagger;</a></sup>
+
+            <a href="https://github.com/beneills">
+              <img src="images/github.png" />
+            </a>
+          </div>
+
+          <div id="previews">
+            <span class="preview">
+              <a href="about/author/#toc_2"><div class="world-map home-preview" title="Visited Places"></div></a>
+            </span>
+
+            <span class="preview">
+              <div class="beeminder-goal-preview">
+                <a href="about/author/#toc_0"><img src="https://www.beeminder.com/beneills/goals/memrise-intermediate-harvest-backlog/graph?style=thumb" title="My Beeminder Goals" alt="memrise-intermediate-harvest-backlog Beeminder goal" /></a></div>
+              </span>
+
+              <span class="preview">
+                <a href="about/author/#toc_1">
+                  <img src="images/book.jpg" title="My LibraryThing Books" alt="A Confederacy of Dunces book cover" />
+                </a>
+              </span>
+
+              <div style="clear:both;"></div>
+            </div>
+          </div>
+
+        <!-- Mobile header -->
+          <div class="header-mobile">
+            <a href="/"><img id="avatar-mobile" src="images/running_cropped.jpg" /></a>
+            <div class="title-mobile">
+              <span id="site-name"><a href="/">Ben Eills</a></span><sup><a id="aboutauthor" href="about/author/" rel="footnote">&dagger;</a></sup>
+
+              <a href="https://github.com/beneills">
+                <img id="github" src="images/github.png" />
+              </a>
+             </div>
+
+             <a href="about/author/#toc_2"><div class="world-map" title="Visited Places"></div></a>
+
+             <div class="clear"></div>
+           </div>
+
+          <div class="margined-content">
+                <div class="content-title">
+  <div class="content-title-left">
+    <div class="content-header">
+      Async Python and Twisted
+      
+    </div>
+
+    
+      <em class="content-description">an introduction to the asynchronous paradigm for Python beginners, in which we write our own async framework</em><br />
+    
+  </div>
+
+  <div class="content-meta">
+    
+
+    
+    <br />
+    completion status: <strong>add archive</strong>
+    
+
+    <br />
+    reading time: <strong><span id="reading-time"></span></strong>
+
+  </div>
+
+  <div class="clear"></div>
+
+  <hr />
+</div>
+
+<!-- Table of Contents here gives a nice appearance, allowing MD content to wrap correctly -->
+<section><span class="toc"><ol class="toc"><li><a href="#toc_0">A Mad Hatter</a></li><li><a href="#toc_1">Fate</a></li><li><a href="#toc_2">Taking Fate to its limits</a></li><li><a href="#toc_3">This function explodes Parliament and shuts down universe.</a></li><li><a href="#toc_4">This class represents a fuse in part of a chain.</a></li><li><a href="#toc_5">Twisted</a></li><li><a href="#toc_6">Beyond this tutorial</a></li><li><a href="#toc_7">Resources</a></li></ol></span></section>
+
+<div class="markdown-body reading-text">
+
+<h2 id="a-mad-hatter">A Mad Hatter</h2>
+
+<p>Imagine that a madman (we&#39;ll call him MadHatter) walks up to you and
+thrusts into your hand a FireCracker.  The FireCracker&#39;s internal Fuse is
+burning and will explode the firework in the next few seconds.
+We will model this scenario using Asynchronous Python code.  This sort  of
+task is exactly what Twisted excels at, and we will write a Twisted
+implementation of the scenario at the end of the article.  Before that,
+however, we will examine what components the task makes necessary in a
+general async event manager.  To this end we shall create our own event
+manager called Fate (don&#39;t worry, this will be very bare bones to fit in a
+few lines of code, yet suitable for the task we have set it).  You may have
+noticed that the pieces of the system I have described so far have names
+fitting into a real-life analogy.  This is a device to aid memory and
+understanding; I will make clear as we consider each part whether it is
+specific to our scenario, or applicable to a more general class of
+circumstances.  Hopefully the choice of naming will be helpful - Twisted
+also has interesting names, but ones which strangely have very little to do
+with the function of their bearers (see Conch, Manhole and Jelly).
+Enter the actors:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="k">class</span> <span class="nc">FireCracker</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">owner</span>
+    <span class="k">def</span> <span class="nf">hand_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_owner</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">new_owner</span>
+    <span class="k">def</span> <span class="nf">explode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s2">&quot;BOOM! Firecracker exploded in the unlucky hands &quot;</span> \
+            <span class="s2">&quot;of {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MadHatter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">pass</span>
+<span class="k">class</span> <span class="nc">BenEills</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">pass</span></code></pre></figure>
+
+<p>We&#39;ve got this far using only the &#39;standard&#39; everyday sort of Python.  No
+async magic.
+Now, why is an event manager useful?  Why not simply continue in this vein?
+Well, we want to be able to simulate the burning fuse.  Let&#39;s add a
+light_fuse() method to FireCracker.  In naïve, synchronous Python we could
+do something like this:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="k">def</span> <span class="nf">light_fuse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">burning_time</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">burning_time</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">explode</span><span class="p">()</span></code></pre></figure>
+
+<p>Do not do this!  Why?  There are two obvious issues:</p>
+
+<ul>
+<li><p>While burning the FireCracker() cannot be handed to anyone else.  The MadHatter()&#39;s dark designs will never be realized because directly after lighting the fuse the processor becomes completely taken up with sleeping.  The path of execution effectively sits at the time.sleep() statement for several seconds, after which it moves to the next line, exploding in the lighter&#39;s own hands.  There is simply no way to do anything between the two consecutive lines of code.</p></li>
+<li><p>Secondly, if you have more than one FireCracker(), or indeed anything else in your model, it will all unhelpfully freeze for several seconds.  Only one thing can possibly be happening at a particular time.  This is the fundamental limitation of traditional synchronous programming.</p></li>
+</ul>
+
+<p>We shall now find a way around this by writing Fate() async code to use it.
+In general, asynchronous programming could be summarized by replacing any
+blocking operation (e.g. sleeping, waiting for data on sockets, waiting or
+external command to return) with special event-handling commands.  By
+writing Fate, we will see that the blocking, clunky operations are in fact
+moved back behind the scenes into the event framework, which intelligently
+combines them to give the illusion of simultaneous happenings.  They are
+merely being &#39;switched between&#39;.  (Incidentally, this is similar to the way
+that modern operating systems allow you to run multiple applications at
+once by rapidly switching between them behind-the-scenes).</p>
+
+<h2 id="fate">Fate</h2>
+
+<p>On to Fate.  We have to provide a way for the developer working on the
+FireCracker code to &#39;set&#39; events.  The simplest method of doing this is
+perhaps timer-based events.  Lets make a Fuse class that represents a timed
+event.  Just follow along, you&#39;ll see precisely how it fits together with
+everything else in a bit.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="k">class</span> <span class="nc">Fuse</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">time</span>
+    <span class="k">def</span> <span class="nf">is_burned</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">&lt;</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span></code></pre></figure>
+
+<p>So, this is simple.  We get a fuse, set the burning time and then we can
+check in the future whether or not it is fully burned.  It is a trifle
+whether to use &#39;&lt;&#39; or &#39;&lt;=&#39; - it is incredibly unlikely that this will make
+any difference in your Python implementation, due to the high precision of
+the Standard Library&#39;s time() call.  I have opted for the nicer-looking
+version, avoiding the perhaps philosophical issue of subdivision of time.
+Now, the way that this will be incorporated into our code is as follows:</p>
+
+<ul>
+<li><p>We will create Fate and add to it a get_fuse() method.  This will take a single argument of the (floating point) number of seconds representing burning time.  It will add this to the current time, giving the absolute time at which the fuse will be fully burned, creates a Fuse instance and sets the time on it.  It saves this to internal instance memory and returns it.</p></li>
+<li><p>We will add a light<em>fuse() method to FireCracker.  This will get a Fuse using Fate.get</em>fuse() and tell it what to do when the fuse is fully burned.  It will do this by simply calling its set_handler() method with self.explode.  We are telling Fate how to handle the fuse being completely burned.</p></li>
+</ul>
+
+<p>But wait.  Fuse doesn&#39;t have a set_handler() method.  We&#39;re going to fix
+that presently, it was simply more convenient to present the material in
+this logical order.
+The following is the whole of Fate, including the slightly expanded Fuse
+class.  It will be explained afterwards.  Try to glean the rough
+functionality from the source.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="k">class</span> <span class="nc">Fate</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fuses</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">get_fuse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seconds</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">Fuse</span><span class="p">()</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">set_time</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">seconds</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fuses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">f</span>
+    <span class="k">def</span> <span class="nf">check_fuses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">fuse</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuses</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fuse</span><span class="o">.</span><span class="n">has_handler</span><span class="p">()</span> <span class="ow">and</span> <span class="n">fuse</span><span class="o">.</span><span class="n">is_burned</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fuses</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">fuse</span><span class="p">)</span>
+                <span class="n">fuse</span><span class="o">.</span><span class="n">call_handler</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_fuses</span><span class="p">()</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="k">class</span> <span class="nc">Fuse</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">time</span>
+    <span class="k">def</span> <span class="nf">is_burned</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">&lt;</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">set_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">handler</span> <span class="o">=</span> <span class="n">handler</span>
+    <span class="k">def</span> <span class="nf">has_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;handler&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">call_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">handler</span><span class="p">()</span></code></pre></figure>
+
+<p>Whew!  Now the explanation:</p>
+
+<ol>
+<li>check<em>fuses() goes through every fuse in the instance memory (which should be every fuse if the other developers have behaved and used get</em>fuse() rather than instantiating Fuse for themselves).  For each fuse it checks is the fuse has<em>handler() and is</em>burned().  If so, it removes the fuse from memory and calls the handler.  If the fuse is still burning, or no handler has been set, it simply is left in the list to be tested again.</li>
+<li>run() is the 3-line meat of Fate and our whole event management system.  Every 0.2 seconds it runs check_fuses() until it detects a system shutdown event.</li>
+<li>The set_handler function accepts a function.  In case you&#39;re not familiar with passing around functions as arguments, you simply supply the function name; this is the equivalent in C-derived languages of a function pointer, and, internally to Python, is represented as such.  This function is what you want to be called when the fuse is fully burned.</li>
+<li>has _ handler() and call _ handler() are straightforward.</li>
+<li>shutdown() tells Fate that we wish to stop handling events, causing run() to return and our program to terminate.
+The pattern of writing a program using Fate is easy:</li>
+<li>You do whatever initialization you want</li>
+<li>You set up at least one initial Fuse with handlers</li>
+<li>You call Fate&#39;s run()</li>
+<li>The initial handlers can themselves set up subsequent handlers</li>
+<li>All actual work is done in these handler functions</li>
+<li>Eventually, some handler calls Fate&#39;s shutdown() method</li>
+<li>This causes run() to return and, after any of our own shutdown code, the program exits.</li>
+</ol>
+
+<p>Now, we&#39;ll fill in the bits of the FireCracker scenario to make use of
+Fate.  This will be a good example of how to use Fate for other
+applications, and, more generally, is illustrative of a standard
+asynchronous design pattern.  Remember that we&#39;re replacing the bad,
+synchronous version one of our light_fuse() method with a better Fate-ful
+one.</p>
+
+<p>Here is the complete FireCracker program, minus general-purpose Fate code
+and imports.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="k">class</span> <span class="nc">FireCracker</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">owner</span><span class="p">,</span> <span class="n">fate</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">owner</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fate</span> <span class="o">=</span> <span class="n">fate</span>
+    <span class="k">def</span> <span class="nf">hand_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_owner</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">new_owner</span>
+    <span class="k">def</span> <span class="nf">explode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s2">&quot;BOOM! Firecracker exploded in the unlucky hands &quot;</span> \
+            <span class="s2">&quot;of {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+        <span class="c1"># After any explosion, shutdown program after 2 second delay</span>
+        <span class="c1"># Otherwise we&#39;d have to kill the program</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fate</span><span class="o">.</span><span class="n">get_fuse</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">set_handler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fate</span><span class="o">.</span><span class="n">shutdown</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">light_fuse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">burning_time</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fate</span><span class="o">.</span><span class="n">get_fuse</span><span class="p">(</span><span class="n">burning_time</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">set_handler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">explode</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MadHatter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Mad Hatter&quot;</span>
+<span class="k">class</span> <span class="nc">BenEills</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Ben Eills&quot;</span>
+<span class="c1"># Universe come into existence</span>
+<span class="n">fate</span> <span class="o">=</span> <span class="n">Fate</span><span class="p">()</span>
+<span class="c1"># Hatter and Ben are born</span>
+<span class="n">hatter</span> <span class="o">=</span> <span class="n">MadHatter</span><span class="p">()</span>
+<span class="n">ben</span> <span class="o">=</span> <span class="n">BenEills</span><span class="p">()</span>
+<span class="c1"># FireCracker appears, intitially owned by the Hatter</span>
+<span class="n">fc</span> <span class="o">=</span> <span class="n">FireCracker</span><span class="p">(</span><span class="n">hatter</span><span class="p">,</span> <span class="n">fate</span><span class="p">)</span>
+<span class="c1"># The Hatter lights the fuse</span>
+<span class="n">fc</span><span class="o">.</span><span class="n">light_fuse</span><span class="p">()</span>
+<span class="c1"># And hands it to Ben</span>
+<span class="n">fc</span><span class="o">.</span><span class="n">hand_to</span><span class="p">(</span><span class="n">ben</span><span class="p">)</span>
+<span class="c1"># Universe begins paying attention to duration of time</span>
+<span class="c1"># At some point during run, the FireCracker will explode</span>
+<span class="c1">#   and 2 seconds later, Fate will be shutdown</span>
+<span class="n">fate</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="c1"># Universe has ended.  We have no cleanup to do.</span></code></pre></figure>
+
+<h2 id="taking-fate-to-its-limits">Taking Fate to its limits</h2>
+
+<p>Now, our Fate system functions well at the limited tasks set out for it.
+It will not do any of the following things:</p>
+
+<ul>
+<li>Allow a Fuse to be lit which is burned only after receiving a particular packet over the network</li>
+<li>Allow multiple users to handle any one Fuse (the last to call set_handler() is always the sole &quot;owner&quot;)</li>
+<li>Utilise more complicated mechanisms to check for Fuses being completely burned.</li>
+<li>e.g. using the low-level select() call to avoid processor-intensive polling every 0.2 seconds</li>
+</ul>
+
+<p>Let&#39;s see a quick second example that takes Fate to the limits of its
+functionality.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="c1">## This function explodes Parliament and shuts down universe.</span>
+<span class="k">def</span> <span class="nf">explode_parliament</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s2">&quot;Boom! The Houses of Parliament explode!&quot;</span>
+    <span class="n">fate</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+<span class="c1">## This class represents a fuse in part of a chain.</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">class</span> <span class="nc">FuseInChain</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tie_to</span><span class="p">,</span> <span class="n">burn_time</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a new fuse in our chain, tying it to the current end</span>
+<span class="sd">        fuse, tie_to</span>
+<span class="sd">        If tie_to is None, we are tied directly to the barrel.</span>
+<span class="sd">        We become the new end fuse.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">tie_to</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">burn_time</span> <span class="o">=</span> <span class="n">burn_time</span>
+    <span class="k">def</span> <span class="nf">ignite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ignite this fuse.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span> <span class="s2">&quot;...igniting next fuse in chain...&quot;</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">fate</span><span class="o">.</span><span class="n">get_fuse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">burn_time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c1"># We are the last Fuse in the chain.  Blow up barrel.</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">set_handler</span><span class="p">(</span><span class="n">explode_parliament</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">set_handler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">ignite</span><span class="p">)</span>
+<span class="n">fate</span> <span class="o">=</span> <span class="n">Fate</span><span class="p">()</span>
+<span class="n">tmp</span> <span class="o">=</span> <span class="n">FuseInChain</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">FuseInChain</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">i</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="n">last</span> <span class="o">=</span> <span class="n">tmp</span>
+<span class="n">last</span><span class="o">.</span><span class="n">ignite</span><span class="p">()</span>
+<span class="n">fate</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></code></pre></figure>
+
+<p>Here we have represented a chain of fuses by putting in the &quot;user&quot; code a
+chaining mechanism: the handler for one Fuse() i.e. ignite() itself creates
+another fuse.
+Try following through the &quot;logical flow&quot; of execution through the program.
+It can be more difficult to follow this than standard, synchronous code,
+but we gain an advantage when working on any non-trivial program that must
+accomplish multiple tasks in some sort of concurrency.
+Now that we&#39;ve written an event handler and two examples together, its time
+to introduce Twisted.  It is similar to Fate, but much more extensible.
+Twisted also contains many utility modules for doing things like HTTP
+downloading and executing external commands.</p>
+
+<h2 id="twisted">Twisted</h2>
+
+<p>To get started with Twisted, remember these two approximations:</p>
+
+<ul>
+<li>&quot;Twisted Reactor&quot; is approximately &quot;Fate&quot;, and</li>
+<li>&quot;Deferred&quot; is approximately &quot;Fuse&quot;</li>
+</ul>
+
+<p>Here is a simple Twisted program, adapted from the <a href="http://twistedmatrix.com/documents/current/core/howto/defer.html#auto1">Twisted Docs</a>:
+from twisted.internet import reactor, defer</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="k">def</span> <span class="nf">slow_multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function multiplies two numbers very slowly (for a computer).</span>
+<span class="sd">    It takes 3 seconds.</span>
+<span class="sd">    It returns a Deferred instantly which fires with the result once</span>
+<span class="sd">    we&#39;ve determined it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">defer</span><span class="o">.</span><span class="n">Deferred</span><span class="p">()</span>
+    <span class="n">reactor</span><span class="o">.</span><span class="n">callLater</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">callback</span><span class="p">,</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">d</span>
+<span class="k">def</span> <span class="nf">print_multiplication_result</span><span class="p">(</span><span class="n">fired_value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Is called by Twisted when the Deferred given by slow_multiply finally</span>
+<span class="sd">    fires.  We pretty print the result it fires with.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">print</span> <span class="s2">&quot;... result is {0}!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fired_value</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Determining result of 5 * 7...&quot;</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">slow_multiply</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="n">print_multiplication_result</span><span class="p">)</span>
+<span class="c1"># We stop Twisted after 4 seconds, long enough for our code to finish.</span>
+<span class="c1"># This is pretty similar to Fate&#39;s &quot;shutdown&quot; method.</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">callLater</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">reactor</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></code></pre></figure>
+
+<p>So, similarly to our Fuse, a Deferred is Twisted&#39;s indication that the
+returner will fire it at some point in the future.
+The slow-multiply function returns the Deferred instantly, but uses
+Twisted&#39;s callLater function to call the &quot;callback&quot; method
+of its Deferred in 3 seconds.  This simulates a slow multiplier.
+Instead of adding a &quot;handler&quot;, we add a &quot;callback&quot; function to the
+Deferred.  In this case it&#39;s printData() which as to deal with whatever
+value the Deferred fires with.
+With these small difference in mind, it ought to be easy for you to rewrite
+the Mad Hatter example using Twisted.  Here is is:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="c1"># Standard Twisted imports.  You&#39;ll need these for most Twisted</span>
+<span class="n">applications</span><span class="o">.</span>
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">reactor</span><span class="p">,</span> <span class="n">defer</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="k">class</span> <span class="nc">FireCracker</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">owner</span>
+    <span class="k">def</span> <span class="nf">hand_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_owner</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">new_owner</span>
+    <span class="k">def</span> <span class="nf">explode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rv</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s2">&quot;BOOM! Firecracker exploded in the unlucky hands &quot;</span> \
+            <span class="s2">&quot;of {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">light_fuse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">burning_time</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">defer</span><span class="o">.</span><span class="n">Deferred</span><span class="p">()</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">explode</span><span class="p">)</span>
+        <span class="n">reactor</span><span class="o">.</span><span class="n">callLater</span><span class="p">(</span><span class="n">burning_time</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">callback</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MadHatter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Mad Hatter&quot;</span>
+<span class="k">class</span> <span class="nc">BenEills</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Ben Eills&quot;</span>
+<span class="c1"># Hatter and Ben are born</span>
+<span class="n">hatter</span> <span class="o">=</span> <span class="n">MadHatter</span><span class="p">()</span>
+<span class="n">ben</span> <span class="o">=</span> <span class="n">BenEills</span><span class="p">()</span>
+<span class="c1"># FireCracker appears, initially owned by the Hatter</span>
+<span class="n">fc</span> <span class="o">=</span> <span class="n">FireCracker</span><span class="p">(</span><span class="n">hatter</span><span class="p">)</span>
+<span class="c1"># The Hatter lights the fuse immediately</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">callLater</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">fc</span><span class="o">.</span><span class="n">light_fuse</span><span class="p">)</span>
+<span class="c1"># Waits one second and passes it to Ben</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">callLater</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">fc</span><span class="o">.</span><span class="n">hand_to</span><span class="p">,</span> <span class="n">ben</span><span class="p">)</span>
+<span class="c1"># And shutdown Twisted after 3 seconds, long enough for the FireCracker</span>
+<span class="n">to</span> <span class="n">certainly</span> <span class="n">explode</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">callLater</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">reactor</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+<span class="c1"># Start Twisted</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></code></pre></figure>
+
+<p>We&#39;ve made this one more interesting: it may explode in the MadHatter&#39;s own
+hands.
+The single-letter &quot;d&quot; is commonly used to point to a Deferred object within
+Twisted programs.  This convention can make it easier to keep clear which
+returned values are actual data (i.e. non-Deferred objects) and which are
+simply &quot;promises of data&quot; (i.e. Deferreds).</p>
+
+<h2 id="beyond-this-tutorial">Beyond this tutorial</h2>
+
+<p>The above should be enough to get you started working within the Twisted
+asynchronous framework, and you should have a reasonably clear idea of how
+events fit together.  With such programming, you have the advantage of not
+having to worry about simultaneous variable access and other issues
+associated with threaded programming, but you have the additional
+responsibility of making your functions return fast (no &quot;block&quot; for long
+periods of time).  Looking at Fate its clear why this would be a problem:
+your code would stop the event handler looking for other events that need
+to happen.
+It is for this reason that the other parts of the Twisted framework become
+desirable.  In synchronous programming, one might use</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://www.beneills.com/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span></code></pre></figure>
+
+<p>to read a web page.  This would be bad in Twisted, because while the
+standard library is occupied with downloading it (which might take several
+seconds), anything else that ought to run couldn&#39;t.
+The correct Twisted way to do this is:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">reactor</span>
+<span class="kn">import</span> <span class="nn">twisted.web.client</span> <span class="kn">as</span> <span class="nn">twc</span>
+<span class="n">Example</span> <span class="n">of</span> <span class="n">using</span> <span class="n">Twisted</span><span class="s1">&#39;s getPage utility function in place of urllib2#</span>
+<span class="n">This</span> <span class="n">Twisted</span> <span class="n">library</span> <span class="n">function</span> <span class="n">returns</span> <span class="n">a</span> <span class="n">Deferred</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">twc</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="s2">&quot;http://www.beneills.com/&quot;</span><span class="p">)</span>
+<span class="c1"># The deferred will fire when/if the page is successfully downloaded with</span>
+<span class="n">the</span> <span class="n">contents</span> <span class="n">of</span> <span class="n">the</span> <span class="n">web</span> <span class="n">page</span> <span class="k">as</span> <span class="n">a</span> <span class="n">string</span>
+<span class="c1"># As in the above examples, we tell Twisted what to do when it does fire</span>
+<span class="k">def</span> <span class="nf">printPage</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s2">&quot;Page contents:&quot;</span>
+    <span class="k">print</span> <span class="n">data</span>
+<span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="n">printPage</span><span class="p">)</span>
+<span class="c1"># Shutdown, regardless of success after 3 seconds</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">callLater</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">reactor</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+<span class="n">reactor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></code></pre></figure>
+
+<p>Internally, Twisted&#39;s getPage function downloads small chunks of the page
+at a time, allowing other events to be handled during downloading.
+Two important topics not covered here for reasons of brevity are errbacks
+and deferred chaining.
+Errbacks are the counterpart to callbacks that are meant to be triggered in
+the event of something going wrong in a function.  They are similar to
+exceptions, and can be handled with the addErrback method of a Deferred.
+Chaining is a way to link Deferreds &quot;end-to-end&quot; in a chain, so that one
+will only fire after another does.  This allows us to do the &quot;line-by-line&quot;
+execution that is given to us for free in synchronous programming.  Also
+useful is the inlineCallbacks generator, which performs a similar function.
+As a closing remark, it is important to choose correctly when asynchronous
+code is necessary and when it is not.  For simple shell-replacement Python
+scripts it is clearly an overkill, but for applications performing multiple
+network requests or handling user input while doing background work Twisted
+is probably the answer.</p>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+<li><a href="static/twisted_examples.tar.gz">All Examples in a Compressed Archive</a></li>
+<li><a href="http://twistedmatrix.com/documents/current/core/howto/defer.html">Official Twisted Deferred Guide</a></li>
+<li><a href="http://twistedmatrix.com/documents/12.2.0/api/twisted.internet.defer.Deferred.html">Deferred Object API Reference</a></li>
+<li><a href="https://github.com/beneills/deferreds">GitHub Repository with Development Version of this Tutorial</a></li>
+</ul>
+
+
+<em>
+<strong>
+
+author: <a href="https://plus.google.com/u/0/+BenEills?rel=author">Ben Eills</a> <!-- for Google authorship -->
+
+|
+
+<img class="share-icon" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20style%3D%22fill%3A%23000%3B%22%20height%3D%22%22%20width%3D%22%22%3E%20%3Cpath%20d%3D%22M15%2015H2V6h2.595s.69-.896%202.17-2H1c-.553%200-1%20.45-1%201v11c0%20.553.447%201%201%201h15c.553%200%201-.447%201-1v-3.746L15%2013.9V15zm-1.64-6.95v3.55L20%206.4l-6.64-5v3.132C5.3%204.532%205.3%2012.5%205.3%2012.5c2.282-3.748%203.686-4.45%208.06-4.45z%22%2F%3E%3C%2Fsvg%3E"></img>
+<share-button></share-button>
+
+|
+
+<a href="/">list of all pages</a>
+
+</strong>
+</em>
+
+</div>
+
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'beneills';
+  var disqus_title = 'Async Python and Twisted';
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>enable javascript to comment, or just <a href="#contact">email me</a></noscript>
+
+
+
+		<hr />
+		<div class="footer">
+		  <div id="contact">
+                    <p>
+		      <script type="text/javascript"><!--
+							 var vqutykp = ['e','e','m','.','e',':','>','i',' ','l','i','l',' ','b','s','a','i','r','e','=','b','l','>','"','o','"','.','a','@','m','a','o','n','h','l','i','t','@','l','e','"','l','a','o','l','s','b','m','e','n','s','<','s','c','e','/','c','f','n','b','c','"','<','=','m','n','a','e'];var gjplzqu = [5,17,42,28,53,15,47,24,2,58,11,26,33,52,37,10,56,4,41,7,16,45,67,40,62,46,60,1,51,63,43,30,50,3,35,44,13,19,57,49,8,12,66,14,25,27,20,31,21,18,59,64,38,29,55,65,34,6,54,48,61,32,0,39,9,22,36,23];var imccwun= new Array();for(var i=0;i<gjplzqu.length;i++){imccwun[gjplzqu[i]] = vqutykp[i]; }for(var i=0;i<imccwun.length;i++){document.write(imccwun[i]);}
+							 // --></script>
+		      <noscript>ben@&lt;this domain&gt;.com</noscript>
+                      <br />
+                      <a href="https://github.com/beneills">github.com/beneills</a><br />
+                    </p>
+
+
+		  </div>
+
+      <a id="travis-button" href="https://travis-ci.org/beneills/website"><img src="https://travis-ci.org/beneills/website.svg?branch=master"></a>
+		</div>
+	    </div>
+          </div>
+        </div> <!-- /container -->
+    </body>
+</html>

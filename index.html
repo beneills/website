@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Ben Eills</title>
+      <meta name="viewport" content="width=device-width">
+
+      <!-- share buttons -->
+      <link rel="stylesheet" href="css/share-button.min.css">
+
+    	<!-- custom CSS -->
+      <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="css/mobile.css">
+      <link rel="stylesheet" href="css/syntax.css">
+
+    	<!-- jquery -->
+    	<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    	<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    	<!-- main js -->
+        <script src="js/main.js"></script>
+
+    	<!-- footnotes from http://ignorethecode.net/blog/2010/04/20/footnotes/ -->
+        <script src="js/footnotes.js"></script>
+
+    	<!-- math rendering -->
+    	<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+      <!-- share buttons -->
+      <script src="js/share-button.min.js"></script>
+
+    	<!-- analytics -->
+    	<script type="text/javascript">
+    	  var _gaq = _gaq || [];
+    	  _gaq.push(['_setAccount', 'UA-37058894-1']);
+    	  _gaq.push(['_trackPageview']);
+
+    	  (function() {
+    	  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    	  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    	  })();
+    	</script>
+
+    	<!-- map -->
+    	<link rel="stylesheet" href="css/jquery-jvectormap-1.2.2.css" type="text/css" media="screen"/>
+    	<script src="js/jquery-jvectormap-1.2.2.min.js"></script>
+    	<script src="js/jquery-jvectormap-world-mill-en.js"></script>
+    	<script src="js/map.js"></script>
+    </head>
+    <body>
+
+      <div class="container">
+        <div class="site">
+
+        <!-- Large screen header -->
+          <div class="header row">
+           <a href="/"><img id="avatar" src="images/running_cropped.jpg" /></a>
+           <div class="title">
+            <span id="site-name"><a href="/">Ben Eills</a></span><sup><a id="aboutauthor" href="about/author/" rel="footnote">&dagger;</a></sup>
+
+            <a href="https://github.com/beneills">
+              <img src="images/github.png" />
+            </a>
+          </div>
+
+          <div id="previews">
+            <span class="preview">
+              <a href="about/author/#toc_2"><div class="world-map home-preview" title="Visited Places"></div></a>
+            </span>
+
+            <span class="preview">
+              <div class="beeminder-goal-preview">
+                <a href="about/author/#toc_0"><img src="https://www.beeminder.com/beneills/goals/memrise-intermediate-harvest-backlog/graph?style=thumb" title="My Beeminder Goals" alt="memrise-intermediate-harvest-backlog Beeminder goal" /></a></div>
+              </span>
+
+              <span class="preview">
+                <a href="about/author/#toc_1">
+                  <img src="images/book.jpg" title="My LibraryThing Books" alt="A Confederacy of Dunces book cover" />
+                </a>
+              </span>
+
+              <div style="clear:both;"></div>
+            </div>
+          </div>
+
+        <!-- Mobile header -->
+          <div class="header-mobile">
+            <a href="/"><img id="avatar-mobile" src="images/running_cropped.jpg" /></a>
+            <div class="title-mobile">
+              <span id="site-name"><a href="/">Ben Eills</a></span><sup><a id="aboutauthor" href="about/author/" rel="footnote">&dagger;</a></sup>
+
+              <a href="https://github.com/beneills">
+                <img id="github" src="images/github.png" />
+              </a>
+             </div>
+
+             <a href="about/author/#toc_2"><div class="world-map" title="Visited Places"></div></a>
+
+             <div class="clear"></div>
+           </div>
+
+          <div class="margined-content">
+                <div id="home">
+
+  <!-- <span id="tag-line"> -->
+  <!-- </span> -->
+
+  <h2>Projects</h2>
+  <div id="projects">
+    <div id="projects-left">
+      <ul>
+        <li><span class="list-align"><a href="https://github.com/beneills/beemem">Beemem</a></span> <em class="widescreen">update Beeminder goals from Memrise data</em></li>
+        <li><span class="list-align"><a href="http://beeminder.beneills.com/">Beeminder Goals</a></span> <em class="widescreen">large-thumbnail page of my personal goals</em></li>
+        <li><span class="list-align"><a href="http://showcase.beneills.com/">Beeminder Showcase</a></span> <em class="widescreen">curated list of interesting Beeminder goals</em></li>
+        <li><span class="list-align"><a href="https://github.com/beneills/candide">Candide Presentation</a></span> <em class="widescreen">presentation in French about Voltaire's Candide</em></li>
+        <li><span class="list-align"><a href="https://github.com/beneills/commonsense-spec">Commonsense</a></span> <em class="widescreen">text specification for resisting authorship analysis</em></li>
+        <li><span class="list-align"><a href="https://github.com/beneills/context">Context</a></span> <em class="widescreen">create desktop contexts with custom entry/exit actions</em></li>
+        <li><span class="list-align"><a href="https://github.com/beneills/cv/">CV</a> <span class="label ruby">ruby</span> <span class="heart">&hearts;</span></span> <em class="widescreen">generate a resumé of your Github activity!</em></li>
+        <li><span class="list-align"><a href="https://github.com/beneills/configuration">Dotfiles</a></span> <em class="widescreen">my configuration files</em></li>
+        <li><span class="list-align"><a href="https://launchpad.net/entrails">Entrails</a></span> <em class="widescreen">call flow logging/tracing in Python programs</em></li>
+        <li><span class="list-align"><a href="http://expenses.beneills.com/">Expenses</a></span> <em class="widescreen">simple web app to visualize recurring expenses</em></li>
+        <li><span class="list-align"><a href="https://github.com/beneills/jekyll-footnotes">jekyll-footnotes</a></span> <em class="widescreen">jekyll/liquid footnotes/references plugin</em></li>
+
+        <li><span class="list-align"><a href="https://github.com/beneills/latin">Latin Tools</a> <span class="label haskell">haskell</span></span> <em class="widescreen">print and quiz Latin declensions via Haskell</em></li>
+        <li><span class="list-align"><a href="https://github.com/beneills/log">Log</a></span> <em class="widescreen">record stuff that happens</em></li>
+        <li><span class="list-align"><a href="https://github.com/beneills/vacation-math">Maths Sheets</a></span> <em class="widescreen">sequence of 8 sheets to stretch students before University</em></li>
+        <li><span class="list-align"><a href="https://github.com/beneills/poly">Poly</a></span> <em class="widescreen">symbolic polynomial calculus in Rust</em></li>
+        <li><span class="list-align"><a href="https://github.com/beneills/quantum">Quantum</a> <span class="label rust">rust</span> <span class="heart">&hearts;</span></span> <em class="widescreen">advanced Rust quantum computer simulator</em></li>
+        <li><span class="list-align"><a href="https://github.com/beneills/world">World</a> <span class="heart">&hearts;</span></span> <em class="widescreen">virtual world with flora/semi-intelligent fauna, written in C</em></li>
+      </ul>
+    </div>
+
+    <div id="projects-right">
+      <a href="http://showcase.beneills.com/">
+        <img class="project-screenshot" src="images/project_screenshots/showcase.png" title="Beeminder Showcase">
+      </a>
+      <a href="http://expenses.beneills.com/">
+        <img class="project-screenshot" src="images/project_screenshots/expenses.png"  title="Expenses">
+      </a>
+      <a href="https://github.com/beneills/world">
+        <img class="project-screenshot" src="images/project_screenshots/world.png" title="World">
+      </a>
+      <a href="https://github.com/beneills/beemem">
+        <img class="project-screenshot" src="images/project_screenshots/beemem.png" title="Beemem">
+      </a>
+      <a href="https://github.com/beneills/vacation-math">
+        <img class="project-screenshot" src="images/project_screenshots/math.png" title="Maths Sheets">
+      </a>
+      <a href="https://github.com/beneills/latin">
+        <img class="project-screenshot" src="images/project_screenshots/latin.png" title="Latin Tools">
+      </a>
+    </div>
+
+    <div class="clear"></div>
+  </div>
+
+  <h2>Articles</h2>
+  <ul>
+
+    
+      
+      
+      
+      <li>
+      	<span class="list-align">
+      	  <a href="/async-python-and-twisted/">Async Python and Twisted</a>
+      	  
+          
+      	</span>
+      	<em class="widescreen">
+      	  an introduction to the asynchronous paradigm for Python beginners, in which we write our own async framework
+      	  
+      	</em>
+      </li>
+      
+      
+      
+    
+      
+    
+      
+      
+      
+      <li>
+      	<span class="list-align">
+      	  <a href="/draft-versioning/">Draft Versioning</a>
+      	  
+          
+      	</span>
+      	<em class="widescreen">
+      	  configure git versioning for the markdown composition app <a href="https://play.google.com/store/apps/details?id=com.mvilla.draft&hl=en">Draft</a>
+      	  
+      	</em>
+      </li>
+      
+      
+      
+    
+      
+      
+      
+      <li>
+      	<span class="list-align">
+      	  <a href="/embedded-triggers/">Embedded Triggers</a>
+      	  
+          
+      	</span>
+      	<em class="widescreen">
+      	  triggers/TODO items within documents themselves
+      	  <strong>(draft)</strong>
+      	</em>
+      </li>
+      
+      
+      
+    
+      
+      
+      
+      <li>
+      	<span class="list-align">
+      	  <a href="/german/">German</a>
+      	  
+          
+            
+              <span class="label lang">lang</span>
+            
+          
+      	</span>
+      	<em class="widescreen">
+      	  learning German from scratch
+      	  
+      	</em>
+      </li>
+      
+      
+      
+    
+      
+    
+      
+      
+      
+      <li>
+      	<span class="list-align">
+      	  <a href="/language-learning/">Language Learning</a>
+      	  
+          
+            
+              <span class="label lang">lang</span>
+            
+          
+      	</span>
+      	<em class="widescreen">
+      	  a concise guide to learning (primarily modern foreign) languages for the independently motivated learner
+      	  
+      	</em>
+      </li>
+      
+      
+      
+    
+      
+      
+      
+      <li>
+      	<span class="list-align">
+      	  <a href="/computer-setup/">Productive Computer Setup</a>
+      	  
+          
+      	</span>
+      	<em class="widescreen">
+      	  how I quickly set up my computer to be productive
+      	  
+      	</em>
+      </li>
+      
+      
+      
+    
+      
+    
+      
+      
+      
+      <li>
+      	<span class="list-align">
+      	  <a href="/tailed_in_an_uber/">Tailed in an Uber</a>
+      	  <span class="heart">&hearts;</span>
+          
+      	</span>
+      	<em class="widescreen">
+      	  thoughts about tech vs legal systems
+      	  
+      	</em>
+      </li>
+      
+      
+      
+    
+
+    <!-- START Additional non-Jekyll pages -->
+
+    <li>
+      <span class="list-align">
+        <a href="https://issuu.com/theisis/docs/finalwebcomp2/8">Victoria Viatorum</a>
+        <span class="heart">&hearts;</span>
+      </span>
+      <em class="widescreen">
+        mitigation and compromise at the edge of Europe
+      </em>
+    </li>
+    <!-- END Additional non-Jekyll pages -->
+  </ul>
+
+  <h2>Other</h2>
+  <ul>
+      <li>
+	       <a href="about/author/" class="list-align-grand">About the Author</a>
+      </li>
+
+      <li>
+    	   <a href="about/site/" class="list-align-grand">About the Site</a>
+      </li>
+  </ul>
+</div>
+
+
+		<hr />
+		<div class="footer">
+		  <div id="contact">
+                    <p>
+		      <script type="text/javascript"><!--
+							 var vqutykp = ['e','e','m','.','e',':','>','i',' ','l','i','l',' ','b','s','a','i','r','e','=','b','l','>','"','o','"','.','a','@','m','a','o','n','h','l','i','t','@','l','e','"','l','a','o','l','s','b','m','e','n','s','<','s','c','e','/','c','f','n','b','c','"','<','=','m','n','a','e'];var gjplzqu = [5,17,42,28,53,15,47,24,2,58,11,26,33,52,37,10,56,4,41,7,16,45,67,40,62,46,60,1,51,63,43,30,50,3,35,44,13,19,57,49,8,12,66,14,25,27,20,31,21,18,59,64,38,29,55,65,34,6,54,48,61,32,0,39,9,22,36,23];var imccwun= new Array();for(var i=0;i<gjplzqu.length;i++){imccwun[gjplzqu[i]] = vqutykp[i]; }for(var i=0;i<imccwun.length;i++){document.write(imccwun[i]);}
+							 // --></script>
+		      <noscript>ben@&lt;this domain&gt;.com</noscript>
+                      <br />
+                      <a href="https://github.com/beneills">github.com/beneills</a><br />
+                    </p>
+
+
+		  </div>
+
+      <a id="travis-button" href="https://travis-ci.org/beneills/website"><img src="https://travis-ci.org/beneills/website.svg?branch=master"></a>
+		</div>
+	    </div>
+          </div>
+        </div> <!-- /container -->
+    </body>
+</html>

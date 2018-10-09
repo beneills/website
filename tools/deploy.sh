@@ -21,6 +21,11 @@ if ! [ -z "$(git status --porcelain)" ]; then
   exit 1
 fi
 
+if ! [ -z "$(git cherry -v)" ]; then
+  echo "Error: git repository has commit not present remotely" >> /dev/stderr
+  exit 1
+fi
+
 echo "> Generating $SITE_DIRECTORY"
 jekyll build
 popd

@@ -6,10 +6,6 @@ rvm:
 - 2.3
 - ruby-head
 
-matrix:
-  allow_failures:
-    - rvm: ruby-head
-
 before_script:
  - chmod +x ./tools/cibuild
 
@@ -17,9 +13,8 @@ script: ./tools/cibuild
 
 # branch whitelist, only for GitHub Pages
 branches:
-  only:
-  - master
-  - beta
+  except:
+  - gh-pages
 
 env:
   global:

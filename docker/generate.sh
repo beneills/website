@@ -1,7 +1,7 @@
 set -e
 
 IMAGE_TAG=beneills-jekyll
-OUTPUT_DIRECTORY=$(greadlink -f $(dirname $0)/../docs)
+OUTPUT_DIRECTORY=$(greadlink -f $(dirname $0)/../_site)
 
 # Go to website root so that we can copy jekyll sources
 pushd $(dirname $0)/.. > /dev/null

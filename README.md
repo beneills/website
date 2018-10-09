@@ -10,7 +10,7 @@
 # Install dependencies
 bundle install
 
-# Build site in docs directory
+# Build site in the _site directory
 jekyll build
 
 # (optional) Serve site locally for testing
@@ -19,7 +19,7 @@ jekyll serve
 
 ### Docker build
 
-The following will generate the site in `docs`:
+The following will generate the site in `_site`:
 ```bash
 docker/generate.sh
 ```

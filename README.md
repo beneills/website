@@ -26,7 +26,12 @@ docker/generate.sh
 
 ## Deploying
 
-The files in the `master` branch of `docs` will be served by Github pages.
+The files in the `gh-pages` branch will be served by Github pages.
+
+In order to deploy a branch (e.g. `master`), test, commit push the changes. Then run:
+```bash
+./tools/deploy.sh
+```
 
 ## Editing
 

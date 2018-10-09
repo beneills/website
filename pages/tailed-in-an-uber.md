@@ -12,7 +12,7 @@ _In which we are tailed through the dark streets of Prague while using a [billio
 <br>
 
 <center>
-![screenshot of the fateful ride](images/uber/uber_screenshot.png "screenshot of the fateful ride")
+![screenshot of the fateful ride](/images/uber/uber_screenshot.png "screenshot of the fateful ride")
 </center>
 
 At 2 in the morning, having just met a friend arriving in Prague airport, getting back home was the first priority.  This was to be her first ride at the pleasure of [Uber Technologies Inc.](https://en.wikipedia.org/wiki/Uber_(company)), ordered on my phone with the touch of a button.  This was an _UberPop_ — their lower cost offering, available in many cities, including the capital of the Czech Republic.  All the convenience and cost saving without the black paint.
@@ -20,7 +20,7 @@ At 2 in the morning, having just met a friend arriving in Prague airport, gettin
 The company, along with the similarly disruptive Airbnb, has undergone massive success while challenging established interests in the form of existing operators and laws.  Compliance with city and national laws is a complicated patchwork spanning different classes of cars across many localities, all with different legal systems and precedents.  But what distinguishes these "sharing economy" apps from historic enterprises in comparable legal situations is that they are positioned as platforms: practically, in many cases legally, and in the minds of users.  And the person in the front seat, just like the person sleeping in the master bedroom, are just another sort of user.
 
 <center>
-![car in darkness](images/uber/car_stock.jpg)
+![car in darkness](/images/uber/car_stock.jpg)
 </center>
 
 With seamless user experience we were guided to a certain pick-up area outside Václav Havel Airport, where we loaded the luggage in the rear of the waiting car and climbed into the back seat.  Driving through Prague at night is beautiful, and one has the sense of being in [an old European film](https://en.wikipedia.org/wiki/Damnation_(film)).  The interplay between dark and light, the repeating patterns of building and empty space, the way the Czech driver glances in the rear-view mirror.

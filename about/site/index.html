@@ -7,28 +7,28 @@
       <meta name="viewport" content="width=device-width">
 
       <!-- share buttons -->
-      <link rel="stylesheet" href="css/share-button.min.css">
+      <link rel="stylesheet" href="/css/share-button.min.css">
 
     	<!-- custom CSS -->
-      <link rel="stylesheet" href="css/main.css">
-      <link rel="stylesheet" href="css/mobile.css">
-      <link rel="stylesheet" href="css/syntax.css">
+      <link rel="stylesheet" href="/css/main.css">
+      <link rel="stylesheet" href="/css/mobile.css">
+      <link rel="stylesheet" href="/css/syntax.css">
 
     	<!-- jquery -->
     	<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     	<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     	<!-- main js -->
-        <script src="js/main.js"></script>
+        <script src="/js/main.js"></script>
 
     	<!-- footnotes from http://ignorethecode.net/blog/2010/04/20/footnotes/ -->
-        <script src="js/footnotes.js"></script>
+        <script src="/js/footnotes.js"></script>
 
     	<!-- math rendering -->
     	<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
       <!-- share buttons -->
-      <script src="js/share-button.min.js"></script>
+      <script src="/js/share-button.min.js"></script>
 
     	<!-- analytics -->
     	<script type="text/javascript">
@@ -44,10 +44,10 @@
     	</script>
 
     	<!-- map -->
-    	<link rel="stylesheet" href="css/jquery-jvectormap-1.2.2.css" type="text/css" media="screen"/>
-    	<script src="js/jquery-jvectormap-1.2.2.min.js"></script>
-    	<script src="js/jquery-jvectormap-world-mill-en.js"></script>
-    	<script src="js/map.js"></script>
+    	<link rel="stylesheet" href="/css/jquery-jvectormap-1.2.2.css" type="text/css" media="screen"/>
+    	<script src="/js/jquery-jvectormap-1.2.2.min.js"></script>
+    	<script src="/js/jquery-jvectormap-world-mill-en.js"></script>
+    	<script src="/js/map.js"></script>
     </head>
     <body>
 
@@ -56,28 +56,28 @@
 
         <!-- Large screen header -->
           <div class="header row">
-           <a href="/"><img id="avatar" src="images/running_cropped.jpg" /></a>
+           <a href="/"><img id="avatar" src="/images/running_cropped.jpg" /></a>
            <div class="title">
-            <span id="site-name"><a href="/">Ben Eills</a></span><sup><a id="aboutauthor" href="about/author/" rel="footnote">&dagger;</a></sup>
+            <span id="site-name"><a href="/">Ben Eills</a></span><sup><a id="aboutauthor" href="/about/author/" rel="footnote">&dagger;</a></sup>
 
             <a href="https://github.com/beneills">
-              <img src="images/github.png" />
+              <img src="/images/github.png" />
             </a>
           </div>
 
           <div id="previews">
             <span class="preview">
-              <a href="about/author/#toc_2"><div class="world-map home-preview" title="Visited Places"></div></a>
+              <a href="/about/author/#toc_2"><div class="world-map home-preview" title="Visited Places"></div></a>
             </span>
 
             <span class="preview">
               <div class="beeminder-goal-preview">
-                <a href="about/author/#toc_0"><img src="https://www.beeminder.com/beneills/goals/memrise-intermediate-harvest-backlog/graph?style=thumb" title="My Beeminder Goals" alt="memrise-intermediate-harvest-backlog Beeminder goal" /></a></div>
+                <a href="/about/author/#toc_0"><img src="https://www.beeminder.com/beneills/goals/memrise-intermediate-harvest-backlog/graph?style=thumb" title="My Beeminder Goals" alt="memrise-intermediate-harvest-backlog Beeminder goal" /></a></div>
               </span>
 
               <span class="preview">
-                <a href="about/author/#toc_1">
-                  <img src="images/book.jpg" title="My LibraryThing Books" alt="A Confederacy of Dunces book cover" />
+                <a href="/about/author/#toc_1">
+                  <img src="/images/book.jpg" title="My LibraryThing Books" alt="A Confederacy of Dunces book cover" />
                 </a>
               </span>
 
@@ -87,16 +87,16 @@
 
         <!-- Mobile header -->
           <div class="header-mobile">
-            <a href="/"><img id="avatar-mobile" src="images/running_cropped.jpg" /></a>
+            <a href="/"><img id="avatar-mobile" src="/images/running_cropped.jpg" /></a>
             <div class="title-mobile">
-              <span id="site-name"><a href="/">Ben Eills</a></span><sup><a id="aboutauthor" href="about/author/" rel="footnote">&dagger;</a></sup>
+              <span id="site-name"><a href="/">Ben Eills</a></span><sup><a id="aboutauthor" href="/about/author/" rel="footnote">&dagger;</a></sup>
 
               <a href="https://github.com/beneills">
-                <img id="github" src="images/github.png" />
+                <img id="github" src="/images/github.png" />
               </a>
              </div>
 
-             <a href="about/author/#toc_2"><div class="world-map" title="Visited Places"></div></a>
+             <a href="/about/author/#toc_2"><div class="world-map" title="Visited Places"></div></a>
 
              <div class="clear"></div>
            </div>
@@ -142,7 +142,7 @@
 
 <p>This is hosted as a <a href="http://jekyllrb.com/">Jekyll</a> blog, but makes use of other Jekyll features far more than the blogging stuff.  The source is available on <a href="https://github.com/beneills/website">Github</a>.  If I wrote the site again, I&#39;d investigate <a href="http://octopress.org/">Octopress</a> for apparently easier site admin (although it&#39;s pretty easy as-is).  The resultant static HTML directory tree is easy to host anywhere.  I&#39;ve moved away from Github Pages, since I use custom plugins<sup><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.</p>
 
-<p>I use <a href="http://jvectormap.com/">JVectorMap</a> to draw my <a href="about/author/#toc_2">places map</a>, alongside JQuery for other stuff.</p>
+<p>I use <a href="http://jvectormap.com/">JVectorMap</a> to draw my <a href="/about/author/#toc_2">places map</a>, alongside JQuery for other stuff.</p>
 
 <h2 id="hosting">Hosting</h2>
 

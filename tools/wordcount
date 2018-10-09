@@ -1,2 +1,0 @@
-cd ..
-cat pages/* _posts/* | wc -w

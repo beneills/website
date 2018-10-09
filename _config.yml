@@ -2,9 +2,7 @@ name: Ben Eills
 markdown: redcarpet
 highlighter: pygments
 
-destination: docs/
-
-exclude: [conf, docker, docs, tools, vendor, Gemfile, Gemfile.lock, README.md]
+exclude: [conf, docker, tools, vendor, Gemfile, Gemfile.lock, README.md]
 
 permalink: ":title/"
 

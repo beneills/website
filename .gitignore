@@ -1,4 +1,5 @@
-drafts/
+drafts
 /drafts
 /docker/.compiled
 .idea
+_site
